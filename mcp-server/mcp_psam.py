@@ -17,6 +17,7 @@ import mcp.server.stdio
 
 from data.nsw_schools_loader import NSWSchoolDataLoader
 from data.nsw_schools_query import NSWSchoolQuery
+from tools.hidden_cohort_analyzer import HiddenCohortAnalyzer
 
 
 # Initialize data loader and query API
@@ -226,6 +227,38 @@ async def list_tools() -> list[Tool]:
                 "properties": {}
             }
         ),
+        Tool(
+            name="analyze_hidden_cohort",
+            description="Analyze the 'Hidden Cohort' - students in the 85-95 PSAM range who could reach 95+ with strategic intervention. This powerful analysis identifies students with untapped potential and provides specific recommendations for subject changes, mathematics pathway upgrades, and strategic interventions that could significantly boost their PSAM scores.",
+            inputSchema={
+                "type": "object",
+                "properties": {
+                    "school_id": {
+                        "type": "integer",
+                        "description": "Filter by specific school ID (optional)"
+                    },
+                    "min_psam": {
+                        "type": "number",
+                        "description": "Minimum PSAM score for the cohort (default: 85.0)",
+                        "default": 85.0
+                    },
+                    "max_psam": {
+                        "type": "number",
+                        "description": "Maximum PSAM score for the cohort (default: 94.9)",
+                        "default": 94.9
+                    },
+                    "target_psam": {
+                        "type": "number",
+                        "description": "Target PSAM score to reach (default: 95.0)",
+                        "default": 95.0
+                    },
+                    "year": {
+                        "type": "integer",
+                        "description": "Filter by specific calendar year (optional)"
+                    }
+                }
+            }
+        ),
     ]
 
 
@@ -291,6 +324,15 @@ async def call_tool(name: str, arguments: dict) -> list[TextContent]:
         elif name == "get_dataset_stats":
             result = query_api.get_query_stats()
             
+        elif name == "analyze_hidden_cohort":
+            return await analyze_hidden_cohort(
+                school_id=arguments.get("school_id"),
+                min_psam=arguments.get("min_psam", 85.0),
+                max_psam=arguments.get("max_psam", 94.9),
+                target_psam=arguments.get("target_psam", 95.0),
+                year=arguments.get("year")
+            )
+            
         else:
             return [TextContent(
                 type="text",
@@ -318,6 +360,137 @@ async def call_tool(name: str, arguments: dict) -> list[TextContent]:
             type="text",
             text=f"Error executing query: {str(e)}"
         )]
+
+
+async def analyze_hidden_cohort(
+    school_id: Optional[int] = None,
+    min_psam: float = 85.0,
+    max_psam: float = 94.9,
+    target_psam: float = 95.0,
+    year: Optional[int] = None
+) -> list[TextContent]:
+    """
+    Analyze the 'Hidden Cohort' - students in the 85-95 PSAM range who could reach 95+ with strategic intervention.
+    
+    This powerful analysis identifies students with untapped potential and provides specific recommendations
+    for subject changes, mathematics pathway upgrades, and strategic interventions that could significantly
+    boost their PSAM scores.
+    
+    Args:
+        school_id: Filter by specific school ID (optional)
+        min_psam: Minimum PSAM score for the cohort (default: 85.0)
+        max_psam: Maximum PSAM score for the cohort (default: 94.9)
+        target_psam: Target PSAM score to reach (default: 95.0)
+        year: Filter by specific calendar year (optional)
+    
+    Returns:
+        Comprehensive hidden cohort analysis with strategic insights and recommendations
+    """
+    
+    try:
+        if not loader.students_data:
+            return [TextContent(
+                type="text",
+                text="❌ No student data loaded. Please ensure the dataset is properly initialized."
+            )]
+        
+        # Create analyzer instance
+        analyzer = HiddenCohortAnalyzer(query_api)
+        
+        # Perform analysis
+        analysis_results = analyzer.analyze_hidden_cohort(
+            school_id=school_id,
+            min_psam=min_psam,
+            max_psam=max_psam,
+            target_psam=target_psam,
+            year=year
+        )
+        
+        # Format results for display
+        result_text = format_hidden_cohort_results(analysis_results)
+        
+        return [TextContent(
+            type="text",
+            text=result_text
+        )]
+        
+    except Exception as e:
+        return [TextContent(
+            type="text",
+            text=f"❌ Error analyzing hidden cohort: {str(e)}"
+        )]
+
+
+def format_hidden_cohort_results(results: dict) -> str:
+    """Format the hidden cohort analysis results for display"""
+    
+    summary = results["cohort_summary"]
+    students = results["students"]
+    insights = results["strategic_insights"]
+    impact = results["aggregate_impact"]
+    
+    output = []
+    
+    # Header
+    output.append("🎯 HIDDEN COHORT EFFECT ANALYSIS")
+    output.append("=" * 50)
+    
+    # Summary
+    output.append(f"\n📊 COHORT SUMMARY")
+    output.append(f"• PSAM Range: {summary['psam_range']}")
+    output.append(f"• Total Students in Range: {summary['total_students']}")
+    output.append(f"• Students with 95+ Potential: {summary['students_with_potential']}")
+    output.append(f"• Target PSAM: {summary['target_psam']}")
+    if summary['school_id']:
+        output.append(f"• School ID: {summary['school_id']}")
+    if summary['year']:
+        output.append(f"• Year: {summary['year']}")
+    
+    # Strategic Insights
+    if insights:
+        output.append(f"\n🧠 STRATEGIC INSIGHTS")
+        output.append(f"• Average Improvement Potential: {insights['average_improvement_potential']} PSAM points")
+        output.append(f"• Total Potential PSAM Gain: {insights['total_potential_psam_gain']} points")
+        output.append(f"• Gender Distribution: {insights['gender_distribution']['M']}M, {insights['gender_distribution']['F']}F")
+        
+        if insights['most_common_improvements']:
+            output.append(f"\n🔧 MOST COMMON IMPROVEMENT OPPORTUNITIES:")
+            for improvement, count in insights['most_common_improvements']:
+                output.append(f"  • {improvement}: {count} students")
+    
+    # Aggregate Impact
+    output.append(f"\n📈 AGGREGATE IMPACT PROJECTION")
+    output.append(f"• Students Who Could Reach 95+: {impact['students_could_reach_95_plus']}")
+    output.append(f"• Percentage of Cohort: {impact['percentage_of_cohort']}%")
+    output.append(f"• Total PSAM Points Possible: {impact['total_psam_points_possible']}")
+    output.append(f"• Estimated School Rank Improvement: +{impact['estimated_school_rank_improvement']}")
+    
+    # Individual Student Details (Top 10)
+    if students:
+        output.append(f"\n👥 TOP IMPROVEMENT CANDIDATES")
+        output.append("-" * 40)
+        
+        # Sort by improvement potential
+        sorted_students = sorted(students, key=lambda x: x.improvement_potential, reverse=True)
+        
+        for i, student in enumerate(sorted_students[:10], 1):
+            output.append(f"\n{i}. {student.student_name} (ID: {student.student_id})")
+            output.append(f"   Current PSAM: {student.psam_score}")
+            output.append(f"   Potential PSAM: {student.target_psam} (+{student.improvement_potential})")
+            output.append(f"   Gender: {student.gender}")
+            output.append(f"   Recommendations:")
+            for rec in student.recommended_changes:
+                output.append(f"     • {rec}")
+    
+    # Action Items
+    output.append(f"\n🎯 RECOMMENDED ACTION ITEMS")
+    output.append("1. Review mathematics pathway progression opportunities")
+    output.append("2. Identify students for STEM subject optimization")
+    output.append("3. Consider extension subject counseling")
+    output.append("4. Implement targeted intervention programs")
+    output.append("5. Monitor progress quarterly for listed students")
+    
+    return "\n".join(output)
 
 
 async def main():
