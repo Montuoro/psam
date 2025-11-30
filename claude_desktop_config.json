@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "school-data": {
+      "command": "python",
+      "args": [
+        "C:\\data projects\\mcp\\school_data_server.py"
+      ],
+      "description": "School data MCP server - provides access to school databases and JSON files"
+    }
+  }
+}

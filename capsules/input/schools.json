@@ -1,0 +1,14 @@
+[
+    {
+        "school_id": "10968",
+        "school_name": "Abbotsleigh",
+        "file_id": "abbotsleigh",
+        "encrypt": true,
+        "encrypt_key": "1234567890"
+    },
+    {
+        "school_id": "11669",
+        "school_name": "Northern Beaches",
+        "file_id": "northern-beaches"
+    }
+]

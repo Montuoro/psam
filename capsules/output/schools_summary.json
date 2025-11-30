@@ -1,0 +1,54 @@
+[
+  {
+    "school_id": "10968",
+    "school_name": "Abbotsleigh",
+    "file_id": "abbotsleigh",
+    "encrypt": true,
+    "encrypt_key": "1234567890",
+    "summary": {
+      "status": "success",
+      "imported": {
+        "students": 965,
+        "courses": 208,
+        "course_programs": 213,
+        "course_results": 5217,
+        "course_groups": 61,
+        "groups": 300,
+        "group_members": 4230,
+        "achievers": 46,
+        "aas_results": 658,
+        "student_metrics": 965
+      },
+      "observations": [
+        "Skipping AAS result for unknown student 33919581"
+      ],
+      "duration_seconds": 0.15,
+      "database": "capsules/output/abbotsleigh.db",
+      "encrypted_database": "capsules/output/abbotsleigh-encrypted.db",
+      "encryption": "AES-256"
+    }
+  },
+  {
+    "school_id": "11669",
+    "school_name": "Northern Beaches",
+    "file_id": "northern-beaches",
+    "summary": {
+      "status": "success",
+      "imported": {
+        "students": 629,
+        "courses": 198,
+        "course_programs": 0,
+        "course_results": 3117,
+        "course_groups": 60,
+        "groups": 249,
+        "group_members": 2972,
+        "achievers": 7,
+        "aas_results": 224,
+        "student_metrics": 629
+      },
+      "observations": [],
+      "duration_seconds": 0.11,
+      "database": "capsules/output/northern-beaches.db"
+    }
+  }
+]
