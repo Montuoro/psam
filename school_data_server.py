@@ -19,7 +19,7 @@ import mcp.server.stdio
 import mcp.types as types
 
 # Import analysis functions
-from analyze_school_results_v3 import analyze_school_results_v3
+from analyze_school_results_v4 import analyze_school_results_v4
 
 # Base directory
 BASE_DIR = Path(__file__).parent
@@ -244,7 +244,7 @@ async def handle_list_tools() -> list[types.Tool]:
         ),
         types.Tool(
             name="analyze_school_results",
-            description="Comprehensive school performance analysis with ATAR insights. Generates a detailed markdown report identifying courses requiring intervention, high performers, and actionable recommendations. Includes: 1) ATAR performance overview, 2) Departmental analysis with three-tier categorization (Courses of Concern / Middling / High Performers), 3) Deep insights with assessment-exam correlations, band distributions, scaling impacts, 4) Specific heatmap directions with z-score interpretations, 5) Database deep-dive suggestions. The report automatically saves as a .md file and provides evidence-based recommendations explaining WHY interventions are needed.",
+            description="V4: Complete school performance analysis with 6 major enhancements. Generates comprehensive markdown report with: 1) Multi-year trend analysis (up to 5 years, focusing on recent), 2) FIXED scaling calculations (properly doubled for ATAR contribution), 3) Actual heatmap PNG analysis with specific column directions, 4) 100% deeper database insights with real cross-course correlations, 5) Full high-performer analysis with replication strategies, 6) Course-specific deep-dives from actual student data (not generic templates). Report auto-saves as .md file with evidence-based, actionable recommendations.",
             inputSchema={
                 "type": "object",
                 "properties": {
@@ -553,8 +553,8 @@ async def handle_call_tool(
             )]
 
         try:
-            # Call the enhanced v3 analysis function
-            analysis_result = analyze_school_results_v3(
+            # Call the enhanced v4 analysis function
+            analysis_result = analyze_school_results_v4(
                 school_id=school_id,
                 db_path=str(db_file),
                 heatmaps_dir=str(HEATMAPS_DIR),
