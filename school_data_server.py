@@ -18,6 +18,9 @@ from mcp.server.models import InitializationOptions
 import mcp.server.stdio
 import mcp.types as types
 
+# Import analysis functions
+from analyze_school_results_v3 import analyze_school_results_v3
+
 # Base directory
 BASE_DIR = Path(__file__).parent
 CAPSULES_DIR = BASE_DIR / "capsules"
@@ -241,7 +244,7 @@ async def handle_list_tools() -> list[types.Tool]:
         ),
         types.Tool(
             name="analyze_school_results",
-            description="Analyze school results at a high level and identify courses for improvement. Mimics the analysis workflow of: 1) Overview of all subject areas with performance metrics, 2) Identify areas with declining trends or concerning patterns, 3) Drill down into specific courses, 4) Compare year-over-year performance. Returns insights on which courses need attention and why.",
+            description="Comprehensive school performance analysis with ATAR insights. Generates a detailed markdown report identifying courses requiring intervention, high performers, and actionable recommendations. Includes: 1) ATAR performance overview, 2) Departmental analysis with three-tier categorization (Courses of Concern / Middling / High Performers), 3) Deep insights with assessment-exam correlations, band distributions, scaling impacts, 4) Specific heatmap directions with z-score interpretations, 5) Database deep-dive suggestions. The report automatically saves as a .md file and provides evidence-based recommendations explaining WHY interventions are needed.",
             inputSchema={
                 "type": "object",
                 "properties": {
@@ -252,16 +255,6 @@ async def handle_list_tools() -> list[types.Tool]:
                     "year": {
                         "type": "number",
                         "description": "Optional: specific year to analyze (defaults to most recent year)",
-                    },
-                    "include_heatmap_analysis": {
-                        "type": "boolean",
-                        "description": "Whether to include heatmap visual analysis in the results (default: true)",
-                        "default": True,
-                    },
-                    "min_cohort_size": {
-                        "type": "number",
-                        "description": "Minimum cohort size to flag as 'small cohort' concern (default: 10)",
-                        "default": 10,
                     },
                 },
                 "required": ["school_id"],
@@ -550,8 +543,6 @@ async def handle_call_tool(
     elif name == "analyze_school_results":
         school_id = arguments["school_id"]
         target_year = arguments.get("year")
-        include_heatmap = arguments.get("include_heatmap_analysis", True)
-        min_cohort = arguments.get("min_cohort_size", 10)
 
         db_file = OUTPUT_DIR / f"{school_id}.db"
 
@@ -562,240 +553,32 @@ async def handle_call_tool(
             )]
 
         try:
-            conn = sqlite3.connect(db_file)
-            conn.row_factory = sqlite3.Row
-            cursor = conn.cursor()
+            # Call the enhanced v3 analysis function
+            analysis_result = analyze_school_results_v3(
+                school_id=school_id,
+                db_path=str(db_file),
+                heatmaps_dir=str(HEATMAPS_DIR),
+                output_dir=str(BASE_DIR),
+                target_year=target_year
+            )
 
-            # Get available years
-            cursor.execute("""
-                SELECT DISTINCT year
-                FROM course_summary
-                ORDER BY year DESC
-            """)
-            available_years = [row[0] for row in cursor.fetchall()]
+            # Extract the markdown report path from the result
+            report_path = analysis_result.get('markdown_report')
 
-            if not available_years:
-                conn.close()
+            # Read the generated markdown report
+            if report_path and Path(report_path).exists():
+                with open(report_path, 'r', encoding='utf-8') as f:
+                    report_content = f.read()
+
                 return [types.TextContent(
                     type="text",
-                    text=json.dumps({"error": "No course summary data found"}, indent=2)
+                    text=f"Analysis complete! Report generated: {report_path}\n\n{report_content}"
                 )]
-
-            # Use target year or most recent
-            analysis_year = target_year if target_year and target_year in available_years else available_years[0]
-            previous_year = analysis_year - 1 if (analysis_year - 1) in available_years else None
-
-            # Get school-wide statistics for context
-            cursor.execute("""
-                SELECT
-                    AVG(mean) as school_mean,
-                    AVG(std_dev) as school_std_dev,
-                    COUNT(DISTINCT course_id) as total_courses,
-                    SUM(units) as total_units
-                FROM course_summary
-                WHERE year = ?
-            """, (analysis_year,))
-            school_stats = dict(cursor.fetchone())
-
-            # Get course-level performance with year-over-year comparison
-            query = """
-                SELECT
-                    c.course_id,
-                    COALESCE(c.code, c.name) as code,
-                    c.name,
-                    COALESCE(c.subject_area, 'Uncategorized') as subject_area,
-                    c.category,
-                    cs.year,
-                    cs.mean,
-                    cs.std_dev,
-                    cs.units,
-                    COUNT(DISTINCT cr.student_id) as cohort_size
-                FROM course_summary cs
-                JOIN course c ON cs.course_id = c.course_id
-                LEFT JOIN course_result cr ON c.course_id = cr.course_id AND cr.year = cs.year
-                WHERE cs.year IN (?, ?)
-                GROUP BY c.course_id, cs.year
-                ORDER BY c.subject_area, c.name, cs.year
-            """
-
-            params = [analysis_year]
-            if previous_year:
-                params.append(previous_year)
             else:
-                params.append(analysis_year)
-
-            cursor.execute(query, params)
-            courses_data = cursor.fetchall()
-
-            # Organize data by course
-            courses_by_code = {}
-            for row in courses_data:
-                row_dict = dict(row)
-                code = row_dict['code']
-                if code not in courses_by_code:
-                    courses_by_code[code] = {
-                        'code': code,
-                        'name': row_dict['name'],
-                        'subject_area': row_dict['subject_area'],
-                        'category': row_dict['category'],
-                        'years': {}
-                    }
-
-                year = row_dict['year']
-                courses_by_code[code]['years'][year] = {
-                    'mean': row_dict['mean'],
-                    'std_dev': row_dict['std_dev'],
-                    'units': row_dict['units'],
-                    'cohort_size': row_dict['cohort_size']
-                }
-
-            # Analyze each course for concerns
-            courses_for_attention = []
-            subject_area_summary = {}
-
-            for code, course_data in courses_by_code.items():
-                current = course_data['years'].get(analysis_year)
-                if not current:
-                    continue
-
-                concerns = []
-                insights = []
-
-                # Calculate trend if previous year exists
-                trend = None
-                trend_value = None
-                if previous_year and previous_year in course_data['years']:
-                    prev = course_data['years'][previous_year]
-                    if current['mean'] is not None and prev['mean'] is not None:
-                        trend_value = current['mean'] - prev['mean']
-
-                        if trend_value < -1.0:
-                            trend = "declining"
-                            concerns.append(f"Performance declined by {abs(trend_value):.2f} points from {analysis_year-1} to {analysis_year}")
-                        elif trend_value > 1.0:
-                            trend = "improving"
-                            insights.append(f"Performance improved by {trend_value:.2f} points from {analysis_year-1} to {analysis_year}")
-                        else:
-                            trend = "stable"
-
-                # Check performance relative to school average
-                if school_stats['school_mean'] and current['mean'] is not None:
-                    deviation_from_mean = current['mean'] - school_stats['school_mean']
-                    if deviation_from_mean < -3.0:
-                        concerns.append(f"Performing {abs(deviation_from_mean):.2f} points below school average")
-                    elif deviation_from_mean > 3.0:
-                        insights.append(f"Performing {deviation_from_mean:.2f} points above school average")
-
-                # Check variability
-                if current['std_dev'] and current['std_dev'] > 1.0:
-                    concerns.append(f"High variability (std dev: {current['std_dev']:.2f}) suggests inconsistent performance")
-
-                # Check cohort size
-                if current['cohort_size'] and current['cohort_size'] < min_cohort:
-                    concerns.append(f"Small cohort size ({current['cohort_size']} students) may indicate enrollment issues")
-
-                # Add to subject area summary
-                subject_area = course_data['subject_area'] or 'Uncategorized'
-                if subject_area not in subject_area_summary:
-                    subject_area_summary[subject_area] = {
-                        'courses': [],
-                        'avg_mean': 0,
-                        'avg_std_dev': 0,
-                        'total_students': 0,
-                        'declining_count': 0,
-                        'improving_count': 0
-                    }
-
-                subject_area_summary[subject_area]['courses'].append(code)
-                subject_area_summary[subject_area]['avg_mean'] += current['mean']
-                if current['std_dev']:
-                    subject_area_summary[subject_area]['avg_std_dev'] += current['std_dev']
-                if current['cohort_size']:
-                    subject_area_summary[subject_area]['total_students'] += current['cohort_size']
-
-                if trend == "declining":
-                    subject_area_summary[subject_area]['declining_count'] += 1
-                elif trend == "improving":
-                    subject_area_summary[subject_area]['improving_count'] += 1
-
-                # Add to attention list if there are concerns
-                if concerns:
-                    courses_for_attention.append({
-                        'code': code,
-                        'name': course_data['name'],
-                        'subject_area': subject_area,
-                        'category': course_data['category'],
-                        'current_mean': round(current['mean'], 2),
-                        'current_std_dev': round(current['std_dev'], 2) if current['std_dev'] else None,
-                        'cohort_size': current['cohort_size'],
-                        'trend': trend,
-                        'trend_value': round(trend_value, 2) if trend_value is not None else None,
-                        'concerns': concerns,
-                        'insights': insights,
-                        'priority': len(concerns)
-                    })
-
-            # Calculate subject area averages
-            for area, data in subject_area_summary.items():
-                course_count = len(data['courses'])
-                if course_count > 0:
-                    data['avg_mean'] = round(data['avg_mean'] / course_count, 2)
-                    data['avg_std_dev'] = round(data['avg_std_dev'] / course_count, 2)
-                    data['course_count'] = course_count
-
-            # Sort courses by priority (most concerns first)
-            courses_for_attention.sort(key=lambda x: (-x['priority'], x.get('trend_value') or 0))
-
-            conn.close()
-
-            # Build analysis result
-            analysis = {
-                'school_id': school_id,
-                'analysis_year': analysis_year,
-                'previous_year': previous_year,
-                'school_statistics': {
-                    'overall_mean': round(school_stats['school_mean'], 2),
-                    'overall_std_dev': round(school_stats['school_std_dev'], 2),
-                    'total_courses': school_stats['total_courses'],
-                    'total_units': school_stats['total_units']
-                },
-                'subject_area_summary': subject_area_summary,
-                'courses_requiring_attention': courses_for_attention[:20],  # Top 20 for brevity
-                'total_courses_flagged': len(courses_for_attention),
-                'summary_insights': {
-                    'high_priority_courses': [c['code'] for c in courses_for_attention if c['priority'] >= 3][:5],
-                    'most_declining': [c['code'] for c in sorted(courses_for_attention, key=lambda x: x.get('trend_value', 0))[:5] if c.get('trend_value') and c['trend_value'] < 0],
-                    'subject_areas_of_concern': [area for area, data in subject_area_summary.items() if data['declining_count'] > data['improving_count']],
-                }
-            }
-
-            result_content = [types.TextContent(
-                type="text",
-                text=json.dumps(analysis, indent=2)
-            )]
-
-            # Include heatmap if requested and available
-            if include_heatmap:
-                school_heatmap_dir = HEATMAPS_DIR / school_id
-                if school_heatmap_dir.exists():
-                    heatmap_files = sorted(school_heatmap_dir.glob("*.png"))
-                    if heatmap_files:
-                        # Include the first heatmap
-                        heatmap_file = heatmap_files[0]
-                        with open(heatmap_file, 'rb') as f:
-                            image_data = base64.b64encode(f.read()).decode('utf-8')
-
-                        result_content.append(types.TextContent(
-                            type="text",
-                            text=f"\n\nHeatmap Analysis: {heatmap_file.stem}\nThe heatmap provides a visual overview of z-scores across all courses and metrics."
-                        ))
-                        result_content.append(types.ImageContent(
-                            type="image",
-                            data=image_data,
-                            mimeType="image/png"
-                        ))
-
-            return result_content
+                return [types.TextContent(
+                    type="text",
+                    text="Analysis completed but no report file was generated."
+                )]
 
         except Exception as e:
             return [types.TextContent(

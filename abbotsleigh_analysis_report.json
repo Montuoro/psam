@@ -1,0 +1,1477 @@
+{
+  "school_id": "abbotsleigh",
+  "analysis_year": 2024,
+  "previous_year": 2023,
+  "school_statistics": {
+    "school_mean": 29.98095238095238,
+    "school_std_dev": 9.071428571428571,
+    "total_courses": 42,
+    "total_units": 74
+  },
+  "subject_area_summary": {
+    "Uncategorized": {
+      "courses": [
+        "Aboriginal Studies",
+        "Ancient History",
+        "Biology",
+        "Business Studies",
+        "Chemistry",
+        "Chinese Continuers",
+        "Chinese Extension",
+        "Chinese and Literature",
+        "Chinese in Context",
+        "Design and Technology",
+        "Drama",
+        "Earth & Environmental Science",
+        "Economics",
+        "English Advanced",
+        "English Extension 1",
+        "English Extension 2",
+        "English Standard",
+        "French Continuers",
+        "French Extension",
+        "Geography",
+        "German Continuers",
+        "German Extension",
+        "History Extension",
+        "Japanese Beginners",
+        "Japanese in Context",
+        "Latin Continuers",
+        "Latin Extension",
+        "Mathematics Advanced",
+        "Mathematics Ext 1",
+        "Mathematics Ext 2",
+        "Mathematics Standard 2",
+        "Modern History",
+        "Music 1",
+        "Music 2",
+        "Music Extension",
+        "PDHPE",
+        "Physics",
+        "Science Extension",
+        "Software Design & Develop",
+        "Studies of Religion I",
+        "Studies of Religion II",
+        "Visual Arts"
+      ],
+      "avg_mean": 29.98,
+      "total_students": 1077,
+      "declining_count": 0,
+      "improving_count": 4,
+      "concern_count": 42,
+      "course_count": 42
+    }
+  },
+  "courses_requiring_attention": [
+    {
+      "code": "Aboriginal Studies",
+      "name": "Aboriginal Studies",
+      "subject_area": "Uncategorized",
+      "current_mean": 15.1,
+      "current_std_dev": 12.1,
+      "cohort_size": 1,
+      "trend": "stable",
+      "trend_value": -0.6,
+      "concerns": [
+        "Performing 14.88 points below school average",
+        "High variability (std dev: 12.10)",
+        "Small cohort size (1 students)"
+      ],
+      "insights": [],
+      "priority": 3
+    },
+    {
+      "code": "Ancient History",
+      "name": "Ancient History",
+      "subject_area": "Uncategorized",
+      "current_mean": 22.7,
+      "current_std_dev": 11.3,
+      "cohort_size": 8,
+      "trend": "stable",
+      "trend_value": -0.3,
+      "concerns": [
+        "Performing 7.28 points below school average",
+        "High variability (std dev: 11.30)",
+        "Small cohort size (8 students)"
+      ],
+      "insights": [],
+      "priority": 3
+    },
+    {
+      "code": "Music 1",
+      "name": "Music 1",
+      "subject_area": "Uncategorized",
+      "current_mean": 21.1,
+      "current_std_dev": 10.8,
+      "cohort_size": 3,
+      "trend": "stable",
+      "trend_value": -0.3,
+      "concerns": [
+        "Performing 8.88 points below school average",
+        "High variability (std dev: 10.80)",
+        "Small cohort size (3 students)"
+      ],
+      "insights": [],
+      "priority": 3
+    },
+    {
+      "code": "Earth & Environmental Science",
+      "name": "Earth & Environmental Science",
+      "subject_area": "Uncategorized",
+      "current_mean": 22.6,
+      "current_std_dev": 11.0,
+      "cohort_size": 3,
+      "trend": "stable",
+      "trend_value": 0.1,
+      "concerns": [
+        "Performing 7.38 points below school average",
+        "High variability (std dev: 11.00)",
+        "Small cohort size (3 students)"
+      ],
+      "insights": [],
+      "priority": 3
+    },
+    {
+      "code": "Software Design & Develop",
+      "name": "Software Design & Develop",
+      "subject_area": "Uncategorized",
+      "current_mean": 26.6,
+      "current_std_dev": 10.6,
+      "cohort_size": 7,
+      "trend": "stable",
+      "trend_value": 0.2,
+      "concerns": [
+        "Performing 3.38 points below school average",
+        "High variability (std dev: 10.60)",
+        "Small cohort size (7 students)"
+      ],
+      "insights": [],
+      "priority": 3
+    },
+    {
+      "code": "Japanese Beginners",
+      "name": "Japanese Beginners",
+      "subject_area": "Uncategorized",
+      "current_mean": 24.6,
+      "current_std_dev": 10.9,
+      "cohort_size": 2,
+      "trend": "improving",
+      "trend_value": 1.2,
+      "concerns": [
+        "Performing 5.38 points below school average",
+        "High variability (std dev: 10.90)",
+        "Small cohort size (2 students)"
+      ],
+      "insights": [
+        "Performance improved by 1.20 points"
+      ],
+      "priority": 3
+    },
+    {
+      "code": "Chinese and Literature",
+      "name": "Chinese and Literature",
+      "subject_area": "Uncategorized",
+      "current_mean": 25.7,
+      "current_std_dev": 10.5,
+      "cohort_size": 1,
+      "trend": "improving",
+      "trend_value": 1.3,
+      "concerns": [
+        "Performing 4.28 points below school average",
+        "High variability (std dev: 10.50)",
+        "Small cohort size (1 students)"
+      ],
+      "insights": [
+        "Performance improved by 1.30 points"
+      ],
+      "priority": 3
+    },
+    {
+      "code": "Chinese in Context",
+      "name": "Chinese in Context",
+      "subject_area": "Uncategorized",
+      "current_mean": 30.3,
+      "current_std_dev": 11.0,
+      "cohort_size": 7,
+      "trend": "stable",
+      "trend_value": -0.7,
+      "concerns": [
+        "High variability (std dev: 11.00)",
+        "Small cohort size (7 students)"
+      ],
+      "insights": [],
+      "priority": 2
+    },
+    {
+      "code": "History Extension",
+      "name": "History Extension",
+      "subject_area": "Uncategorized",
+      "current_mean": 32.9,
+      "current_std_dev": 7.2,
+      "cohort_size": 7,
+      "trend": "stable",
+      "trend_value": -0.6,
+      "concerns": [
+        "High variability (std dev: 7.20)",
+        "Small cohort size (7 students)"
+      ],
+      "insights": [],
+      "priority": 2
+    },
+    {
+      "code": "English Extension 2",
+      "name": "English Extension 2",
+      "subject_area": "Uncategorized",
+      "current_mean": 35.8,
+      "current_std_dev": 6.6,
+      "cohort_size": 8,
+      "trend": "stable",
+      "trend_value": -0.5,
+      "concerns": [
+        "High variability (std dev: 6.60)",
+        "Small cohort size (8 students)"
+      ],
+      "insights": [
+        "Performing 5.82 points above school average"
+      ],
+      "priority": 2
+    },
+    {
+      "code": "Geography",
+      "name": "Geography",
+      "subject_area": "Uncategorized",
+      "current_mean": 25.4,
+      "current_std_dev": 11.1,
+      "cohort_size": 55,
+      "trend": "stable",
+      "trend_value": -0.4,
+      "concerns": [
+        "Performing 4.58 points below school average",
+        "High variability (std dev: 11.10)"
+      ],
+      "insights": [],
+      "priority": 2
+    },
+    {
+      "code": "German Extension",
+      "name": "German Extension",
+      "subject_area": "Uncategorized",
+      "current_mean": 39.5,
+      "current_std_dev": 5.1,
+      "cohort_size": 2,
+      "trend": "stable",
+      "trend_value": -0.3,
+      "concerns": [
+        "High variability (std dev: 5.10)",
+        "Small cohort size (2 students)"
+      ],
+      "insights": [
+        "Performing 9.52 points above school average"
+      ],
+      "priority": 2
+    },
+    {
+      "code": "Business Studies",
+      "name": "Business Studies",
+      "subject_area": "Uncategorized",
+      "current_mean": 23.5,
+      "current_std_dev": 11.4,
+      "cohort_size": 42,
+      "trend": "stable",
+      "trend_value": -0.1,
+      "concerns": [
+        "Performing 6.48 points below school average",
+        "High variability (std dev: 11.40)"
+      ],
+      "insights": [],
+      "priority": 2
+    },
+    {
+      "code": "Japanese in Context",
+      "name": "Japanese in Context",
+      "subject_area": "Uncategorized",
+      "current_mean": 28.7,
+      "current_std_dev": 10.9,
+      "cohort_size": 1,
+      "trend": "stable",
+      "trend_value": -0.1,
+      "concerns": [
+        "High variability (std dev: 10.90)",
+        "Small cohort size (1 students)"
+      ],
+      "insights": [],
+      "priority": 2
+    },
+    {
+      "code": "Modern History",
+      "name": "Modern History",
+      "subject_area": "Uncategorized",
+      "current_mean": 25.2,
+      "current_std_dev": 11.0,
+      "cohort_size": 44,
+      "trend": "stable",
+      "trend_value": -0.1,
+      "concerns": [
+        "Performing 4.78 points below school average",
+        "High variability (std dev: 11.00)"
+      ],
+      "insights": [],
+      "priority": 2
+    },
+    {
+      "code": "PDHPE",
+      "name": "PDHPE",
+      "subject_area": "Uncategorized",
+      "current_mean": 22.6,
+      "current_std_dev": 10.8,
+      "cohort_size": 33,
+      "trend": "stable",
+      "trend_value": -0.1,
+      "concerns": [
+        "Performing 7.38 points below school average",
+        "High variability (std dev: 10.80)"
+      ],
+      "insights": [],
+      "priority": 2
+    },
+    {
+      "code": "Biology",
+      "name": "Biology",
+      "subject_area": "Uncategorized",
+      "current_mean": 26.0,
+      "current_std_dev": 10.4,
+      "cohort_size": 70,
+      "trend": "stable",
+      "trend_value": 0.0,
+      "concerns": [
+        "Performing 3.98 points below school average",
+        "High variability (std dev: 10.40)"
+      ],
+      "insights": [],
+      "priority": 2
+    },
+    {
+      "code": "Drama",
+      "name": "Drama",
+      "subject_area": "Uncategorized",
+      "current_mean": 24.2,
+      "current_std_dev": 11.3,
+      "cohort_size": 19,
+      "trend": "stable",
+      "trend_value": 0.0,
+      "concerns": [
+        "Performing 5.78 points below school average",
+        "High variability (std dev: 11.30)"
+      ],
+      "insights": [],
+      "priority": 2
+    },
+    {
+      "code": "English Standard",
+      "name": "English Standard",
+      "subject_area": "Uncategorized",
+      "current_mean": 20.1,
+      "current_std_dev": 8.2,
+      "cohort_size": 14,
+      "trend": null,
+      "trend_value": null,
+      "concerns": [
+        "Performing 9.88 points below school average",
+        "High variability (std dev: 8.20)"
+      ],
+      "insights": [],
+      "priority": 2
+    },
+    {
+      "code": "Music Extension",
+      "name": "Music Extension",
+      "subject_area": "Uncategorized",
+      "current_mean": 35.8,
+      "current_std_dev": 9.8,
+      "cohort_size": 2,
+      "trend": "stable",
+      "trend_value": 0.0,
+      "concerns": [
+        "High variability (std dev: 9.80)",
+        "Small cohort size (2 students)"
+      ],
+      "insights": [
+        "Performing 5.82 points above school average"
+      ],
+      "priority": 2
+    },
+    {
+      "code": "Science Extension",
+      "name": "Science Extension",
+      "subject_area": "Uncategorized",
+      "current_mean": 32.2,
+      "current_std_dev": 7.1,
+      "cohort_size": 3,
+      "trend": "stable",
+      "trend_value": 0.0,
+      "concerns": [
+        "High variability (std dev: 7.10)",
+        "Small cohort size (3 students)"
+      ],
+      "insights": [],
+      "priority": 2
+    },
+    {
+      "code": "Studies of Religion I",
+      "name": "Studies of Religion I",
+      "subject_area": "Uncategorized",
+      "current_mean": 27.6,
+      "current_std_dev": 9.3,
+      "cohort_size": 4,
+      "trend": null,
+      "trend_value": null,
+      "concerns": [
+        "High variability (std dev: 9.30)",
+        "Small cohort size (4 students)"
+      ],
+      "insights": [],
+      "priority": 2
+    },
+    {
+      "code": "Design and Technology",
+      "name": "Design and Technology",
+      "subject_area": "Uncategorized",
+      "current_mean": 22.9,
+      "current_std_dev": 10.5,
+      "cohort_size": 21,
+      "trend": "stable",
+      "trend_value": 0.1,
+      "concerns": [
+        "Performing 7.08 points below school average",
+        "High variability (std dev: 10.50)"
+      ],
+      "insights": [],
+      "priority": 2
+    },
+    {
+      "code": "Visual Arts",
+      "name": "Visual Arts",
+      "subject_area": "Uncategorized",
+      "current_mean": 21.9,
+      "current_std_dev": 11.1,
+      "cohort_size": 43,
+      "trend": "stable",
+      "trend_value": 0.1,
+      "concerns": [
+        "Performing 8.08 points below school average",
+        "High variability (std dev: 11.10)"
+      ],
+      "insights": [],
+      "priority": 2
+    },
+    {
+      "code": "French Extension",
+      "name": "French Extension",
+      "subject_area": "Uncategorized",
+      "current_mean": 39.2,
+      "current_std_dev": 5.0,
+      "cohort_size": 2,
+      "trend": "stable",
+      "trend_value": 0.2,
+      "concerns": [
+        "High variability (std dev: 5.00)",
+        "Small cohort size (2 students)"
+      ],
+      "insights": [
+        "Performing 9.22 points above school average"
+      ],
+      "priority": 2
+    },
+    {
+      "code": "French Continuers",
+      "name": "French Continuers",
+      "subject_area": "Uncategorized",
+      "current_mean": 34.3,
+      "current_std_dev": 8.0,
+      "cohort_size": 5,
+      "trend": "stable",
+      "trend_value": 0.3,
+      "concerns": [
+        "High variability (std dev: 8.00)",
+        "Small cohort size (5 students)"
+      ],
+      "insights": [
+        "Performing 4.32 points above school average"
+      ],
+      "priority": 2
+    },
+    {
+      "code": "Music 2",
+      "name": "Music 2",
+      "subject_area": "Uncategorized",
+      "current_mean": 34.5,
+      "current_std_dev": 8.3,
+      "cohort_size": 2,
+      "trend": "stable",
+      "trend_value": 0.4,
+      "concerns": [
+        "High variability (std dev: 8.30)",
+        "Small cohort size (2 students)"
+      ],
+      "insights": [
+        "Performing 4.52 points above school average"
+      ],
+      "priority": 2
+    },
+    {
+      "code": "Latin Extension",
+      "name": "Latin Extension",
+      "subject_area": "Uncategorized",
+      "current_mean": 42.7,
+      "current_std_dev": 5.8,
+      "cohort_size": 8,
+      "trend": "stable",
+      "trend_value": 0.5,
+      "concerns": [
+        "High variability (std dev: 5.80)",
+        "Small cohort size (8 students)"
+      ],
+      "insights": [
+        "Performing 12.72 points above school average"
+      ],
+      "priority": 2
+    },
+    {
+      "code": "Mathematics Standard 2",
+      "name": "Mathematics Standard 2",
+      "subject_area": "Uncategorized",
+      "current_mean": 22.8,
+      "current_std_dev": 10.3,
+      "cohort_size": 57,
+      "trend": "stable",
+      "trend_value": 0.5,
+      "concerns": [
+        "Performing 7.18 points below school average",
+        "High variability (std dev: 10.30)"
+      ],
+      "insights": [],
+      "priority": 2
+    },
+    {
+      "code": "Chinese Continuers",
+      "name": "Chinese Continuers",
+      "subject_area": "Uncategorized",
+      "current_mean": 33.1,
+      "current_std_dev": 8.6,
+      "cohort_size": 7,
+      "trend": "stable",
+      "trend_value": 0.7,
+      "concerns": [
+        "High variability (std dev: 8.60)",
+        "Small cohort size (7 students)"
+      ],
+      "insights": [
+        "Performing 3.12 points above school average"
+      ],
+      "priority": 2
+    },
+    {
+      "code": "German Continuers",
+      "name": "German Continuers",
+      "subject_area": "Uncategorized",
+      "current_mean": 34.6,
+      "current_std_dev": 8.3,
+      "cohort_size": 6,
+      "trend": "improving",
+      "trend_value": 1.1,
+      "concerns": [
+        "High variability (std dev: 8.30)",
+        "Small cohort size (6 students)"
+      ],
+      "insights": [
+        "Performance improved by 1.10 points",
+        "Performing 4.62 points above school average"
+      ],
+      "priority": 2
+    },
+    {
+      "code": "Chinese Extension",
+      "name": "Chinese Extension",
+      "subject_area": "Uncategorized",
+      "current_mean": 38.1,
+      "current_std_dev": 4.9,
+      "cohort_size": 4,
+      "trend": "improving",
+      "trend_value": 1.9,
+      "concerns": [
+        "High variability (std dev: 4.90)",
+        "Small cohort size (4 students)"
+      ],
+      "insights": [
+        "Performance improved by 1.90 points",
+        "Performing 8.12 points above school average"
+      ],
+      "priority": 2
+    },
+    {
+      "code": "Mathematics Ext 2",
+      "name": "Mathematics Ext 2",
+      "subject_area": "Uncategorized",
+      "current_mean": 43.4,
+      "current_std_dev": 5.0,
+      "cohort_size": 33,
+      "trend": "stable",
+      "trend_value": -0.9,
+      "concerns": [
+        "High variability (std dev: 5.00)"
+      ],
+      "insights": [
+        "Performing 13.42 points above school average"
+      ],
+      "priority": 1
+    },
+    {
+      "code": "Mathematics Ext 1",
+      "name": "Mathematics Ext 1",
+      "subject_area": "Uncategorized",
+      "current_mean": 39.6,
+      "current_std_dev": 7.2,
+      "cohort_size": 74,
+      "trend": "stable",
+      "trend_value": -0.6,
+      "concerns": [
+        "High variability (std dev: 7.20)"
+      ],
+      "insights": [
+        "Performing 9.62 points above school average"
+      ],
+      "priority": 1
+    },
+    {
+      "code": "Studies of Religion II",
+      "name": "Studies of Religion II",
+      "subject_area": "Uncategorized",
+      "current_mean": 27.3,
+      "current_std_dev": 10.1,
+      "cohort_size": 10,
+      "trend": "stable",
+      "trend_value": -0.4,
+      "concerns": [
+        "High variability (std dev: 10.10)"
+      ],
+      "insights": [],
+      "priority": 1
+    },
+    {
+      "code": "English Extension 1",
+      "name": "English Extension 1",
+      "subject_area": "Uncategorized",
+      "current_mean": 36.2,
+      "current_std_dev": 6.2,
+      "cohort_size": 30,
+      "trend": "stable",
+      "trend_value": -0.1,
+      "concerns": [
+        "High variability (std dev: 6.20)"
+      ],
+      "insights": [
+        "Performing 6.22 points above school average"
+      ],
+      "priority": 1
+    },
+    {
+      "code": "Chemistry",
+      "name": "Chemistry",
+      "subject_area": "Uncategorized",
+      "current_mean": 31.8,
+      "current_std_dev": 9.9,
+      "cohort_size": 70,
+      "trend": "stable",
+      "trend_value": 0.1,
+      "concerns": [
+        "High variability (std dev: 9.90)"
+      ],
+      "insights": [],
+      "priority": 1
+    },
+    {
+      "code": "English Advanced",
+      "name": "English Advanced",
+      "subject_area": "Uncategorized",
+      "current_mean": 32.7,
+      "current_std_dev": 8.1,
+      "cohort_size": 161,
+      "trend": "stable",
+      "trend_value": 0.1,
+      "concerns": [
+        "High variability (std dev: 8.10)"
+      ],
+      "insights": [],
+      "priority": 1
+    },
+    {
+      "code": "Latin Continuers",
+      "name": "Latin Continuers",
+      "subject_area": "Uncategorized",
+      "current_mean": 41.3,
+      "current_std_dev": 6.9,
+      "cohort_size": 11,
+      "trend": "stable",
+      "trend_value": 0.1,
+      "concerns": [
+        "High variability (std dev: 6.90)"
+      ],
+      "insights": [
+        "Performing 11.32 points above school average"
+      ],
+      "priority": 1
+    },
+    {
+      "code": "Mathematics Advanced",
+      "name": "Mathematics Advanced",
+      "subject_area": "Uncategorized",
+      "current_mean": 32.0,
+      "current_std_dev": 9.0,
+      "cohort_size": 125,
+      "trend": "stable",
+      "trend_value": 0.2,
+      "concerns": [
+        "High variability (std dev: 9.00)"
+      ],
+      "insights": [],
+      "priority": 1
+    },
+    {
+      "code": "Physics",
+      "name": "Physics",
+      "subject_area": "Uncategorized",
+      "current_mean": 31.1,
+      "current_std_dev": 9.8,
+      "cohort_size": 33,
+      "trend": "stable",
+      "trend_value": 0.2,
+      "concerns": [
+        "High variability (std dev: 9.80)"
+      ],
+      "insights": [],
+      "priority": 1
+    },
+    {
+      "code": "Economics",
+      "name": "Economics",
+      "subject_area": "Uncategorized",
+      "current_mean": 31.5,
+      "current_std_dev": 9.6,
+      "cohort_size": 39,
+      "trend": "stable",
+      "trend_value": 0.3,
+      "concerns": [
+        "High variability (std dev: 9.60)"
+      ],
+      "insights": [],
+      "priority": 1
+    }
+  ],
+  "all_courses": [
+    {
+      "code": "Aboriginal Studies",
+      "name": "Aboriginal Studies",
+      "subject_area": "Uncategorized",
+      "current_mean": 15.1,
+      "current_std_dev": 12.1,
+      "cohort_size": 1,
+      "trend": "stable",
+      "trend_value": -0.6,
+      "concerns": [
+        "Performing 14.88 points below school average",
+        "High variability (std dev: 12.10)",
+        "Small cohort size (1 students)"
+      ],
+      "insights": [],
+      "priority": 3
+    },
+    {
+      "code": "English Standard",
+      "name": "English Standard",
+      "subject_area": "Uncategorized",
+      "current_mean": 20.1,
+      "current_std_dev": 8.2,
+      "cohort_size": 14,
+      "trend": null,
+      "trend_value": null,
+      "concerns": [
+        "Performing 9.88 points below school average",
+        "High variability (std dev: 8.20)"
+      ],
+      "insights": [],
+      "priority": 2
+    },
+    {
+      "code": "Music 1",
+      "name": "Music 1",
+      "subject_area": "Uncategorized",
+      "current_mean": 21.1,
+      "current_std_dev": 10.8,
+      "cohort_size": 3,
+      "trend": "stable",
+      "trend_value": -0.3,
+      "concerns": [
+        "Performing 8.88 points below school average",
+        "High variability (std dev: 10.80)",
+        "Small cohort size (3 students)"
+      ],
+      "insights": [],
+      "priority": 3
+    },
+    {
+      "code": "Visual Arts",
+      "name": "Visual Arts",
+      "subject_area": "Uncategorized",
+      "current_mean": 21.9,
+      "current_std_dev": 11.1,
+      "cohort_size": 43,
+      "trend": "stable",
+      "trend_value": 0.1,
+      "concerns": [
+        "Performing 8.08 points below school average",
+        "High variability (std dev: 11.10)"
+      ],
+      "insights": [],
+      "priority": 2
+    },
+    {
+      "code": "Earth & Environmental Science",
+      "name": "Earth & Environmental Science",
+      "subject_area": "Uncategorized",
+      "current_mean": 22.6,
+      "current_std_dev": 11.0,
+      "cohort_size": 3,
+      "trend": "stable",
+      "trend_value": 0.1,
+      "concerns": [
+        "Performing 7.38 points below school average",
+        "High variability (std dev: 11.00)",
+        "Small cohort size (3 students)"
+      ],
+      "insights": [],
+      "priority": 3
+    },
+    {
+      "code": "PDHPE",
+      "name": "PDHPE",
+      "subject_area": "Uncategorized",
+      "current_mean": 22.6,
+      "current_std_dev": 10.8,
+      "cohort_size": 33,
+      "trend": "stable",
+      "trend_value": -0.1,
+      "concerns": [
+        "Performing 7.38 points below school average",
+        "High variability (std dev: 10.80)"
+      ],
+      "insights": [],
+      "priority": 2
+    },
+    {
+      "code": "Ancient History",
+      "name": "Ancient History",
+      "subject_area": "Uncategorized",
+      "current_mean": 22.7,
+      "current_std_dev": 11.3,
+      "cohort_size": 8,
+      "trend": "stable",
+      "trend_value": -0.3,
+      "concerns": [
+        "Performing 7.28 points below school average",
+        "High variability (std dev: 11.30)",
+        "Small cohort size (8 students)"
+      ],
+      "insights": [],
+      "priority": 3
+    },
+    {
+      "code": "Mathematics Standard 2",
+      "name": "Mathematics Standard 2",
+      "subject_area": "Uncategorized",
+      "current_mean": 22.8,
+      "current_std_dev": 10.3,
+      "cohort_size": 57,
+      "trend": "stable",
+      "trend_value": 0.5,
+      "concerns": [
+        "Performing 7.18 points below school average",
+        "High variability (std dev: 10.30)"
+      ],
+      "insights": [],
+      "priority": 2
+    },
+    {
+      "code": "Design and Technology",
+      "name": "Design and Technology",
+      "subject_area": "Uncategorized",
+      "current_mean": 22.9,
+      "current_std_dev": 10.5,
+      "cohort_size": 21,
+      "trend": "stable",
+      "trend_value": 0.1,
+      "concerns": [
+        "Performing 7.08 points below school average",
+        "High variability (std dev: 10.50)"
+      ],
+      "insights": [],
+      "priority": 2
+    },
+    {
+      "code": "Business Studies",
+      "name": "Business Studies",
+      "subject_area": "Uncategorized",
+      "current_mean": 23.5,
+      "current_std_dev": 11.4,
+      "cohort_size": 42,
+      "trend": "stable",
+      "trend_value": -0.1,
+      "concerns": [
+        "Performing 6.48 points below school average",
+        "High variability (std dev: 11.40)"
+      ],
+      "insights": [],
+      "priority": 2
+    },
+    {
+      "code": "Drama",
+      "name": "Drama",
+      "subject_area": "Uncategorized",
+      "current_mean": 24.2,
+      "current_std_dev": 11.3,
+      "cohort_size": 19,
+      "trend": "stable",
+      "trend_value": 0.0,
+      "concerns": [
+        "Performing 5.78 points below school average",
+        "High variability (std dev: 11.30)"
+      ],
+      "insights": [],
+      "priority": 2
+    },
+    {
+      "code": "Japanese Beginners",
+      "name": "Japanese Beginners",
+      "subject_area": "Uncategorized",
+      "current_mean": 24.6,
+      "current_std_dev": 10.9,
+      "cohort_size": 2,
+      "trend": "improving",
+      "trend_value": 1.2,
+      "concerns": [
+        "Performing 5.38 points below school average",
+        "High variability (std dev: 10.90)",
+        "Small cohort size (2 students)"
+      ],
+      "insights": [
+        "Performance improved by 1.20 points"
+      ],
+      "priority": 3
+    },
+    {
+      "code": "Modern History",
+      "name": "Modern History",
+      "subject_area": "Uncategorized",
+      "current_mean": 25.2,
+      "current_std_dev": 11.0,
+      "cohort_size": 44,
+      "trend": "stable",
+      "trend_value": -0.1,
+      "concerns": [
+        "Performing 4.78 points below school average",
+        "High variability (std dev: 11.00)"
+      ],
+      "insights": [],
+      "priority": 2
+    },
+    {
+      "code": "Geography",
+      "name": "Geography",
+      "subject_area": "Uncategorized",
+      "current_mean": 25.4,
+      "current_std_dev": 11.1,
+      "cohort_size": 55,
+      "trend": "stable",
+      "trend_value": -0.4,
+      "concerns": [
+        "Performing 4.58 points below school average",
+        "High variability (std dev: 11.10)"
+      ],
+      "insights": [],
+      "priority": 2
+    },
+    {
+      "code": "Chinese and Literature",
+      "name": "Chinese and Literature",
+      "subject_area": "Uncategorized",
+      "current_mean": 25.7,
+      "current_std_dev": 10.5,
+      "cohort_size": 1,
+      "trend": "improving",
+      "trend_value": 1.3,
+      "concerns": [
+        "Performing 4.28 points below school average",
+        "High variability (std dev: 10.50)",
+        "Small cohort size (1 students)"
+      ],
+      "insights": [
+        "Performance improved by 1.30 points"
+      ],
+      "priority": 3
+    },
+    {
+      "code": "Biology",
+      "name": "Biology",
+      "subject_area": "Uncategorized",
+      "current_mean": 26.0,
+      "current_std_dev": 10.4,
+      "cohort_size": 70,
+      "trend": "stable",
+      "trend_value": 0.0,
+      "concerns": [
+        "Performing 3.98 points below school average",
+        "High variability (std dev: 10.40)"
+      ],
+      "insights": [],
+      "priority": 2
+    },
+    {
+      "code": "Software Design & Develop",
+      "name": "Software Design & Develop",
+      "subject_area": "Uncategorized",
+      "current_mean": 26.6,
+      "current_std_dev": 10.6,
+      "cohort_size": 7,
+      "trend": "stable",
+      "trend_value": 0.2,
+      "concerns": [
+        "Performing 3.38 points below school average",
+        "High variability (std dev: 10.60)",
+        "Small cohort size (7 students)"
+      ],
+      "insights": [],
+      "priority": 3
+    },
+    {
+      "code": "Studies of Religion II",
+      "name": "Studies of Religion II",
+      "subject_area": "Uncategorized",
+      "current_mean": 27.3,
+      "current_std_dev": 10.1,
+      "cohort_size": 10,
+      "trend": "stable",
+      "trend_value": -0.4,
+      "concerns": [
+        "High variability (std dev: 10.10)"
+      ],
+      "insights": [],
+      "priority": 1
+    },
+    {
+      "code": "Studies of Religion I",
+      "name": "Studies of Religion I",
+      "subject_area": "Uncategorized",
+      "current_mean": 27.6,
+      "current_std_dev": 9.3,
+      "cohort_size": 4,
+      "trend": null,
+      "trend_value": null,
+      "concerns": [
+        "High variability (std dev: 9.30)",
+        "Small cohort size (4 students)"
+      ],
+      "insights": [],
+      "priority": 2
+    },
+    {
+      "code": "Japanese in Context",
+      "name": "Japanese in Context",
+      "subject_area": "Uncategorized",
+      "current_mean": 28.7,
+      "current_std_dev": 10.9,
+      "cohort_size": 1,
+      "trend": "stable",
+      "trend_value": -0.1,
+      "concerns": [
+        "High variability (std dev: 10.90)",
+        "Small cohort size (1 students)"
+      ],
+      "insights": [],
+      "priority": 2
+    },
+    {
+      "code": "Chinese in Context",
+      "name": "Chinese in Context",
+      "subject_area": "Uncategorized",
+      "current_mean": 30.3,
+      "current_std_dev": 11.0,
+      "cohort_size": 7,
+      "trend": "stable",
+      "trend_value": -0.7,
+      "concerns": [
+        "High variability (std dev: 11.00)",
+        "Small cohort size (7 students)"
+      ],
+      "insights": [],
+      "priority": 2
+    },
+    {
+      "code": "Physics",
+      "name": "Physics",
+      "subject_area": "Uncategorized",
+      "current_mean": 31.1,
+      "current_std_dev": 9.8,
+      "cohort_size": 33,
+      "trend": "stable",
+      "trend_value": 0.2,
+      "concerns": [
+        "High variability (std dev: 9.80)"
+      ],
+      "insights": [],
+      "priority": 1
+    },
+    {
+      "code": "Economics",
+      "name": "Economics",
+      "subject_area": "Uncategorized",
+      "current_mean": 31.5,
+      "current_std_dev": 9.6,
+      "cohort_size": 39,
+      "trend": "stable",
+      "trend_value": 0.3,
+      "concerns": [
+        "High variability (std dev: 9.60)"
+      ],
+      "insights": [],
+      "priority": 1
+    },
+    {
+      "code": "Chemistry",
+      "name": "Chemistry",
+      "subject_area": "Uncategorized",
+      "current_mean": 31.8,
+      "current_std_dev": 9.9,
+      "cohort_size": 70,
+      "trend": "stable",
+      "trend_value": 0.1,
+      "concerns": [
+        "High variability (std dev: 9.90)"
+      ],
+      "insights": [],
+      "priority": 1
+    },
+    {
+      "code": "Mathematics Advanced",
+      "name": "Mathematics Advanced",
+      "subject_area": "Uncategorized",
+      "current_mean": 32.0,
+      "current_std_dev": 9.0,
+      "cohort_size": 125,
+      "trend": "stable",
+      "trend_value": 0.2,
+      "concerns": [
+        "High variability (std dev: 9.00)"
+      ],
+      "insights": [],
+      "priority": 1
+    },
+    {
+      "code": "Science Extension",
+      "name": "Science Extension",
+      "subject_area": "Uncategorized",
+      "current_mean": 32.2,
+      "current_std_dev": 7.1,
+      "cohort_size": 3,
+      "trend": "stable",
+      "trend_value": 0.0,
+      "concerns": [
+        "High variability (std dev: 7.10)",
+        "Small cohort size (3 students)"
+      ],
+      "insights": [],
+      "priority": 2
+    },
+    {
+      "code": "English Advanced",
+      "name": "English Advanced",
+      "subject_area": "Uncategorized",
+      "current_mean": 32.7,
+      "current_std_dev": 8.1,
+      "cohort_size": 161,
+      "trend": "stable",
+      "trend_value": 0.1,
+      "concerns": [
+        "High variability (std dev: 8.10)"
+      ],
+      "insights": [],
+      "priority": 1
+    },
+    {
+      "code": "History Extension",
+      "name": "History Extension",
+      "subject_area": "Uncategorized",
+      "current_mean": 32.9,
+      "current_std_dev": 7.2,
+      "cohort_size": 7,
+      "trend": "stable",
+      "trend_value": -0.6,
+      "concerns": [
+        "High variability (std dev: 7.20)",
+        "Small cohort size (7 students)"
+      ],
+      "insights": [],
+      "priority": 2
+    },
+    {
+      "code": "Chinese Continuers",
+      "name": "Chinese Continuers",
+      "subject_area": "Uncategorized",
+      "current_mean": 33.1,
+      "current_std_dev": 8.6,
+      "cohort_size": 7,
+      "trend": "stable",
+      "trend_value": 0.7,
+      "concerns": [
+        "High variability (std dev: 8.60)",
+        "Small cohort size (7 students)"
+      ],
+      "insights": [
+        "Performing 3.12 points above school average"
+      ],
+      "priority": 2
+    },
+    {
+      "code": "French Continuers",
+      "name": "French Continuers",
+      "subject_area": "Uncategorized",
+      "current_mean": 34.3,
+      "current_std_dev": 8.0,
+      "cohort_size": 5,
+      "trend": "stable",
+      "trend_value": 0.3,
+      "concerns": [
+        "High variability (std dev: 8.00)",
+        "Small cohort size (5 students)"
+      ],
+      "insights": [
+        "Performing 4.32 points above school average"
+      ],
+      "priority": 2
+    },
+    {
+      "code": "Music 2",
+      "name": "Music 2",
+      "subject_area": "Uncategorized",
+      "current_mean": 34.5,
+      "current_std_dev": 8.3,
+      "cohort_size": 2,
+      "trend": "stable",
+      "trend_value": 0.4,
+      "concerns": [
+        "High variability (std dev: 8.30)",
+        "Small cohort size (2 students)"
+      ],
+      "insights": [
+        "Performing 4.52 points above school average"
+      ],
+      "priority": 2
+    },
+    {
+      "code": "German Continuers",
+      "name": "German Continuers",
+      "subject_area": "Uncategorized",
+      "current_mean": 34.6,
+      "current_std_dev": 8.3,
+      "cohort_size": 6,
+      "trend": "improving",
+      "trend_value": 1.1,
+      "concerns": [
+        "High variability (std dev: 8.30)",
+        "Small cohort size (6 students)"
+      ],
+      "insights": [
+        "Performance improved by 1.10 points",
+        "Performing 4.62 points above school average"
+      ],
+      "priority": 2
+    },
+    {
+      "code": "English Extension 2",
+      "name": "English Extension 2",
+      "subject_area": "Uncategorized",
+      "current_mean": 35.8,
+      "current_std_dev": 6.6,
+      "cohort_size": 8,
+      "trend": "stable",
+      "trend_value": -0.5,
+      "concerns": [
+        "High variability (std dev: 6.60)",
+        "Small cohort size (8 students)"
+      ],
+      "insights": [
+        "Performing 5.82 points above school average"
+      ],
+      "priority": 2
+    },
+    {
+      "code": "Music Extension",
+      "name": "Music Extension",
+      "subject_area": "Uncategorized",
+      "current_mean": 35.8,
+      "current_std_dev": 9.8,
+      "cohort_size": 2,
+      "trend": "stable",
+      "trend_value": 0.0,
+      "concerns": [
+        "High variability (std dev: 9.80)",
+        "Small cohort size (2 students)"
+      ],
+      "insights": [
+        "Performing 5.82 points above school average"
+      ],
+      "priority": 2
+    },
+    {
+      "code": "English Extension 1",
+      "name": "English Extension 1",
+      "subject_area": "Uncategorized",
+      "current_mean": 36.2,
+      "current_std_dev": 6.2,
+      "cohort_size": 30,
+      "trend": "stable",
+      "trend_value": -0.1,
+      "concerns": [
+        "High variability (std dev: 6.20)"
+      ],
+      "insights": [
+        "Performing 6.22 points above school average"
+      ],
+      "priority": 1
+    },
+    {
+      "code": "Chinese Extension",
+      "name": "Chinese Extension",
+      "subject_area": "Uncategorized",
+      "current_mean": 38.1,
+      "current_std_dev": 4.9,
+      "cohort_size": 4,
+      "trend": "improving",
+      "trend_value": 1.9,
+      "concerns": [
+        "High variability (std dev: 4.90)",
+        "Small cohort size (4 students)"
+      ],
+      "insights": [
+        "Performance improved by 1.90 points",
+        "Performing 8.12 points above school average"
+      ],
+      "priority": 2
+    },
+    {
+      "code": "French Extension",
+      "name": "French Extension",
+      "subject_area": "Uncategorized",
+      "current_mean": 39.2,
+      "current_std_dev": 5.0,
+      "cohort_size": 2,
+      "trend": "stable",
+      "trend_value": 0.2,
+      "concerns": [
+        "High variability (std dev: 5.00)",
+        "Small cohort size (2 students)"
+      ],
+      "insights": [
+        "Performing 9.22 points above school average"
+      ],
+      "priority": 2
+    },
+    {
+      "code": "German Extension",
+      "name": "German Extension",
+      "subject_area": "Uncategorized",
+      "current_mean": 39.5,
+      "current_std_dev": 5.1,
+      "cohort_size": 2,
+      "trend": "stable",
+      "trend_value": -0.3,
+      "concerns": [
+        "High variability (std dev: 5.10)",
+        "Small cohort size (2 students)"
+      ],
+      "insights": [
+        "Performing 9.52 points above school average"
+      ],
+      "priority": 2
+    },
+    {
+      "code": "Mathematics Ext 1",
+      "name": "Mathematics Ext 1",
+      "subject_area": "Uncategorized",
+      "current_mean": 39.6,
+      "current_std_dev": 7.2,
+      "cohort_size": 74,
+      "trend": "stable",
+      "trend_value": -0.6,
+      "concerns": [
+        "High variability (std dev: 7.20)"
+      ],
+      "insights": [
+        "Performing 9.62 points above school average"
+      ],
+      "priority": 1
+    },
+    {
+      "code": "Latin Continuers",
+      "name": "Latin Continuers",
+      "subject_area": "Uncategorized",
+      "current_mean": 41.3,
+      "current_std_dev": 6.9,
+      "cohort_size": 11,
+      "trend": "stable",
+      "trend_value": 0.1,
+      "concerns": [
+        "High variability (std dev: 6.90)"
+      ],
+      "insights": [
+        "Performing 11.32 points above school average"
+      ],
+      "priority": 1
+    },
+    {
+      "code": "Latin Extension",
+      "name": "Latin Extension",
+      "subject_area": "Uncategorized",
+      "current_mean": 42.7,
+      "current_std_dev": 5.8,
+      "cohort_size": 8,
+      "trend": "stable",
+      "trend_value": 0.5,
+      "concerns": [
+        "High variability (std dev: 5.80)",
+        "Small cohort size (8 students)"
+      ],
+      "insights": [
+        "Performing 12.72 points above school average"
+      ],
+      "priority": 2
+    },
+    {
+      "code": "Mathematics Ext 2",
+      "name": "Mathematics Ext 2",
+      "subject_area": "Uncategorized",
+      "current_mean": 43.4,
+      "current_std_dev": 5.0,
+      "cohort_size": 33,
+      "trend": "stable",
+      "trend_value": -0.9,
+      "concerns": [
+        "High variability (std dev: 5.00)"
+      ],
+      "insights": [
+        "Performing 13.42 points above school average"
+      ],
+      "priority": 1
+    }
+  ],
+  "total_courses": 42,
+  "total_courses_flagged": 42
+}
