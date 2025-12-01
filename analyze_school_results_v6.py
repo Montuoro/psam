@@ -157,6 +157,45 @@ def generate_v6_markdown(analysis, school_id, heatmaps_dir, atar_analysis, enric
                         md.append(f"**True ATAR Contribution:** Raw HSC mark {m['avg_combined']:.1f} scales to {contrib:.1f} unit contribution (penalty: {abs(contrib - m['avg_combined']):.1f} points).")
                         md.append(f"")
 
+                # BASIC COURSE OVERVIEW
+                md.append(f"**Course Overview:**")
+
+                # Year-over-year comparison
+                if enrichment.get('multiyear') and len(enrichment['multiyear']['historical_data']) >= 2:
+                    hist = enrichment['multiyear']['historical_data']
+                    # hist is ordered DESC (newest first), so [0] is current, [1] is prev
+                    current_year = hist[0]
+                    prev_year = hist[1]
+                    yoy_change = current_year['mean'] - prev_year['mean']
+                    direction = "↑" if yoy_change > 0.5 else "↓" if yoy_change < -0.5 else "→"
+                    md.append(f"- Year-over-year: {prev_year['mean']:.1f} ({prev_year['year']}) {direction} {current_year['mean']:.1f} ({current_year['year']}) | Change: {yoy_change:+.1f} points")
+
+                # Band distribution
+                if enrichment.get('metrics') and enrichment['metrics'].get('band_distribution'):
+                    bands = enrichment['metrics']['band_distribution']
+                    total_students = sum(bands.values())
+                    if 'Band 6' in bands or 'Band 5' in bands:
+                        top_bands = bands.get('Band 6', 0) + bands.get('Band 5', 0)
+                        top_pct = (top_bands / total_students * 100) if total_students > 0 else 0
+                        md.append(f"- Bands: {top_pct:.0f}% in Band 5-6 ({', '.join([f'B{k[-1]}={v}' for k, v in sorted(bands.items(), reverse=True)])})")
+
+                # Assessment vs Exam (basic)
+                if enrichment.get('metrics'):
+                    m = enrichment['metrics']
+                    if m.get('avg_assessment') and m.get('avg_exam'):
+                        gap = m['avg_assessment'] - m['avg_exam']
+                        gap_type = "over-assess" if gap > 2 else "under-assess" if gap < -2 else "aligned"
+                        md.append(f"- Assessment vs Exam: Internal {m['avg_assessment']:.1f} vs Exam {m['avg_exam']:.1f} (gap: {gap:+.1f}, {gap_type})")
+
+                # Student ATAR cohort average
+                if enrichment.get('metrics') and enrichment['metrics'].get('avg_atar_in_course'):
+                    course_atar = enrichment['metrics']['avg_atar_in_course']
+                    atar_diff = course_atar - school_atar_avg
+                    cohort_type = "higher-achieving" if atar_diff > 5 else "lower-achieving" if atar_diff < -5 else "typical"
+                    md.append(f"- Cohort ATAR: Students in this course average {course_atar:.1f} ATAR ({cohort_type}, {atar_diff:+.1f} vs school avg)")
+
+                md.append(f"")
+
                 # Advanced cross-course patterns (FULL DETAIL)
                 if enrichment.get('advanced_insights') and enrichment['advanced_insights'].get('combinations'):
                     combos = enrichment['advanced_insights']['combinations']
