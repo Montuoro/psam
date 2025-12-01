@@ -19,7 +19,7 @@ import mcp.server.stdio
 import mcp.types as types
 
 # Import analysis functions
-from analyze_school_results_v4 import analyze_school_results_v4
+from analyze_school_results_v6 import analyze_school_results_v6
 
 # Base directory
 BASE_DIR = Path(__file__).parent
@@ -244,7 +244,7 @@ async def handle_list_tools() -> list[types.Tool]:
         ),
         types.Tool(
             name="analyze_school_results",
-            description="V4: Complete school performance analysis with 6 major enhancements. Generates comprehensive markdown report with: 1) Multi-year trend analysis (up to 5 years, focusing on recent), 2) FIXED scaling calculations (properly doubled for ATAR contribution), 3) Actual heatmap PNG analysis with specific column directions, 4) 100% deeper database insights with real cross-course correlations, 5) Full high-performer analysis with replication strategies, 6) Course-specific deep-dives from actual student data (not generic templates). Report auto-saves as .md file with evidence-based, actionable recommendations.",
+            description="V6 FULL: Single unified comprehensive analysis combining all V4 and V5 enhancements. Generates complete markdown report with: 1) Multi-year trends (5 years, focus on recent), 2) School-specific scaling calculations from actual student data, 3) Advanced cross-course pattern analysis (3-4 insights per course), 4) Deep database discoveries (performance clustering, assessment-exam gaps, relative performance), 5) Enhanced heatmap analysis (multi-column patterns, departmental context, z-score intensity, temporal trajectories), 6) Full high-performer analysis. All insights calculated from THIS school's student data, not state-wide averages. Report auto-saves as v6_full.md.",
             inputSchema={
                 "type": "object",
                 "properties": {
@@ -553,8 +553,8 @@ async def handle_call_tool(
             )]
 
         try:
-            # Call the enhanced v4 analysis function
-            analysis_result = analyze_school_results_v4(
+            # Call the unified v6 analysis function
+            analysis_result = analyze_school_results_v6(
                 school_id=school_id,
                 db_path=str(db_file),
                 heatmaps_dir=str(HEATMAPS_DIR),
