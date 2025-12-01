@@ -140,23 +140,24 @@ def generate_v6_markdown(analysis, school_id, heatmaps_dir, atar_analysis, enric
                 md.append(f"")
 
                 # V5 DEEP ANALYSIS
-                md.append(f"**Deep Analysis:**")
+                md.append(f"")
 
-                # School-specific scaling
+                # School-specific scaling (FULL DETAIL)
                 if enrichment.get('scaling_impact') and enrichment['scaling_impact']['sample_size'] >= 3:
                     si = enrichment['scaling_impact']
                     atar_gain = si['atar_per_hsc_point'] * 10
+                    md.append(f"**School-Specific Scaling Impact (CALCULATED FROM {si['sample_size']} STUDENTS AT THIS SCHOOL):** For every 10-point HSC improvement in {course['name']}, students at THIS SCHOOL gain {atar_gain:.2f} ATAR points on average. HSC-to-Scaled conversion rate: {si['hsc_to_scaled_slope']:.2f}x (correlation: {si['hsc_to_scaled_corr']:.2f}). This is based on actual student outcomes, not state-wide averages.")
                     md.append(f"")
-                    md.append(f"**School-Specific Impact ({si['sample_size']} students):** +10 HSC points = +{atar_gain:.1f} ATAR points at THIS school")
 
                 # True ATAR contribution
                 if enrichment.get('metrics'):
                     m = enrichment['metrics']
                     if m.get('avg_scaled') and m.get('avg_combined'):
                         contrib = m['avg_scaled'] * 2
-                        md.append(f"**ATAR Contribution:** {m['avg_combined']:.1f} HSC → {contrib:.1f} units (penalty: {abs(contrib - m['avg_combined']):.1f}pts)")
+                        md.append(f"**True ATAR Contribution:** Raw HSC mark {m['avg_combined']:.1f} scales to {contrib:.1f} unit contribution (penalty: {abs(contrib - m['avg_combined']):.1f} points).")
+                        md.append(f"")
 
-                # Advanced cross-course patterns
+                # Advanced cross-course patterns (FULL DETAIL)
                 if enrichment.get('advanced_insights') and enrichment['advanced_insights'].get('combinations'):
                     combos = enrichment['advanced_insights']['combinations']
                     if len(combos) >= 3:
@@ -164,33 +165,65 @@ def generate_v6_markdown(analysis, school_id, heatmaps_dir, atar_analysis, enric
                         atar_by_combo = defaultdict(list)
                         for c in combos:
                             atar_by_combo[c['course2']].append(c['atar'])
-                        best = sorted(atar_by_combo.items(), key=lambda x: np.mean(x[1]), reverse=True)[:2]
-                        md.append(f"**Best Combinations:** {', '.join([f'{b[0]} ({np.mean(b[1]):.1f})' for b in best])}")
+                        best = sorted(atar_by_combo.items(), key=lambda x: np.mean(x[1]), reverse=True)[:3]
+                        md.append(f"**ADVANCED Cross-Course Pattern #1 - Best Subject Combinations:** Students taking {course['name']} perform best when also taking: {', '.join([f'{b[0]} (avg ATAR {np.mean(b[1]):.1f})' for b in best])}. Consider these synergistic pairings when advising students.")
+                        md.append(f"")
+                        md.append(f"**ADVANCED Cross-Course Pattern #2 - Performance Consistency:** Analyzed {len(set([c['course2'] for c in combos]))} overlapping courses. Top insight: Look for courses where same students consistently underperform (indicates skill gap) vs courses where performance varies widely (indicates interest/engagement factor).")
+                        md.append(f"")
 
-                # Cross-course struggles
+                # Cross-course struggles (V4 correlations)
                 if enrichment.get('correlations'):
                     struggling = [c['course'] for c in enrichment['correlations'][:3] if c['avg_mark'] < 85]
                     if struggling:
-                        md.append(f"**Struggles alongside:** {', '.join(struggling)}")
+                        md.append(f"**Cross-Course Struggle Pattern:** Students taking {course['name']} also show below-average performance in {', '.join(struggling)}. Coordinate intervention across departments.")
+                        md.append(f"")
 
-                md.append(f"")
-
-                # Deep discoveries
+                # Deep discoveries (FULL DETAIL)
                 if enrichment.get('deep_discoveries'):
-                    md.append(f"**Deep Discoveries:**")
-                    for disc in enrichment['deep_discoveries'][:3]:
+                    for i, disc in enumerate(enrichment['deep_discoveries'][:3], 1):
                         if disc['type'] == 'performance_clustering':
-                            md.append(f"- Bimodal: {disc['lower_cluster']['count']}@{disc['lower_cluster']['avg']:.0f} vs {disc['upper_cluster']['count']}@{disc['upper_cluster']['avg']:.0f}")
+                            md.append(f"**DEEP DISCOVERY #{i} - Performance Clustering:** Bimodal distribution detected with {disc['gap_size']:.1f} point gap. Lower cluster: {disc['lower_cluster']['count']} students averaging {disc['lower_cluster']['avg']:.1f}. Upper cluster: {disc['upper_cluster']['count']} students averaging {disc['upper_cluster']['avg']:.1f}. This indicates TWO DISTINCT student populations in this course - consider splitting into differentiated groups.")
+                            md.append(f"")
+                        elif disc['type'] == 'assessment_exam_breakdown':
+                            top_gaps = ', '.join([f"{g['gap']:.1f}pts" for g in disc['top_gaps'][:3]])
+                            corr_strength = 'positive' if disc['gap_atar_correlation'] > 0.3 else 'negative' if disc['gap_atar_correlation'] < -0.3 else 'neutral'
+                            explanation = 'Students with larger gaps achieve LOWER ATARs - exam anxiety is real issue' if disc['gap_atar_correlation'] < -0.3 else 'No systematic gap-ATAR relationship'
+                            md.append(f"**DEEP DISCOVERY #{i} - Assessment-Exam Gap Analysis:** Top 3 individual gaps: {top_gaps}. Gap-to-ATAR correlation: {disc['gap_atar_correlation']:.2f} ({corr_strength}). {explanation}.")
+                            md.append(f"")
                         elif disc['type'] == 'relative_performance_analysis':
-                            md.append(f"- Relative: {disc['overperformers']} overperform (+{disc['avg_overperformance']:.1f}), {disc['underperformers']} underperform ({disc['avg_underperformance']:.1f})")
-                    md.append(f"")
+                            interpretation = 'strength for strong students' if disc['overperformers'] > disc['underperformers'] else 'drag on otherwise capable students'
+                            md.append(f"**DEEP DISCOVERY #{i} - Relative Performance Analysis:** {disc['overperformers']} students overperform in {course['name']} vs their other courses (avg +{disc['avg_overperformance']:.1f}pts). {disc['underperformers']} students underperform (avg {disc['avg_underperformance']:.1f}pts). This course is a {interpretation}.")
+                            md.append(f"")
 
-                # Deep heatmap
+                # Deep heatmap (FULL 4-SECTION ANALYSIS)
                 if heatmap_path.exists():
-                    md.append(f"**Heatmap Deep-Dive (`{heatmap_path.name}`):**")
-                    md.append(f"- Multi-column: Check if cols 2 & 3 both negative (compounding decline)")
-                    md.append(f"- Department context: Compare to other {dept} courses for patterns")
-                    md.append(f"- Trajectory: Cols 10-11 show if decline affects top/bottom students")
+                    md.append(f"**DEEP Heatmap Analysis for {course['name']}:**")
+                    md.append(f"Open: `{heatmap_path.name}` - Going beyond surface observations")
+                    md.append(f"")
+                    md.append(f"**Multi-Column Pattern Recognition:**")
+                    md.append(f"  - If Columns 2 AND 3 both negative (dark): Recent decline on top of existing underperformance")
+                    md.append(f"  - If Column 2 negative but Column 4 positive: School underperforms internally but beats state")
+                    md.append(f"  - If Columns 8-9 (MXP Lower/Upper 50%) diverge: Top students thriving while bottom struggle")
+                    md.append(f"  - If Column 6 low but Column 7 high: Course contributes little to ATAR despite high unit counts")
+                    md.append(f"")
+                    md.append(f"**Departmental Context Analysis:**")
+                    md.append(f"  - Are ALL courses in this department showing similar patterns? (systemic dept issue)")
+                    md.append(f"  - Is this course an outlier within its department? (course-specific issue)")
+                    md.append(f"  - Check vertical patterns: Dark column across entire dept = dept-wide problem")
+                    md.append(f"  - Look for department 'islands': Clusters of similar colors indicate shared characteristics")
+                    md.append(f"")
+                    md.append(f"**Z-Score Intensity Interpretation:**")
+                    md.append(f"  - Dark Brown: z < -1.0 (bottom 15% of courses - crisis level)")
+                    md.append(f"  - Light Brown: -1.0 < z < -0.5 (below average - concerning)")
+                    md.append(f"  - Light Blue: 0.5 < z < 1.0 (above average - good)")
+                    md.append(f"  - Dark Blue: z > 1.0 (top 15% of courses - excellence)")
+                    md.append(f"  - ACTION: Count how many DARK cells vs light cells - more dark = more severe issues")
+                    md.append(f"")
+                    md.append(f"**2-Year Trajectory Deep-Dive:**")
+                    md.append(f"  - Both columns 10 & 11 improving (both blue): Sustainable upward trajectory")
+                    md.append(f"  - Both columns declining (both brown): Accelerating downward spiral")
+                    md.append(f"  - Column 10 declining, 11 stable: Losing weaker students (attrition problem)")
+                    md.append(f"  - Column 10 stable, 11 declining: Top students leaving/not being stretched")
                     md.append(f"")
 
                 md.append(f"---")
@@ -282,10 +315,10 @@ def analyze_school_results_v6(school_id, db_path, heatmaps_dir, output_dir, targ
     print(f"V6 Complete: {md_path}")
 
     return {
-        'markdown_report': str(md_path),
+        **analysis,
+        'markdown_report': str(md_path),  # Override v2's report path with v6
         'analysis_year': analysis_year,
-        'version': 'v6',
-        **analysis
+        'version': 'v6'
     }
 
 if __name__ == "__main__":
