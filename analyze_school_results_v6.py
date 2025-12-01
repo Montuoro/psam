@@ -29,6 +29,9 @@ from analyze_school_results_v5 import (
     analyze_heatmap_deeply
 )
 
+# Import student-level analysis
+from analyze_students_v1 import get_student_multi_course_patterns, get_course_rank_analysis
+
 def generate_v6_course_analysis(course, conn, analysis_year, school_atar_avg, heatmap_path):
     """
     Generate complete V6 analysis for a single course
@@ -49,22 +52,25 @@ def generate_v6_course_analysis(course, conn, analysis_year, school_atar_avg, he
     from analyze_school_results_v4 import get_cross_course_correlations
     correlations = get_cross_course_correlations(conn, course_name, analysis_year)
 
+    # V6: Student-level rank analysis
+    rank_analysis = get_course_rank_analysis(conn, course_name, analysis_year)
+
     return {
         'metrics': metrics,
         'multiyear': multiyear,
         'scaling_impact': scaling_impact,
         'advanced_insights': advanced_insights,
         'deep_discoveries': deep_discoveries,
-        'correlations': correlations
+        'correlations': correlations,
+        'rank_analysis': rank_analysis
     }
 
-def generate_v6_markdown(analysis, school_id, heatmaps_dir, atar_analysis, enriched_courses):
+def generate_v6_markdown(analysis, school_id, heatmaps_dir, atar_analysis, enriched_courses, conn, analysis_year):
     """
     Generate single unified V6 markdown report
     """
     md = []
 
-    analysis_year = analysis['analysis_year']
     previous_year = analysis['previous_year']
     stats = analysis['school_statistics']
     school_atar_avg = atar_analysis['stats']['avg_atar']
@@ -101,6 +107,51 @@ def generate_v6_markdown(analysis, school_id, heatmaps_dir, atar_analysis, enric
     md.append(f"- **{len(analysis['middling_courses'])} Middling Courses**")
     md.append(f"- **{len(analysis['high_performers'])} High Performers**")
     md.append(f"")
+    md.append(f"---")
+    md.append(f"")
+
+    # STUDENT-LEVEL INTERVENTION TARGETS
+    md.append(f"## Student Intervention Priorities")
+    md.append(f"")
+
+    student_patterns = get_student_multi_course_patterns(conn, analysis_year, school_atar_avg)
+
+    if student_patterns['concerning_students']:
+        high_priority = [s for s in student_patterns['concerning_students'] if s['priority'] == 'high']
+        medium_priority = [s for s in student_patterns['concerning_students'] if s['priority'] == 'medium']
+
+        md.append(f"**{len(student_patterns['concerning_students'])} Students Requiring Targeted Intervention:**")
+        md.append(f"- {len(high_priority)} High Priority (struggling in 4+ courses)")
+        md.append(f"- {len(medium_priority)} Medium Priority (specific weak areas or 3 courses)")
+        md.append(f"")
+
+        if high_priority:
+            md.append(f"### High Priority Students")
+            md.append(f"")
+            for student in high_priority[:5]:  # Top 5
+                courses_list = ', '.join([c['name'] for c in student['low_marks'][:5]])
+                md.append(f"**Student ID {student['student_id']}** (ATAR: {student['atar']:.1f}, {student['atar_gap']:+.1f} vs school avg)")
+                md.append(f"- Struggling in {len(student['low_marks'])} courses: {courses_list}")
+                if student.get('large_gaps'):
+                    gap_courses = ', '.join([c['name'] for c in student['large_gaps'][:3]])
+                    md.append(f"- Large assessment-exam gaps in: {gap_courses} (possible exam anxiety)")
+                md.append(f"- **Action**: Immediate multi-course intervention plan required")
+                md.append(f"")
+
+        if medium_priority:
+            md.append(f"### Medium Priority Students")
+            md.append(f"")
+            for student in medium_priority[:5]:  # Top 5
+                if student.get('note'):
+                    courses_list = ', '.join([c['name'] for c in student.get('outliers', [])[:3]])
+                    md.append(f"**Student ID {student['student_id']}** (ATAR: {student['atar']:.1f}) - {student['note']}")
+                    md.append(f"- Weak areas: {courses_list}")
+                else:
+                    courses_list = ', '.join([c['name'] for c in student['low_marks'][:3]])
+                    md.append(f"**Student ID {student['student_id']}** (ATAR: {student['atar']:.1f})")
+                    md.append(f"- Needs support in: {courses_list}")
+                md.append(f"")
+
     md.append(f"---")
     md.append(f"")
 
@@ -195,6 +246,26 @@ def generate_v6_markdown(analysis, school_id, heatmaps_dir, atar_analysis, enric
                     md.append(f"- Cohort ATAR: Students in this course average {course_atar:.1f} ATAR ({cohort_type}, {atar_diff:+.1f} vs school avg)")
 
                 md.append(f"")
+
+                # RANK-BASED ANALYSIS (Specific Students)
+                if enrichment.get('rank_analysis'):
+                    ra = enrichment['rank_analysis']
+                    md.append(f"**Class Rankings & Gaps:**")
+
+                    # Top performers
+                    top_3 = ra['top_10'][:3]
+                    md.append(f"- Top 3: Student {top_3[0]['student_id']} ({top_3[0]['mark']:.1f}, ATAR {top_3[0]['atar']:.1f}), Student {top_3[1]['student_id']} ({top_3[1]['mark']:.1f}), Student {top_3[2]['student_id']} ({top_3[2]['mark']:.1f})")
+
+                    # Bottom performers (needs intervention)
+                    bottom_3 = ra['bottom_10'][-3:]
+                    md.append(f"- **Bottom 3 (INTERVENTION NEEDED):** Student {bottom_3[2]['student_id']} ({bottom_3[2]['mark']:.1f}, ATAR {bottom_3[2]['atar']:.1f}), Student {bottom_3[1]['student_id']} ({bottom_3[1]['mark']:.1f}), Student {bottom_3[0]['student_id']} ({bottom_3[0]['mark']:.1f})")
+
+                    # Largest gap
+                    if ra.get('largest_gap'):
+                        gap = ra['largest_gap']
+                        md.append(f"- Largest performance gap: {gap['gap_size']:.1f} points between ranks {gap['between_ranks']} and {gap['between_ranks']+1} ({gap['marks']})")
+
+                    md.append(f"")
 
                 # Advanced cross-course patterns (FULL DETAIL)
                 if enrichment.get('advanced_insights') and enrichment['advanced_insights'].get('combinations'):
@@ -339,7 +410,7 @@ def analyze_school_results_v6(school_id, db_path, heatmaps_dir, output_dir, targ
     # Generate V6 markdown
     print("Generating V6 unified report...")
     md_content = generate_v6_markdown(
-        analysis, school_id, heatmaps_dir, atar_analysis, enriched_courses
+        analysis, school_id, heatmaps_dir, atar_analysis, enriched_courses, conn, analysis_year
     )
 
     # Save
