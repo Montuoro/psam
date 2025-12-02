@@ -78,6 +78,8 @@ def analyze_class_performance(conn, course_name, year):
     cursor = conn.cursor()
 
     # Get class/teacher data for this course
+    # CRITICAL FIX: Filter groups by name to match the course
+    # E.g., for "Biology", only get groups where name starts with "Biology"
     cursor.execute("""
         SELECT
             g.group_id,
@@ -89,16 +91,17 @@ def analyze_class_performance(conn, course_name, year):
             AVG(cr.scaled_score - cr.map_score) as avg_mxp_gap
         FROM [group] g
         JOIN group_member gm ON g.group_id = gm.group_id
-        JOIN course_result cr ON gm.student_id = cr.student_id
+        JOIN course_result cr ON gm.student_id = cr.student_id AND cr.year = g.year
         JOIN course c ON cr.course_id = c.course_id
         LEFT JOIN teacher t ON g.teacher_id = t.teacher_id
         WHERE c.name = ?
         AND g.year = ?
         AND cr.year = ?
+        AND (g.name LIKE ? OR g.name LIKE ?)
         GROUP BY g.group_id
         HAVING COUNT(DISTINCT gm.student_id) >= 3
         ORDER BY avg_scaled DESC
-    """, (course_name, year, year))
+    """, (course_name, year, year, f"{course_name}%", f"{course_name.split()[0]}%"))
 
     classes = []
     for row in cursor.fetchall():
