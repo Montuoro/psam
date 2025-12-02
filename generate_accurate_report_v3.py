@@ -189,9 +189,9 @@ def generate_markdown_report(school_analysis, school_name, output_path, conn=Non
             md.append("```")
             md.append("")
 
-        # RANK ORDER SCATTER PLOT
+        # RANK ORDER HISTOGRAM
         if course_analysis.get('visualization') and course_analysis['visualization'].get('rank_order_scatter'):
-            md.append("**Rank Order Changes (Internal vs External):**")
+            md.append("**Rank Order Changes Distribution:**")
             md.append("")
             md.append("```")
             md.append(course_analysis['visualization']['rank_order_scatter'])

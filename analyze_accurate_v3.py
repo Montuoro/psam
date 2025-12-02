@@ -71,62 +71,95 @@ def create_ascii_scatter(students, width=60, height=15):
 
     return "\n".join(lines)
 
-def create_rank_order_scatter(internal_ranks, exam_ranks, width=60, height=15):
+def create_rank_order_histogram(internal_ranks, exam_ranks, width=60, height=15):
     """
-    Create ASCII scatter plot of internal rank vs external rank
-    X-axis: Internal rank, Y-axis: External rank
-    Points on diagonal = no rank change, off diagonal = rank switched
+    Create ASCII histogram of rank order changes
+    X-axis: Rank change (-x to +x), Y-axis: Frequency
+    Shows distribution of how many students had each rank change
     """
     if not internal_ranks or not exam_ranks:
         return "No data available"
 
-    # Create list of rank pairs
-    rank_pairs = []
+    # Calculate rank changes for all students
+    rank_changes = []
     for student_id in internal_ranks:
         if student_id in exam_ranks:
-            rank_pairs.append((internal_ranks[student_id], exam_ranks[student_id]))
+            int_rank = internal_ranks[student_id]
+            ext_rank = exam_ranks[student_id]
+            change = int_rank - ext_rank  # Positive = improved on external
+            rank_changes.append(change)
 
-    if not rank_pairs:
+    if not rank_changes:
         return "No data available"
 
-    # Get ranges
-    max_rank = max(max(p[0] for p in rank_pairs), max(p[1] for p in rank_pairs))
-    min_rank = 1
+    # Get range
+    min_change = int(min(rank_changes))
+    max_change = int(max(rank_changes))
 
-    # Handle edge case
-    rank_range = max_rank - min_rank
-    if rank_range == 0:
-        rank_range = 1
+    # Ensure we include 0
+    min_change = min(min_change, 0)
+    max_change = max(max_change, 0)
+
+    # Create bins for histogram
+    from collections import Counter
+    change_counts = Counter(rank_changes)
+
+    # Get max frequency for scaling
+    max_freq = max(change_counts.values()) if change_counts else 1
 
     # Create grid
     grid = [[' ' for _ in range(width)] for _ in range(height)]
 
-    # Draw diagonal line (y=x, no rank change)
-    for i in range(width):
-        y = height - 1 - int(i * (height - 1) / (width - 1))
-        if 0 <= y < height:
-            grid[y][i] = '.'
+    # Calculate bin width
+    total_range = max_change - min_change
+    if total_range == 0:
+        total_range = 1
+    bin_width = total_range / width
 
-    # Plot points
-    for int_rank, ext_rank in rank_pairs:
-        x = int((int_rank - min_rank) / rank_range * (width - 1))
-        y = height - 1 - int((ext_rank - min_rank) / rank_range * (height - 1))
+    # Plot histogram bars
+    for change, count in change_counts.items():
+        # Calculate x position
+        x = int((change - min_change) / total_range * (width - 1))
 
-        if 0 <= x < width and 0 <= y < height:
-            grid[y][x] = '*'
+        # Calculate bar height
+        bar_height = int((count / max_freq) * (height - 1))
+
+        # Draw bar from bottom up
+        for y in range(bar_height + 1):
+            grid_y = height - 1 - y
+            if 0 <= x < width and 0 <= grid_y < height:
+                grid[grid_y][x] = '*'
+
+    # Draw zero line
+    zero_x = int((0 - min_change) / total_range * (width - 1))
+    if 0 <= zero_x < width:
+        for y in range(height):
+            if grid[y][zero_x] == ' ':
+                grid[y][zero_x] = '|'
 
     # Build output
     lines = []
-    lines.append(f"  Rank Order: Internal vs External (n={len(rank_pairs)})")
-    lines.append("  (* = student, . = no change diagonal)")
+    lines.append(f"  Rank Order Changes Distribution (n={len(rank_changes)})")
+    lines.append(f"  (Improved on external ← | → Dropped on external)")
 
     for i, row in enumerate(grid):
-        ext_rank_val = max_rank - (i * rank_range / (height - 1))
-        lines.append(f" {ext_rank_val:3.0f} | {''.join(row)}")
+        freq_val = int(max_freq * (height - 1 - i) / (height - 1))
+        if i == 0:
+            lines.append(f" {max_freq:3d} | {''.join(row)}")
+        elif i == height - 1:
+            lines.append(f"   0 | {''.join(row)}")
+        else:
+            lines.append(f"     | {''.join(row)}")
 
     lines.append("      +" + "-" * width)
-    lines.append(f"       {min_rank:<{width//2}.0f}{max_rank:>{width//2}.0f}")
-    lines.append("       Internal Rank -->")
+
+    # X-axis labels
+    label_line = "       "
+    label_line += f"{min_change:<{width//3}}"
+    label_line += f"0".center(width//3)
+    label_line += f"{max_change:>{width//3}}"
+    lines.append(label_line)
+    lines.append("       Rank Change (Internal - External) -->")
 
     return '\n'.join(lines)
 
@@ -361,8 +394,8 @@ def analyze_course(conn, course_name, year, school_avg_scaled=None):
     # ASCII scatter plot
     ascii_plot = create_ascii_scatter(students)
 
-    # Rank order scatter plot
-    rank_order_plot = create_rank_order_scatter(internal_ranks, exam_ranks)
+    # Rank order histogram
+    rank_order_plot = create_rank_order_histogram(internal_ranks, exam_ranks)
 
     # Class analysis
     class_analysis = analyze_class_performance(conn, course_name, year)

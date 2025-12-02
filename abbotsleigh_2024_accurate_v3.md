@@ -140,29 +140,29 @@
        Scaled Mark -->
 ```
 
-**Rank Order Changes (Internal vs External):**
+**Rank Order Changes Distribution:**
 
 ```
-  Rank Order: Internal vs External (n=6)
-  (* = student, . = no change diagonal)
-   6 |                                                            *
-   6 |                                                        .... 
-   5 |                                                    ....     
-   5 |                                    *           ....         
-   5 |                                            ....             
-   4 |                                       .....                 
-   4 |                        *          ....                      
-   4 |                               ....                          
-   3 |                           ....                              
-   3 |                       ....                     *            
-   2 |                  .....                                      
-   2 |              ....                                           
-   2 |          ..*.                                               
-   1 |      ....                                                   
-   1 | *....                                                       
+  Rank Order Changes Distribution (n=6)
+  (Improved on external ← | → Dropped on external)
+   3 |                    *                                        
+     |                    *                                        
+     |                    *                                        
+     |                    *                                        
+     |                    *                                        
+     | *                  *                                        
+     | *                  *                                        
+     | *                  *                                        
+     | *                  *                                        
+     | *                  *                                        
+     | *                  *                                       *
+     | *                  *                                       *
+     | *                  *                                       *
+     | *                  *                                       *
+   0 | *                  *                                       *
       +------------------------------------------------------------
-       1                                                          6
-       Internal Rank -->
+       -1                           0                             2
+       Rank Change (Internal - External) -->
 ```
 
 **Class Performance:**
@@ -239,29 +239,29 @@
        Scaled Mark -->
 ```
 
-**Rank Order Changes (Internal vs External):**
+**Rank Order Changes Distribution:**
 
 ```
-  Rank Order: Internal vs External (n=2)
-  (* = student, . = no change diagonal)
-   2 |                                                            *
-   2 |                                                        .... 
-   2 |                                                    ....     
-   2 |                                                ....         
-   2 |                                            ....             
-   2 |                                       .....                 
-   2 |                                   ....                      
-   2 |                               ....                          
-   1 |                           ....                              
-   1 |                       ....                                  
-   1 |                  .....                                      
-   1 |              ....                                           
-   1 |          ....                                               
-   1 |      ....                                                   
-   1 | *....                                                       
+  Rank Order Changes Distribution (n=2)
+  (Improved on external ← | → Dropped on external)
+   2 | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+   0 | *                                                           
       +------------------------------------------------------------
-       1                                                          2
-       Internal Rank -->
+       0                            0                             0
+       Rank Change (Internal - External) -->
 ```
 
 **Deeper Analysis:**
@@ -326,29 +326,29 @@
        Scaled Mark -->
 ```
 
-**Rank Order Changes (Internal vs External):**
+**Rank Order Changes Distribution:**
 
 ```
-  Rank Order: Internal vs External (n=3)
-  (* = student, . = no change diagonal)
-   3 |                                                            *
-   3 |                                                        .... 
-   3 |                                                    ....     
-   3 |                                                ....         
-   2 |                                            ....             
-   2 |                                       .....                 
-   2 |                                   ....                      
-   2 |                              *....                          
-   2 |                           ....                              
-   2 |                       ....                                  
-   2 |                  .....                                      
-   1 |              ....                                           
-   1 |          ....                                               
-   1 |      ....                                                   
-   1 | *....                                                       
+  Rank Order Changes Distribution (n=3)
+  (Improved on external ← | → Dropped on external)
+   3 | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+   0 | *                                                           
       +------------------------------------------------------------
-       1                                                          3
-       Internal Rank -->
+       0                            0                             0
+       Rank Change (Internal - External) -->
 ```
 
 **Class Performance:**
@@ -418,29 +418,29 @@
        Scaled Mark -->
 ```
 
-**Rank Order Changes (Internal vs External):**
+**Rank Order Changes Distribution:**
 
 ```
-  Rank Order: Internal vs External (n=1)
-  (* = student, . = no change diagonal)
-   1 |                                                            .
-   1 |                                                        .... 
-   1 |                                                    ....     
-   1 |                                                ....         
-   1 |                                            ....             
-   1 |                                       .....                 
-   1 |                                   ....                      
-   0 |                               ....                          
-   0 |                           ....                              
-   0 |                       ....                                  
-   0 |                  .....                                      
-   0 |              ....                                           
-   0 |          ....                                               
-   0 |      ....                                                   
-   0 | *....                                                       
+  Rank Order Changes Distribution (n=1)
+  (Improved on external ← | → Dropped on external)
+   1 | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+   0 | *                                                           
       +------------------------------------------------------------
-       1                                                          1
-       Internal Rank -->
+       0                            0                             0
+       Rank Change (Internal - External) -->
 ```
 
 **Deeper Analysis:**
@@ -500,29 +500,29 @@
        Scaled Mark -->
 ```
 
-**Rank Order Changes (Internal vs External):**
+**Rank Order Changes Distribution:**
 
 ```
-  Rank Order: Internal vs External (n=11)
-  (* = student, . = no change diagonal)
-  11 |                                                            *
-  10 |                                                        .... 
-  10 |                                                *   ....     
-   9 |                                          *     ....         
-   8 |                                            ....             
-   7 |                                       .....          *      
-   7 |                                   .*..                      
-   6 |                              *....                          
-   5 |                           ....                              
-   5 |                  *    ....                                  
-   4 |                  ..... *                                    
-   3 |              ....                                           
-   2 |          ..*.                                               
-   2 | *    ....                                                   
-   1 | .....*                                                      
+  Rank Order Changes Distribution (n=11)
+  (Improved on external ← | → Dropped on external)
+   4 | *                  *                                        
+     | *                  *                                        
+     | *                  *                                        
+     | *                  *                                        
+     | *                  *                                        
+     | *                  *                                        
+     | *                  *                                        
+     | *                  *                   *                    
+     | *                  *                   *                    
+     | *                  *                   *                    
+     | *                  *                   *                    
+     | *                  *                   *                   *
+     | *                  *                   *                   *
+     | *                  *                   *                   *
+   0 | *                  *                   *                   *
       +------------------------------------------------------------
-       1                                                         11
-       Internal Rank -->
+       -1                           0                             2
+       Rank Change (Internal - External) -->
 ```
 
 **Class Performance:**
@@ -599,29 +599,29 @@
        Scaled Mark -->
 ```
 
-**Rank Order Changes (Internal vs External):**
+**Rank Order Changes Distribution:**
 
 ```
-  Rank Order: Internal vs External (n=8)
-  (* = student, . = no change diagonal)
-   8 |                                                            *
-   8 |                                                        .... 
-   7 |                                                   *....     
-   6 |                                                ....         
-   6 |                                           *....             
-   6 |                                       .....                 
-   5 |                                  *....                      
-   4 |                               ....                          
-   4 |                 *         ....                              
-   4 |                       ....                                  
-   3 |         *        .....                                      
-   2 |              ....                                           
-   2 |          ....            *                                  
-   2 |      ....                                                   
-   1 | *....                                                       
+  Rank Order Changes Distribution (n=8)
+  (Improved on external ← | → Dropped on external)
+   5 |                    *                                        
+     |                    *                                        
+     |                    *                                        
+     |                    *                                        
+     |                    *                                        
+     |                    *                                        
+     |                    *                                        
+     |                    *                                        
+     |                    *                                        
+     | *                  *                                        
+     | *                  *                                        
+     | *                  *                                        
+     | *                  *                                       *
+     | *                  *                                       *
+   0 | *                  *                                       *
       +------------------------------------------------------------
-       1                                                          8
-       Internal Rank -->
+       -1                           0                             2
+       Rank Change (Internal - External) -->
 ```
 
 **Class Performance:**
@@ -698,29 +698,29 @@
        Scaled Mark -->
 ```
 
-**Rank Order Changes (Internal vs External):**
+**Rank Order Changes Distribution:**
 
 ```
-  Rank Order: Internal vs External (n=33)
-  (* = student, . = no change diagonal)
-  33 |                                                        *   .
-  31 |                                                  *     ....*
-  28 |                                                    ..*.  *  
-  26 |                                                *...*        
-  24 |                                    *  *    ...*             
-  22 |                            *     *    .....                 
-  19 |                              *    ....  *                   
-  17 |                          *    .*..  *                       
-  15 |                     *     ....              *               
-  12 |            *          .*..                                  
-  10 |               *  .*...                                      
-   8 |        *     ....     *                   *                 
-   6 |          ...*   *                                           
-   3 |  *   ....*                                                  
-   1 | *..*.*                                                      
+  Rank Order Changes Distribution (n=33)
+  (Improved on external ← | → Dropped on external)
+   6 |         *         |                                         
+     |         *         |                                         
+     |         *         |                                         
+     |         *         |                                         
+     |         *         |                                         
+     |         * *       |  *  *                                   
+     |         * *       |  *  *                                   
+     |         * *     * |  *  * *                                 
+     |         * *     * |  *  * *                                 
+     |         * *     * |  *  * *                                 
+     |         * *     * *  *  * *  *                              
+     |         * *     * *  *  * *  *                              
+     | * *     * *  *  * *  *  * *  *               *             *
+     | * *     * *  *  * *  *  * *  *               *             *
+   0 | * *     * *  *  * *  *  * *  *               *             *
       +------------------------------------------------------------
-       1                                                         33
-       Internal Rank -->
+       -7                           0                            15
+       Rank Change (Internal - External) -->
 ```
 
 **Class Performance:**
@@ -807,29 +807,29 @@
        Scaled Mark -->
 ```
 
-**Rank Order Changes (Internal vs External):**
+**Rank Order Changes Distribution:**
 
 ```
-  Rank Order: Internal vs External (n=14)
-  (* = student, . = no change diagonal)
-  14 |                                                            *
-  13 |                                                        .... 
-  12 |                                                  * ....     
-  11 |                                              * ....         
-  10 |                                            ....       *     
-   9 |          *                            .....                 
-   8 |                            *      ....                      
-   8 |              *                ....                          
-   7 |                           ....          *                   
-   6 |                       *...                                  
-   5 |                  .....              *                       
-   4 |              ....              *                            
-   3 |          ....     *                                         
-   2 |     *....                                                   
-   1 | *....                                                       
+  Rank Order Changes Distribution (n=14)
+  (Improved on external ← | → Dropped on external)
+   4 |                                      *                      
+     |                                      *                      
+     |                                      *                      
+     |                                      *                      
+     |                                      *                      
+     |                                      *                      
+     |                                      *                      
+     |                                 *    *          *          *
+     |                                 *    *          *          *
+     |                                 *    *          *          *
+     |                                 *    *          *          *
+     | *               *         *     *    *          *    *     *
+     | *               *         *     *    *          *    *     *
+     | *               *         *     *    *          *    *     *
+   0 | *               *         *     *    *          *    *     *
       +------------------------------------------------------------
-       1                                                         14
-       Internal Rank -->
+       -7                           0                             4
+       Rank Change (Internal - External) -->
 ```
 
 **Class Performance:**
@@ -915,29 +915,29 @@
        Scaled Mark -->
 ```
 
-**Rank Order Changes (Internal vs External):**
+**Rank Order Changes Distribution:**
 
 ```
-  Rank Order: Internal vs External (n=33)
-  (* = student, . = no change diagonal)
-  33 |                                                            *
-  31 |                                             *          ..*. 
-  28 |                                                    ..*.*    
-  26 |                                                ..*.*        
-  24 |                                       *   *...*             
-  22 |                       *    *          .....                 
-  19 |                                   .*..  *                   
-  17 |                               ...*  *          *            
-  15 |                     *     ...*                              
-  12 | *                     ...*                                  
-  10 |        *         ..... *                                    
-   8 |            * ...* *                                         
-   6 |          *...                  *                            
-   3 |    * *...                                                   
-   1 | .*...       * *                                             
+  Rank Order Changes Distribution (n=33)
+  (Improved on external ← | → Dropped on external)
+   8 |                               |  *                          
+     |                               |  *                          
+     |                               |  *                          
+     |                               |  *                          
+     |                               |  *                          
+     |                               |  *                          
+     |                               |  *                          
+     |                             * |  * *                        
+     |                             * |  * *                        
+     |                             * *  * *                        
+     |                             * *  * *                        
+     |             *               * *  * *  *            *        
+     |             *               * *  * *  *            *        
+     | *    *      *  *    *  * *  * *  * *  *       *    *       *
+   0 | *    *      *  *    *  * *  * *  * *  *       *    *       *
       +------------------------------------------------------------
-       1                                                         33
-       Internal Rank -->
+       -12                          0                            11
+       Rank Change (Internal - External) -->
 ```
 
 **Class Performance:**
@@ -1022,29 +1022,29 @@
        Scaled Mark -->
 ```
 
-**Rank Order Changes (Internal vs External):**
+**Rank Order Changes Distribution:**
 
 ```
-  Rank Order: Internal vs External (n=7)
-  (* = student, . = no change diagonal)
-   7 |                                                            *
-   7 |                                                        .... 
-   6 |                                                    ....     
-   6 |                                        *       ....         
-   5 |                                            ....             
-   5 |                    *                  .....                 
-   4 |                                   ....                      
-   4 |                               ....               *          
-   4 |                           ....                              
-   3 |                       ....                                  
-   3 |                  .....       *                              
-   2 |              ....                                           
-   2 |          *...                                               
-   1 |      ....                                                   
-   1 | *....                                                       
+  Rank Order Changes Distribution (n=7)
+  (Improved on external ← | → Dropped on external)
+   3 |                              *                              
+     |                              *                              
+     |                              *                              
+     |                              *                              
+     |                              *                              
+     |                              *                              
+     |                              *                              
+     |                              *                              
+     |                              *                              
+     |                              *                              
+     | *             *              *              *              *
+     | *             *              *              *              *
+     | *             *              *              *              *
+     | *             *              *              *              *
+   0 | *             *              *              *              *
       +------------------------------------------------------------
-       1                                                          7
-       Internal Rank -->
+       -2                           0                             2
+       Rank Change (Internal - External) -->
 ```
 
 **Deeper Analysis:**
@@ -1115,29 +1115,29 @@
        Scaled Mark -->
 ```
 
-**Rank Order Changes (Internal vs External):**
+**Rank Order Changes Distribution:**
 
 ```
-  Rank Order: Internal vs External (n=1)
-  (* = student, . = no change diagonal)
-   1 |                                                            .
-   1 |                                                        .... 
-   1 |                                                    ....     
-   1 |                                                ....         
-   1 |                                            ....             
-   1 |                                       .....                 
-   1 |                                   ....                      
-   0 |                               ....                          
-   0 |                           ....                              
-   0 |                       ....                                  
-   0 |                  .....                                      
-   0 |              ....                                           
-   0 |          ....                                               
-   0 |      ....                                                   
-   0 | *....                                                       
+  Rank Order Changes Distribution (n=1)
+  (Improved on external ← | → Dropped on external)
+   1 | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+   0 | *                                                           
       +------------------------------------------------------------
-       1                                                          1
-       Internal Rank -->
+       0                            0                             0
+       Rank Change (Internal - External) -->
 ```
 
 **Deeper Analysis:**
@@ -1200,29 +1200,29 @@
        Scaled Mark -->
 ```
 
-**Rank Order Changes (Internal vs External):**
+**Rank Order Changes Distribution:**
 
 ```
-  Rank Order: Internal vs External (n=4)
-  (* = student, . = no change diagonal)
-   4 |                                                            *
-   4 |                                                        .... 
-   4 |                                                    ....     
-   3 |                                                ....         
-   3 |                                            ....             
-   3 | *                                     .....                 
-   3 |                                   ....                      
-   2 |                               ....                          
-   2 |                           ....                              
-   2 |                       ....                                  
-   2 |                  .....                 *                    
-   2 |              ....                                           
-   1 |          ....                                               
-   1 |      ....                                                   
-   1 | .....              *                                        
+  Rank Order Changes Distribution (n=4)
+  (Improved on external ← | → Dropped on external)
+   2 |                                        |                   *
+     |                                        |                   *
+     |                                        |                   *
+     |                                        |                   *
+     |                                        |                   *
+     |                                        |                   *
+     |                                        |                   *
+     | *                                      *                   *
+     | *                                      *                   *
+     | *                                      *                   *
+     | *                                      *                   *
+     | *                                      *                   *
+     | *                                      *                   *
+     | *                                      *                   *
+   0 | *                                      *                   *
       +------------------------------------------------------------
-       1                                                          4
-       Internal Rank -->
+       -2                           0                             1
+       Rank Change (Internal - External) -->
 ```
 
 **Class Performance:**
@@ -1297,29 +1297,29 @@
        Scaled Mark -->
 ```
 
-**Rank Order Changes (Internal vs External):**
+**Rank Order Changes Distribution:**
 
 ```
-  Rank Order: Internal vs External (n=70)
-  (* = student, . = no change diagonal)
-  70 |                                                            *
-  65 |                                               *        .*** 
-  60 |                                      *           * *.*.     
-  55 |                                        *       *... * *     
-  50 |                                     *     *.**.   *         
-  45 |                               *    *  *..*.            *    
-  40 |                        *          **..  *       *           
-  36 |                           *  *..**         *                
-  31 |  *         **     *      *....                              
-  26 |           *           .... *** *                            
-  21 |          * *     *.... *                 *                  
-  16 |         *    ...** * *                                      
-  11 | *    *   ....  *    * *                                     
-   6 |    ***...    *          *                                   
-   1 | *.*.. **      *                                             
+  Rank Order Changes Distribution (n=70)
+  (Improved on external ← | → Dropped on external)
+   8 |                                  *                          
+     |                                  *                          
+     |                                  *                          
+     |                                  *                          
+     |                                  *                          
+     |                                  *                          
+     |                                * ** *                       
+     |                                * ** * *                     
+     |                                * ** * *                     
+     |                               ** ** * *  **     *           
+     |                               ** ** * *  **     *           
+     |                     * * ****  ******* * ***     *           
+     |                     * * ****  ******* * ***     *           
+     | *           * **    ********  ********* ***** * * *   *    *
+   0 | *           * **    ********  ********* ***** * * *   *    *
       +------------------------------------------------------------
-       1                                                         70
-       Internal Rank -->
+       -32                          0                            24
+       Rank Change (Internal - External) -->
 ```
 
 **Class Performance:**
@@ -1409,29 +1409,29 @@
        Scaled Mark -->
 ```
 
-**Rank Order Changes (Internal vs External):**
+**Rank Order Changes Distribution:**
 
 ```
-  Rank Order: Internal vs External (n=8)
-  (* = student, . = no change diagonal)
-   8 |                                                            *
-   8 |                                                        .... 
-   7 |                          *                         ....     
-   6 |                                                ....         
-   6 | *                                          ....             
-   6 |                                       .....                 
-   5 |                 *                 ....                      
-   4 |                               ....                          
-   4 |                           ....                    *         
-   4 |                       ....                                  
-   3 |                  .....           *                          
-   2 |              ....                                           
-   2 |          ....                             *                 
-   2 |      ....                                                   
-   1 | .....   *                                                   
+  Rank Order Changes Distribution (n=8)
+  (Improved on external ← | → Dropped on external)
+   1 | *            *     *            *      *     *      *      *
+     | *            *     *            *      *     *      *      *
+     | *            *     *            *      *     *      *      *
+     | *            *     *            *      *     *      *      *
+     | *            *     *            *      *     *      *      *
+     | *            *     *            *      *     *      *      *
+     | *            *     *            *      *     *      *      *
+     | *            *     *            *      *     *      *      *
+     | *            *     *            *      *     *      *      *
+     | *            *     *            *      *     *      *      *
+     | *            *     *            *      *     *      *      *
+     | *            *     *            *      *     *      *      *
+     | *            *     *            *      *     *      *      *
+     | *            *     *            *      *     *      *      *
+   0 | *            *     *            *      *     *      *      *
       +------------------------------------------------------------
-       1                                                          8
-       Internal Rank -->
+       -5                           0                             4
+       Rank Change (Internal - External) -->
 ```
 
 **Class Performance:**
@@ -1515,29 +1515,29 @@
        Scaled Mark -->
 ```
 
-**Rank Order Changes (Internal vs External):**
+**Rank Order Changes Distribution:**
 
 ```
-  Rank Order: Internal vs External (n=1)
-  (* = student, . = no change diagonal)
-   1 |                                                            .
-   1 |                                                        .... 
-   1 |                                                    ....     
-   1 |                                                ....         
-   1 |                                            ....             
-   1 |                                       .....                 
-   1 |                                   ....                      
-   0 |                               ....                          
-   0 |                           ....                              
-   0 |                       ....                                  
-   0 |                  .....                                      
-   0 |              ....                                           
-   0 |          ....                                               
-   0 |      ....                                                   
-   0 | *....                                                       
+  Rank Order Changes Distribution (n=1)
+  (Improved on external ← | → Dropped on external)
+   1 | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+   0 | *                                                           
       +------------------------------------------------------------
-       1                                                          1
-       Internal Rank -->
+       0                            0                             0
+       Rank Change (Internal - External) -->
 ```
 
 **Deeper Analysis:**
@@ -1600,29 +1600,29 @@
        Scaled Mark -->
 ```
 
-**Rank Order Changes (Internal vs External):**
+**Rank Order Changes Distribution:**
 
 ```
-  Rank Order: Internal vs External (n=5)
-  (* = student, . = no change diagonal)
-   5 |                                                            *
-   5 |                                                        .... 
-   4 |                                                    ....     
-   4 |                                                ....         
-   4 |                              *             ....             
-   4 |                                       .....                 
-   3 |                                   ....                      
-   3 |               *               ....                          
-   3 |                           ....                              
-   2 |                       ....                                  
-   2 |                  .....                                      
-   2 |              ....                           *               
-   2 |          ....                                               
-   1 |      ....                                                   
-   1 | *....                                                       
+  Rank Order Changes Distribution (n=5)
+  (Improved on external ← | → Dropped on external)
+   2 | *                  *                                        
+     | *                  *                                        
+     | *                  *                                        
+     | *                  *                                        
+     | *                  *                                        
+     | *                  *                                        
+     | *                  *                                        
+     | *                  *                                       *
+     | *                  *                                       *
+     | *                  *                                       *
+     | *                  *                                       *
+     | *                  *                                       *
+     | *                  *                                       *
+     | *                  *                                       *
+   0 | *                  *                                       *
       +------------------------------------------------------------
-       1                                                          5
-       Internal Rank -->
+       -1                           0                             2
+       Rank Change (Internal - External) -->
 ```
 
 **Class Performance:**
@@ -1697,29 +1697,29 @@
        Scaled Mark -->
 ```
 
-**Rank Order Changes (Internal vs External):**
+**Rank Order Changes Distribution:**
 
 ```
-  Rank Order: Internal vs External (n=30)
-  (* = student, . = no change diagonal)
-  30 |                                                       *    .
-  28 |                         *                              .*.. 
-  26 |                                   *       *        ....     
-  24 |                 *             *                ....         
-  22 |                           *                ....            *
-  20 |                                     * .....     *           
-  18 |             *     *               ....                      
-  16 | *                           * ....                          
-  13 |       *                   ....                      *       
-  11 |                       ....            *           *         
-   9 |     *            .....                        *             
-   7 |   *          ....                           *               
-   5 |          ....       *                   *                   
-   3 |      ...*             *                                     
-   1 | .....     *   *                 *                           
+  Rank Order Changes Distribution (n=30)
+  (Improved on external ← | → Dropped on external)
+   3 |             *            *   |                       *      
+     |             *            *   |                       *      
+     |             *            *   |                       *      
+     |             *            *   |                       *      
+     |             *            *   |                       *      
+     |  *       *  *   *        *   | *    * *   *          *   *  
+     |  *       *  *   *        *   | *    * *   *          *   *  
+     |  *       *  *   *        *   | *    * *   *          *   *  
+     |  *       *  *   *        *   | *    * *   *          *   *  
+     |  *       *  *   *        *   | *    * *   *          *   *  
+     | **       *  * * *     *  *   | *    * *   * *        *   * *
+     | **       *  * * *     *  *   | *    * *   * *        *   * *
+     | **       *  * * *     *  *   | *    * *   * *        *   * *
+     | **       *  * * *     *  *   | *    * *   * *        *   * *
+   0 | **       *  * * *     *  *   | *    * *   * *        *   * *
       +------------------------------------------------------------
-       1                                                         30
-       Internal Rank -->
+       -16                          0                            16
+       Rank Change (Internal - External) -->
 ```
 
 **Class Performance:**
@@ -1810,29 +1810,29 @@
        Scaled Mark -->
 ```
 
-**Rank Order Changes (Internal vs External):**
+**Rank Order Changes Distribution:**
 
 ```
-  Rank Order: Internal vs External (n=70)
-  (* = student, . = no change diagonal)
-  70 |                                                          * .
-  65 |                                                       ***..*
-  60 |                                                  * .**.   * 
-  55 |                                            * * **..*        
-  50 |                       *            *   *  *....*            
-  45 |                                       ...*. * *   *         
-  40 |                     *     *  *    ....  *                   
-  36 |                         *  *  ....*  **                     
-  31 |               *      *    ....* *  *                        
-  26 |    *       *    *     ....     *    *                       
-  21 |        * *       .*...      *    *                          
-  16 |     *      ***...        *                                  
-  11 |       *  .*..    * *   *                                    
-   6 | *    ...*      * *     *                                    
-   1 | ***..*                                                      
+  Rank Order Changes Distribution (n=70)
+  (Improved on external ← | → Dropped on external)
+   5 |                           *  *|                             
+     |                           *  *|                             
+     |                           *  *|                             
+     |                        *  * **| **   *      *               
+     |                        *  * **| **   *      *               
+     |                        *  * **| **   *      *               
+     |                *       *  * *** ***  *      * *             
+     |                *       *  * *** ***  *      * *             
+     |                *       *  * *** ***  *      * *             
+     | *              *     * ** * *** **** * *    * *             
+     | *              *     * ** * *** **** * *    * *             
+     | *              *     * ** * *** **** * *    * *             
+     | *     * *  *  ****   * **** *** **** * *  *** * * * *  *   *
+     | *     * *  *  ****   * **** *** **** * *  *** * * * *  *   *
+   0 | *     * *  *  ****   * **** *** **** * *  *** * * * *  *   *
       +------------------------------------------------------------
-       1                                                         70
-       Internal Rank -->
+       -24                          0                            22
+       Rank Change (Internal - External) -->
 ```
 
 **Class Performance:**
@@ -1921,29 +1921,29 @@
        Scaled Mark -->
 ```
 
-**Rank Order Changes (Internal vs External):**
+**Rank Order Changes Distribution:**
 
 ```
-  Rank Order: Internal vs External (n=19)
-  (* = student, . = no change diagonal)
-  19 |                                                        *   .
-  18 |                                                        ....*
-  16 |                                        *           ....     
-  15 |                                           *    ....         
-  14 |                                            ....  *  *       
-  13 |                 *                     .....                 
-  11 |                       *           ....                      
-  10 |                           *   ..*.                          
-   9 |                           ...*                              
-   7 |          *            ....                                  
-   6 |                  .....              *                       
-   5 |       *      ....                            *              
-   4 |    *     ....                                               
-   2 | *    ....                                                   
-   1 | .....        *     *                                        
+  Rank Order Changes Distribution (n=19)
+  (Improved on external ← | → Dropped on external)
+   4 |                   *      |                                  
+     |                   *      |                                  
+     |                   *      |                                  
+     |                   *      |                                  
+     |            *      *      |                                  
+     |            *      *      |                                  
+     |            *      *      |                                  
+     |            *      *   *  |   *   *          *               
+     |            *      *   *  |   *   *          *               
+     |            *      *   *  |   *   *          *               
+     |            *      *   *  |   *   *          *               
+     | *          *      *   *  *   *   *      *   *              *
+     | *          *      *   *  *   *   *      *   *              *
+     | *          *      *   *  *   *   *      *   *              *
+   0 | *          *      *   *  *   *   *      *   *              *
       +------------------------------------------------------------
-       1                                                         19
-       Internal Rank -->
+       -7                           0                             9
+       Rank Change (Internal - External) -->
 ```
 
 **Class Performance:**
@@ -2029,29 +2029,29 @@
        Scaled Mark -->
 ```
 
-**Rank Order Changes (Internal vs External):**
+**Rank Order Changes Distribution:**
 
 ```
-  Rank Order: Internal vs External (n=10)
-  (* = student, . = no change diagonal)
-  10 |                                                            *
-   9 |                                                        .... 
-   9 |                                 *                  ....     
-   8 |                                                ....         
-   7 |       *                                    ....             
-   7 |                                       .*...                 
-   6 |                                   ....                      
-   6 |                    *          ....                          
-   5 |                           *...                              
-   4 |                       ....                                  
-   4 |              *   .....                                      
-   3 |              ....                                   *       
-   2 |          ....                                               
-   2 |      ....                                    *              
-   1 | *....                                                       
+  Rank Order Changes Distribution (n=10)
+  (Improved on external ← | → Dropped on external)
+   4 |                              *                              
+     |                              *                              
+     |                              *                              
+     |                              *                              
+     |                              *                              
+     |                              *                              
+     |                              *                              
+     |                              *                             *
+     |                              *                             *
+     |                              *                             *
+     |                              *                             *
+     | *             *    *    *    *                             *
+     | *             *    *    *    *                             *
+     | *             *    *    *    *                             *
+   0 | *             *    *    *    *                             *
       +------------------------------------------------------------
-       1                                                         10
-       Internal Rank -->
+       -6                           0                             6
+       Rank Change (Internal - External) -->
 ```
 
 **Class Performance:**
@@ -2132,29 +2132,29 @@
        Scaled Mark -->
 ```
 
-**Rank Order Changes (Internal vs External):**
+**Rank Order Changes Distribution:**
 
 ```
-  Rank Order: Internal vs External (n=2)
-  (* = student, . = no change diagonal)
-   2 |                                                            *
-   2 |                                                        .... 
-   2 |                                                    ....     
-   2 |                                                ....         
-   2 |                                            ....             
-   2 |                                       .....                 
-   2 |                                   ....                      
-   2 |                               ....                          
-   1 |                           ....                              
-   1 |                       ....                                  
-   1 |                  .....                                      
-   1 |              ....                                           
-   1 |          ....                                               
-   1 |      ....                                                   
-   1 | *....                                                       
+  Rank Order Changes Distribution (n=2)
+  (Improved on external ← | → Dropped on external)
+   2 | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+   0 | *                                                           
       +------------------------------------------------------------
-       1                                                          2
-       Internal Rank -->
+       0                            0                             0
+       Rank Change (Internal - External) -->
 ```
 
 **Deeper Analysis:**
@@ -2218,29 +2218,29 @@
        Scaled Mark -->
 ```
 
-**Rank Order Changes (Internal vs External):**
+**Rank Order Changes Distribution:**
 
 ```
-  Rank Order: Internal vs External (n=7)
-  (* = student, . = no change diagonal)
-   7 |                                        *                   .
-   7 |                                                        .... 
-   6 |                                                    ....     
-   6 |          *                                     ....         
-   5 |                                            ....             
-   5 |                                       .....      *          
-   4 |                                   ....                      
-   4 |                               ....                         *
-   4 |                           ....                              
-   3 |                       ....                                  
-   3 |                  .....       *                              
-   2 |              ....                                           
-   2 |          ....      *                                        
-   1 |      ....                                                   
-   1 | *....                                                       
+  Rank Order Changes Distribution (n=7)
+  (Improved on external ← | → Dropped on external)
+   3 |                                  |        *                 
+     |                                  |        *                 
+     |                                  |        *                 
+     |                                  |        *                 
+     |                                  |        *                 
+     |                                  |        *                 
+     |                                  |        *                 
+     |                                  |        *                 
+     |                                  |        *                 
+     |                                  |        *                 
+     | *               *                *        *                *
+     | *               *                *        *                *
+     | *               *                *        *                *
+     | *               *                *        *                *
+   0 | *               *                *        *                *
       +------------------------------------------------------------
-       1                                                          7
-       Internal Rank -->
+       -4                           0                             3
+       Rank Change (Internal - External) -->
 ```
 
 **Class Performance:**
@@ -2319,29 +2319,29 @@
        Scaled Mark -->
 ```
 
-**Rank Order Changes (Internal vs External):**
+**Rank Order Changes Distribution:**
 
 ```
-  Rank Order: Internal vs External (n=55)
-  (* = student, . = no change diagonal)
-  55 |                                                            *
-  51 |                                               *        .**. 
-  47 |                       *   *     *                  ..*.     
-  43 |                                   *  *     * * ....         
-  40 |                  *            *       *    .... *           
-  36 |                         *             .....      * *  *     
-  32 |              *             *      ....   *             *    
-  28 |                    * *      * ....     *                    
-  24 |                   *       .... *                  *         
-  20 |        *              ....              * *         *       
-  16 |    *           * .....   *   *                              
-  13 |       * **   .*..                                           
-   9 |   *      ...*   *                   *                       
-   5 |  *   *...           *                       *               
-   1 | *...*     *                      *                          
+  Rank Order Changes Distribution (n=55)
+  (Improved on external ← | → Dropped on external)
+   4 |                    *    |                                   
+     |                    *    |                                   
+     |                    *    |                                   
+     |                    *    |                                   
+     |                    *   *|   *    *                          
+     |                    *   *|   *    *                          
+     |                    *   *|   *    *                          
+     |            * *  ****** ** * ** * *                          
+     |            * *  ****** ** * ** * *                          
+     |            * *  ****** ** * ** * *                          
+     |            * *  ****** ** * ** * *                          
+     | * *  * *  ****  ************** * *   **** ** *   *   *     *
+     | * *  * *  ****  ************** * *   **** ** *   *   *     *
+     | * *  * *  ****  ************** * *   **** ** *   *   *     *
+   0 | * *  * *  ****  ************** * *   **** ** *   *   *     *
       +------------------------------------------------------------
-       1                                                         55
-       Internal Rank -->
+       -26                          0                            36
+       Rank Change (Internal - External) -->
 ```
 
 **Class Performance:**
@@ -2428,29 +2428,29 @@
        Scaled Mark -->
 ```
 
-**Rank Order Changes (Internal vs External):**
+**Rank Order Changes Distribution:**
 
 ```
-  Rank Order: Internal vs External (n=2)
-  (* = student, . = no change diagonal)
-   2 |                                                            *
-   2 |                                                        .... 
-   2 |                                                    ....     
-   2 |                                                ....         
-   2 |                                            ....             
-   2 |                                       .....                 
-   2 |                                   ....                      
-   2 |                               ....                          
-   1 |                           ....                              
-   1 |                       ....                                  
-   1 |                  .....                                      
-   1 |              ....                                           
-   1 |          ....                                               
-   1 |      ....                                                   
-   1 | *....                                                       
+  Rank Order Changes Distribution (n=2)
+  (Improved on external ← | → Dropped on external)
+   2 | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+   0 | *                                                           
       +------------------------------------------------------------
-       1                                                          2
-       Internal Rank -->
+       0                            0                             0
+       Rank Change (Internal - External) -->
 ```
 
 **Deeper Analysis:**
@@ -2514,29 +2514,29 @@
        Scaled Mark -->
 ```
 
-**Rank Order Changes (Internal vs External):**
+**Rank Order Changes Distribution:**
 
 ```
-  Rank Order: Internal vs External (n=125)
-  (* = student, . = no change diagonal)
- 125 |                                                       *    .
- 116 |                                                      * *****
- 107 |                                      *      *  * **.*..**   
-  98 |                                  * *   *   *  *.**.  **     
-  90 |                                  *  **    *....**  **       
-  81 |                           *        *  .*.*. **    *         
-  72 |                                 * *.*.**   *  *             
-  63 |                     * **  *  **...      * *                 
-  54 |          *  *     *      *..**        *                     
-  45 |              *   **  **... *** *                            
-  36 |       *   **   **..... **     **                            
-  28 |     * *     **.*.* *    *  *                                
-  19 |   ** *  **... *    *                                        
-  10 | **  **.**       *  **                                       
-   1 | ****.  *  **         *                                      
+  Rank Order Changes Distribution (n=125)
+  (Improved on external ← | → Dropped on external)
+   8 |                          *  |                               
+     |                          *  |                               
+     |                        * *  |                               
+     |                        * *  |                               
+     |                        * * *|                               
+     |                        * * *|                               
+     |                 *      * * *|**        *                    
+     |                 *      * ***|**        *                    
+     |                 *      * ***|**        *                    
+     |               * *   *  *****|*** ****  *  *  **             
+     |               * *   *  *****|*** ****  *  *  **             
+     |        **    ** *  *** *****|*** ***** ** *  ** *           
+     |        **    ** *  *** *****|*** ***** ** *  ** *           
+     | *   ** ***  *** ****** *************** ********** *    *   *
+   0 | *   ** ***  *** ****** *************** ********** *    *   *
       +------------------------------------------------------------
-       1                                                        125
-       Internal Rank -->
+       -35                          0                            38
+       Rank Change (Internal - External) -->
 ```
 
 **Class Performance:**
@@ -2627,29 +2627,29 @@
        Scaled Mark -->
 ```
 
-**Rank Order Changes (Internal vs External):**
+**Rank Order Changes Distribution:**
 
 ```
-  Rank Order: Internal vs External (n=4)
-  (* = student, . = no change diagonal)
-   4 |                                                            *
-   4 |                                                        .... 
-   4 |                                                    ....     
-   3 |                                                ....         
-   3 |                                            ....             
-   3 |                                       .*...                 
-   3 |                                   ....                      
-   2 |                               ....                          
-   2 |                           ....                              
-   2 |                       ....                                  
-   2 |                  ..*..                                      
-   2 |              ....                                           
-   1 |          ....                                               
-   1 |      ....                                                   
-   1 | *....                                                       
+  Rank Order Changes Distribution (n=4)
+  (Improved on external ← | → Dropped on external)
+   4 | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+   0 | *                                                           
       +------------------------------------------------------------
-       1                                                          4
-       Internal Rank -->
+       0                            0                             0
+       Rank Change (Internal - External) -->
 ```
 
 **Class Performance:**
@@ -2722,29 +2722,29 @@
        Scaled Mark -->
 ```
 
-**Rank Order Changes (Internal vs External):**
+**Rank Order Changes Distribution:**
 
 ```
-  Rank Order: Internal vs External (n=39)
-  (* = student, . = no change diagonal)
-  39 |                                                          * .
-  36 |                                              *         *... 
-  34 |                                               *    ...*    *
-  31 |                                                .**. *       
-  28 |                                       * *  ....             
-  25 |       *          *                    .....        *        
-  23 |                            *      ...*   *                  
-  20 |                        *      .... *       *                
-  17 |    *                      ....  *                           
-  15 |                       ....   * *  *                         
-  12 |          *     * ....*                                      
-   9 |             *....         *                                 
-   6 |          ....*      *   *                                   
-   4 |     *.... *       *                                         
-   1 | **...  *                                                    
+  Rank Order Changes Distribution (n=39)
+  (Improved on external ← | → Dropped on external)
+   5 |                                       * |     *             
+     |                                       * |     *             
+     |                                       * |     *             
+     |                                  *    * |   * *             
+     |                                  *    * |   * *             
+     |                                  *    * |   * *             
+     |                                  *    * |   * *    *        
+     |                                  *    * |   * *    *        
+     |                                  *    * |   * *    *        
+     |                                  *  * * | * * *  * *        
+     |                                  *  * * | * * *  * *        
+     |                                  *  * * | * * *  * *        
+     | *           * *            *   * * ** * * * * ** * * * * * *
+     | *           * *            *   * * ** * * * * ** * * * * * *
+   0 | *           * *            *   * * ** * * * * ** * * * * * *
       +------------------------------------------------------------
-       1                                                         39
-       Internal Rank -->
+       -22                          0                            10
+       Rank Change (Internal - External) -->
 ```
 
 **Class Performance:**
@@ -2833,29 +2833,29 @@
        Scaled Mark -->
 ```
 
-**Rank Order Changes (Internal vs External):**
+**Rank Order Changes Distribution:**
 
 ```
-  Rank Order: Internal vs External (n=43)
-  (* = student, . = no change diagonal)
-  43 |                                                *           .
-  40 |                               *               *        ....*
-  37 |                                            **      ...*     
-  34 |               *          *              *      ....         
-  31 |                                        *   ....  * *        
-  28 |                    *  *               .....          *      
-  25 |         *                         ....            *      *  
-  22 |                             * ..**                          
-  19 |                        *  ...*            *                 
-  16 |                   *   ....         **                       
-  13 |                **.....                                  *   
-  10 |     *  *     ....    *                                      
-   7 |          ...*             *          *                      
-   4 |  *   *...*                                                  
-   1 | *.*..      *                                                
+  Rank Order Changes Distribution (n=43)
+  (Improved on external ← | → Dropped on external)
+   5 |                     *      |  *                             
+     |                     *      |  *                             
+     |                     *      |  *                             
+     |                     *      |  *                             
+     |                     *      |  *                             
+     |                     *      |  *                             
+     |                     *   *  |  *       *                     
+     |                     *   *  |  *       *                     
+     |                     *   *  |  *       *                     
+     |                     *   ** |* **      * *                   
+     |                     *   ** |* **      * *                   
+     |                     *   ** |* **      * *                   
+     | *     *** *   *   *** * ***** ***** * * * *  *     *       *
+     | *     *** *   *   *** * ***** ***** * * * *  *     *       *
+   0 | *     *** *   *   *** * ***** ***** * * * *  *     *       *
       +------------------------------------------------------------
-       1                                                         43
-       Internal Rank -->
+       -23                          0                            26
+       Rank Change (Internal - External) -->
 ```
 
 **Class Performance:**
@@ -2944,29 +2944,29 @@
        Scaled Mark -->
 ```
 
-**Rank Order Changes (Internal vs External):**
+**Rank Order Changes Distribution:**
 
 ```
-  Rank Order: Internal vs External (n=57)
-  (* = student, . = no change diagonal)
-  57 |                                                            *
-  53 |                                                     ** .**. 
-  49 |                                              *    *...**    
-  45 |                                         *      ***.         
-  41 |                         * **          *    ....             
-  37 |                               *       ....**  *             
-  33 |                   *               ...*   *         *        
-  29 |                               .**. *        *               
-  25 |                     *  *  ...*    *                         
-  21 |          *       *    *..*                                  
-  17 |             *    ....*      *    *                          
-  13 |            * *..*                   *                       
-   9 |    *  * *.... *                                             
-   5 | * *  *.*.                                                   
-   1 | .*..*     *    *                                            
+  Rank Order Changes Distribution (n=57)
+  (Improved on external ← | → Dropped on external)
+   7 |                             * *                             
+     |                             * *                             
+     |                             * *                             
+     |                             * *                             
+     |                             * *                             
+     |                             * *                             
+     |                    *    **  * *     *                       
+     |                    *    **  * *     *                       
+     |                    *    **  * ** ** *                       
+     |                    *    **  * ** ** *                       
+     |    *            *  *  * **  * ** ** *     *                 
+     |    *            *  *  * **  * ** ** *     *                 
+     | *  **    *      *  *  * ** ** ** ** *  *  *  ** *   *      *
+     | *  **    *      *  *  * ** ** ** ** *  *  *  ** *   *      *
+   0 | *  **    *      *  *  * ** ** ** ** *  *  *  ** *   *      *
       +------------------------------------------------------------
-       1                                                         57
-       Internal Rank -->
+       -19                          0                            20
+       Rank Change (Internal - External) -->
 ```
 
 **Class Performance:**
@@ -3053,29 +3053,29 @@
        Scaled Mark -->
 ```
 
-**Rank Order Changes (Internal vs External):**
+**Rank Order Changes Distribution:**
 
 ```
-  Rank Order: Internal vs External (n=2)
-  (* = student, . = no change diagonal)
-   2 |                                                            *
-   2 |                                                        .... 
-   2 |                                                    ....     
-   2 |                                                ....         
-   2 |                                            ....             
-   2 |                                       .....                 
-   2 |                                   ....                      
-   2 |                               ....                          
-   1 |                           ....                              
-   1 |                       ....                                  
-   1 |                  .....                                      
-   1 |              ....                                           
-   1 |          ....                                               
-   1 |      ....                                                   
-   1 | *....                                                       
+  Rank Order Changes Distribution (n=2)
+  (Improved on external ← | → Dropped on external)
+   2 | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+   0 | *                                                           
       +------------------------------------------------------------
-       1                                                          2
-       Internal Rank -->
+       0                            0                             0
+       Rank Change (Internal - External) -->
 ```
 
 **Deeper Analysis:**
@@ -3139,29 +3139,29 @@
        Scaled Mark -->
 ```
 
-**Rank Order Changes (Internal vs External):**
+**Rank Order Changes Distribution:**
 
 ```
-  Rank Order: Internal vs External (n=74)
-  (* = student, . = no change diagonal)
-  74 |                                             *              .
-  69 |                                            *        *  **.* 
-  64 |                                           *      * ...*    *
-  58 |                                      *        *...*      *  
-  53 |                                            ..*. *  * **     
-  48 |                              *    * * .....    *  *         
-  43 |                                  *....****                  
-  38 |                               **.* * *                      
-  32 |                          ****.  *                           
-  27 |          *       *    *.**                                  
-  22 |            *    *..*.* *                                    
-  17 |     *     * *.**.                                           
-  11 |       * *....   * * *                                       
-   6 |     *..**   **                                              
-   1 | ****.*                                                      
+  Rank Order Changes Distribution (n=74)
+  (Improved on external ← | → Dropped on external)
+   7 |                                    |     *                  
+     |                                    |     *                  
+     |                                *   | *   *                  
+     |                                *   | *   *                  
+     |                              * *   | *   *                  
+     |                              * *   | *   *                  
+     |                            * * * * * *   *   * * *          
+     |                            * * * * * *   *   * * *          
+     |              *           * * * * * * * * *   * * *          
+     |              *           * * * * * * * * *   * * *          
+     |            * *           * * * * * * * * *   * * *   * * * *
+     |            * *           * * * * * * * * *   * * *   * * * *
+     | **   *   * * *   *     * * * * * * * * * *   * * * * * * * *
+     | **   *   * * *   *     * * * * * * * * * *   * * * * * * * *
+   0 | **   *   * * *   *     * * * * * * * * * *   * * * * * * * *
       +------------------------------------------------------------
-       1                                                         74
-       Internal Rank -->
+       -18                          0                            12
+       Rank Change (Internal - External) -->
 ```
 
 **Class Performance:**
@@ -3251,29 +3251,29 @@
        Scaled Mark -->
 ```
 
-**Rank Order Changes (Internal vs External):**
+**Rank Order Changes Distribution:**
 
 ```
-  Rank Order: Internal vs External (n=33)
-  (* = student, . = no change diagonal)
-  33 |                                                          * .
-  31 |                                                        *...*
-  28 |                     *                         *    ....     
-  26 |               *                     *          ....         
-  24 |                                  *         ....  *   *      
-  22 |                                       ..... *      *        
-  19 |                       *           ....    *                 
-  17 |             *            *    ....             *            
-  15 |                   *       .*..                              
-  12 |                       ....   *        *                     
-  10 |                  ..... *       *                            
-   8 |      *       ....                  *    *                   
-   6 |        * *...                                               
-   3 |  *   ....       *                                           
-   1 | *..*.      *                                                
+  Rank Order Changes Distribution (n=33)
+  (Improved on external ← | → Dropped on external)
+   3 |                             *   *|   * * *                  
+     |                             *   *|   * * *                  
+     |                             *   *|   * * *                  
+     |                             *   *|   * * *                  
+     |                             *   *|   * * *                  
+     |                          *  *   *|   * * *  *      *        
+     |                          *  *   *|   * * *  *      *        
+     |                          *  *   *|   * * *  *      *        
+     |                          *  *   *|   * * *  *      *        
+     |                          *  *   *|   * * *  *      *        
+     | **            *      * * ** * * ** * * * *  * * *  *       *
+     | **            *      * * ** * * ** * * * *  * * *  *       *
+     | **            *      * * ** * * ** * * * *  * * *  *       *
+     | **            *      * * ** * * ** * * * *  * * *  *       *
+   0 | **            *      * * ** * * ** * * * *  * * *  *       *
       +------------------------------------------------------------
-       1                                                         33
-       Internal Rank -->
+       -19                          0                            14
+       Rank Change (Internal - External) -->
 ```
 
 **Class Performance:**
@@ -3358,29 +3358,29 @@
        Scaled Mark -->
 ```
 
-**Rank Order Changes (Internal vs External):**
+**Rank Order Changes Distribution:**
 
 ```
-  Rank Order: Internal vs External (n=7)
-  (* = student, . = no change diagonal)
-   7 |                                                  *         .
-   7 |                                                        .... 
-   6 |                                                    ....     
-   6 |                                                ....        *
-   5 |                                            ....             
-   5 |                    *                  .....                 
-   4 |                                   ....                      
-   4 |                              *....                          
-   4 |                           ....                              
-   3 |                       ....                                  
-   3 |                  .....                 *                    
-   2 |              ....                                           
-   2 |          *...                                               
-   1 |      ....                                                   
-   1 | *....                                                       
+  Rank Order Changes Distribution (n=7)
+  (Improved on external ← | → Dropped on external)
+   3 |                              *                              
+     |                              *                              
+     |                              *                              
+     |                              *                              
+     |                              *                              
+     |                              *                              
+     |                              *                              
+     |                              *                              
+     |                              *                              
+     |                              *                              
+     | *             *              *              *              *
+     | *             *              *              *              *
+     | *             *              *              *              *
+     | *             *              *              *              *
+   0 | *             *              *              *              *
       +------------------------------------------------------------
-       1                                                          7
-       Internal Rank -->
+       -2                           0                             2
+       Rank Change (Internal - External) -->
 ```
 
 **Class Performance:**
@@ -3454,29 +3454,29 @@
        Scaled Mark -->
 ```
 
-**Rank Order Changes (Internal vs External):**
+**Rank Order Changes Distribution:**
 
 ```
-  Rank Order: Internal vs External (n=3)
-  (* = student, . = no change diagonal)
-   3 |                                                            *
-   3 |                                                        .... 
-   3 |                                                    ....     
-   3 |                                                ....         
-   2 |                                            ....             
-   2 |                                       .....                 
-   2 |                                   ....                      
-   2 | *                             ....                          
-   2 |                           ....                              
-   2 |                       ....                                  
-   2 |                  .....                                      
-   1 |              ....                                           
-   1 |          ....                                               
-   1 |      ....                                                   
-   1 | .....                        *                              
+  Rank Order Changes Distribution (n=3)
+  (Improved on external ← | → Dropped on external)
+   1 | *                            *                             *
+     | *                            *                             *
+     | *                            *                             *
+     | *                            *                             *
+     | *                            *                             *
+     | *                            *                             *
+     | *                            *                             *
+     | *                            *                             *
+     | *                            *                             *
+     | *                            *                             *
+     | *                            *                             *
+     | *                            *                             *
+     | *                            *                             *
+     | *                            *                             *
+   0 | *                            *                             *
       +------------------------------------------------------------
-       1                                                          3
-       Internal Rank -->
+       -1                           0                             1
+       Rank Change (Internal - External) -->
 ```
 
 **Class Performance:**
@@ -3548,29 +3548,29 @@
        Scaled Mark -->
 ```
 
-**Rank Order Changes (Internal vs External):**
+**Rank Order Changes Distribution:**
 
 ```
-  Rank Order: Internal vs External (n=44)
-  (* = student, . = no change diagonal)
-  44 |                                                            *
-  41 |                                 *                      .**. 
-  38 |                                   *              **....     
-  35 |                                           *   *.... *       
-  32 |                                          * .... *    *      
-  29 |                                       .*...  *        *     
-  26 |                 *             *   ....*                     
-  22 |                     *      *  .... *                        
-  19 |             *  *          ....             *                
-  16 |                    *  ....  *  *                            
-  13 |       *          ....*               *                      
-  10 |      *   *   ....*                                          
-   7 |     *    .*..             *                                 
-   4 |   *  ....              **                                   
-   1 | **...   *    *                                              
+  Rank Order Changes Distribution (n=44)
+  (Improved on external ← | → Dropped on external)
+   5 |                                 *                           
+     |                                 *                           
+     |                                 *                           
+     |                               * *                           
+     |                               * *                           
+     |                               * *                           
+     |                             * * *   * *                     
+     |                             * * *   * *                     
+     |                             * * *   * *                     
+     |     *           *     *   * * * * * * *   *           *    *
+     |     *           *     *   * * * * * * *   *           *    *
+     |     *           *     *   * * * * * * *   *           *    *
+     | *   *     * *   * *   * * * * * * * * *   * * * *   * * *  *
+     | *   *     * *   * *   * * * * * * * * *   * * * *   * * *  *
+   0 | *   *     * *   * *   * * * * * * * * *   * * * *   * * *  *
       +------------------------------------------------------------
-       1                                                         44
-       Internal Rank -->
+       -16                          0                            13
+       Rank Change (Internal - External) -->
 ```
 
 **Class Performance:**
@@ -3658,29 +3658,29 @@
        Scaled Mark -->
 ```
 
-**Rank Order Changes (Internal vs External):**
+**Rank Order Changes Distribution:**
 
 ```
-  Rank Order: Internal vs External (n=42)
-  (* = student, . = no change diagonal)
-  42 |                                                            *
-  39 |                                                        .**. 
-  36 |                                            *       ..**     
-  33 |                             *               *  ...*         
-  30 |        *                                   ...* *           
-  27 |                         *        *    .....        *        
-  24 |                     *             .*..         *            
-  22 |                               *...   *  *                   
-  19 |                   *    *  .*..                              
-  16 |             * *       ....            *                     
-  13 |           *      .....   *               *                  
-  10 |              ..*.              *  *                         
-   7 |  **      ....    *                                          
-   4 |     *...*            *                                      
-   1 | *....*     *                                                
+  Rank Order Changes Distribution (n=42)
+  (Improved on external ← | → Dropped on external)
+   7 |                                     *                       
+     |                                     *                       
+     |                                     *                       
+     |                                     *                       
+     |                                     *                       
+     |                                     *                       
+     |                                  *  *                       
+     |                                  *  *                       
+     |                             *    *  **      *               
+     |                             *    *  **      *               
+     |                           * **   *  **    * * *      *      
+     |                           * **   *  **    * * *      *      
+     | *              *   * *   ** **   * *** ** * * *  * * *   * *
+     | *              *   * *   ** **   * *** ** * * *  * * *   * *
+   0 | *              *   * *   ** **   * *** ** * * *  * * *   * *
       +------------------------------------------------------------
-       1                                                         42
-       Internal Rank -->
+       -26                          0                            16
+       Rank Change (Internal - External) -->
 ```
 
 **Class Performance:**
@@ -3768,29 +3768,29 @@
        Scaled Mark -->
 ```
 
-**Rank Order Changes (Internal vs External):**
+**Rank Order Changes Distribution:**
 
 ```
-  Rank Order: Internal vs External (n=161)
-  (* = student, . = no change diagonal)
- 161 |                                                         *  .
- 150 |                                              *   *** **.**.*
- 138 |                                  **    **   * **  *....* ** 
- 127 |                     *      *         *   *     ***.     *** 
- 115 |                *        *              *   ***.      ***    
- 104 |            *  *       *      *****    .....   *  * *        
-  92 |             **       **  *    * * ..*.              *       
-  81 |     *   *         *   **    * .*..**          *     * *     
-  70 |         *          *   * *.**.        * * **    *           
-  58 |        *   *        **...** *       *     **                
-  47 |    *     *  *  **.....  *    *   * * **        *            
-  35 |   **    *  **....* * *        *         *                   
-  24 |   * ***  .*..   * *    *  *  *     *                        
-  12 |     **.*.**   *   **                                        
-   1 | ***..**      * **                                           
+  Rank Order Changes Distribution (n=161)
+  (Improved on external ← | → Dropped on external)
+   5 |                       *  *    |*                            
+     |                       *  *    |*                            
+     |                       *  *    |*                            
+     |                       *  * * *|*           *                
+     |                       *  * * *|*           *                
+     |                       *  * * *|*           *                
+     |                       *  * ******* *       *                
+     |                       *  * ******* *       *                
+     |                       *  * ******* *       *                
+     |   *            * ***  ** ********* ** *  **** ** ***       *
+     |   *            * ***  ** ********* ** *  **** ** ***       *
+     |   *            * ***  ** ********* ** *  **** ** ***       *
+     | * ** *******  ********** ******************************   **
+     | * ** *******  ********** ******************************   **
+   0 | * ** *******  ********** ******************************   **
       +------------------------------------------------------------
-       1                                                        161
-       Internal Rank -->
+       -81                          0                            74
+       Rank Change (Internal - External) -->
 ```
 
 **Class Performance:**
@@ -3883,29 +3883,29 @@
        Scaled Mark -->
 ```
 
-**Rank Order Changes (Internal vs External):**
+**Rank Order Changes Distribution:**
 
 ```
-  Rank Order: Internal vs External (n=2)
-  (* = student, . = no change diagonal)
-   2 |                                                            *
-   2 |                                                        .... 
-   2 |                                                    ....     
-   2 |                                                ....         
-   2 |                                            ....             
-   2 |                                       .....                 
-   2 |                                   ....                      
-   2 |                               ....                          
-   1 |                           ....                              
-   1 |                       ....                                  
-   1 |                  .....                                      
-   1 |              ....                                           
-   1 |          ....                                               
-   1 |      ....                                                   
-   1 | *....                                                       
+  Rank Order Changes Distribution (n=2)
+  (Improved on external ← | → Dropped on external)
+   2 | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+   0 | *                                                           
       +------------------------------------------------------------
-       1                                                          2
-       Internal Rank -->
+       0                            0                             0
+       Rank Change (Internal - External) -->
 ```
 
 **Deeper Analysis:**
@@ -3969,29 +3969,29 @@
        Scaled Mark -->
 ```
 
-**Rank Order Changes (Internal vs External):**
+**Rank Order Changes Distribution:**
 
 ```
-  Rank Order: Internal vs External (n=21)
-  (* = student, . = no change diagonal)
-  21 |                                                            *
-  20 |                                                      * .... 
-  18 |                                                   *....     
-  17 |                              *                 ....     *   
-  15 |            *                               ....             
-  14 |                                    *  .....    *            
-  12 |                                   ....      *               
-  11 |                  *            ....       *                  
-  10 |                           ....        *                     
-   8 |                       ....*                                 
-   7 |      *           ..... *                                    
-   5 |              ....               *                           
-   4 |         *.... *                                             
-   2 |      ....           *                                       
-   1 | *.*..                                                       
+  Rank Order Changes Distribution (n=21)
+  (Improved on external ← | → Dropped on external)
+   4 |                                   *   |      *              
+     |                                   *   |      *              
+     |                                   *   |      *              
+     |                                   *   |      *              
+     |                                   *   *      *              
+     |                                   *   *      *              
+     |                                   *   *      *              
+     |                                   *   *      *  *           
+     |                                   *   *      *  *           
+     |                                   *   *      *  *           
+     |                                   *   *      *  *           
+     | *                *  *   *         *   *  *   *  *   *  *   *
+     | *                *  *   *         *   *  *   *  *   *  *   *
+     | *                *  *   *         *   *  *   *  *   *  *   *
+   0 | *                *  *   *         *   *  *   *  *   *  *   *
       +------------------------------------------------------------
-       1                                                         21
-       Internal Rank -->
+       -11                          0                             6
+       Rank Change (Internal - External) -->
 ```
 
 **Class Performance:**
@@ -4076,29 +4076,29 @@
        Scaled Mark -->
 ```
 
-**Rank Order Changes (Internal vs External):**
+**Rank Order Changes Distribution:**
 
 ```
-  Rank Order: Internal vs External (n=7)
-  (* = student, . = no change diagonal)
-   7 |                              *                             .
-   7 |                                                        .... 
-   6 |                                                    ....     
-   6 |                                                ..*.         
-   5 |                                            ....             
-   5 |                                       .....                *
-   4 |                                   ....                      
-   4 |                               ....     *                    
-   4 |                           ....                              
-   3 |                       ....                                  
-   3 | *                .....                                      
-   2 |              ....                                           
-   2 |          *...                                               
-   1 |      ....                                                   
-   1 | .....              *                                        
+  Rank Order Changes Distribution (n=7)
+  (Improved on external ← | → Dropped on external)
+   2 |                                    *                       *
+     |                                    *                       *
+     |                                    *                       *
+     |                                    *                       *
+     |                                    *                       *
+     |                                    *                       *
+     |                                    *                       *
+     | *          *                       *           *           *
+     | *          *                       *           *           *
+     | *          *                       *           *           *
+     | *          *                       *           *           *
+     | *          *                       *           *           *
+     | *          *                       *           *           *
+     | *          *                       *           *           *
+   0 | *          *                       *           *           *
       +------------------------------------------------------------
-       1                                                          7
-       Internal Rank -->
+       -3                           0                             2
+       Rank Change (Internal - External) -->
 ```
 
 **Class Performance:**
@@ -4177,29 +4177,29 @@
        Scaled Mark -->
 ```
 
-**Rank Order Changes (Internal vs External):**
+**Rank Order Changes Distribution:**
 
 ```
-  Rank Order: Internal vs External (n=8)
-  (* = student, . = no change diagonal)
-   8 |                                                   *        .
-   8 |                                                        .... 
-   7 |                                                    ....    *
-   6 |                                                ....         
-   6 |                                           *....             
-   6 |                                       .....                 
-   5 |                          *        ....                      
-   4 |                               ....                          
-   4 |         *                 ....                              
-   4 |                       ....                                  
-   3 |                 *.....                                      
-   2 |              ....                                           
-   2 |          ....                    *                          
-   2 |      ....                                                   
-   1 | *....                                                       
+  Rank Order Changes Distribution (n=8)
+  (Improved on external ← | → Dropped on external)
+   3 |                        *                                    
+     |                        *                                    
+     |                        *                                    
+     |                        *                                    
+     |                        *                                    
+     |            *           *                                    
+     |            *           *                                    
+     |            *           *                                    
+     |            *           *                                    
+     |            *           *                                    
+     | *          *           *           *                       *
+     | *          *           *           *                       *
+     | *          *           *           *                       *
+     | *          *           *           *                       *
+   0 | *          *           *           *                       *
       +------------------------------------------------------------
-       1                                                          8
-       Internal Rank -->
+       -2                           0                             3
+       Rank Change (Internal - External) -->
 ```
 
 **Class Performance:**
@@ -4272,29 +4272,29 @@
        Scaled Mark -->
 ```
 
-**Rank Order Changes (Internal vs External):**
+**Rank Order Changes Distribution:**
 
 ```
-  Rank Order: Internal vs External (n=3)
-  (* = student, . = no change diagonal)
-   3 |                                                            *
-   3 |                                                        .... 
-   3 |                                                    ....     
-   3 |                                                ....         
-   2 |                                            ....             
-   2 |                                       .....                 
-   2 |                                   ....                      
-   2 |                              *....                          
-   2 |                           ....                              
-   2 |                       ....                                  
-   2 |                  .....                                      
-   1 |              ....                                           
-   1 |          ....                                               
-   1 |      ....                                                   
-   1 | *....                                                       
+  Rank Order Changes Distribution (n=3)
+  (Improved on external ← | → Dropped on external)
+   3 | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+   0 | *                                                           
       +------------------------------------------------------------
-       1                                                          3
-       Internal Rank -->
+       0                            0                             0
+       Rank Change (Internal - External) -->
 ```
 
 **Class Performance:**
@@ -4364,29 +4364,29 @@
        Scaled Mark -->
 ```
 
-**Rank Order Changes (Internal vs External):**
+**Rank Order Changes Distribution:**
 
 ```
-  Rank Order: Internal vs External (n=1)
-  (* = student, . = no change diagonal)
-   1 |                                                            .
-   1 |                                                        .... 
-   1 |                                                    ....     
-   1 |                                                ....         
-   1 |                                            ....             
-   1 |                                       .....                 
-   1 |                                   ....                      
-   0 |                               ....                          
-   0 |                           ....                              
-   0 |                       ....                                  
-   0 |                  .....                                      
-   0 |              ....                                           
-   0 |          ....                                               
-   0 |      ....                                                   
-   0 | *....                                                       
+  Rank Order Changes Distribution (n=1)
+  (Improved on external ← | → Dropped on external)
+   1 | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+     | *                                                           
+   0 | *                                                           
       +------------------------------------------------------------
-       1                                                          1
-       Internal Rank -->
+       0                            0                             0
+       Rank Change (Internal - External) -->
 ```
 
 **Deeper Analysis:**
