@@ -260,6 +260,275 @@ def analyze_rank_changes_assessment_to_exam(conn, course_name, analysis_year):
         'changes': sorted(rank_changes, key=lambda x: abs(x['rank_change']), reverse=True)[:10]
     }
 
+def analyze_rank_to_scaled_progression(conn, course_name, analysis_year, years_back=2):
+    """
+    Point 3: Rank-to-scaled progression across 3 years
+    """
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT
+            cr.year,
+            cr.rank,
+            cr.scaled_score * 2 as scaled_contribution,
+            cr.combined_mark as hsc_mark
+        FROM course_result cr
+        JOIN course c ON cr.course_id = c.course_id
+        WHERE c.name = ?
+        AND cr.year <= ?
+        AND cr.year >= ?
+        AND cr.rank IS NOT NULL
+        ORDER BY cr.year DESC, cr.rank ASC
+    """, (course_name, analysis_year, analysis_year - years_back))
+
+    by_year = defaultdict(list)
+    for row in cursor.fetchall():
+        year, rank, scaled, hsc = row
+        by_year[year].append({'rank': rank, 'scaled': scaled, 'hsc': hsc})
+
+    if not by_year:
+        return None
+
+    year_analysis = {}
+    for year, data in by_year.items():
+        if len(data) < 3:
+            continue
+
+        ranks = [d['rank'] for d in data]
+        scaled = [d['scaled'] for d in data]
+
+        if len(set(ranks)) > 1:
+            slope = np.polyfit(ranks, scaled, 1)[0]
+
+            year_analysis[year] = {
+                'total_students': len(data),
+                'rank_1_scaled': data[0]['scaled'],
+                'last_rank_scaled': data[-1]['scaled'],
+                'total_spread': data[0]['scaled'] - data[-1]['scaled'],
+                'slope': slope,
+                'compressed': abs(slope) < 1.0
+            }
+
+    trends = []
+    if len(year_analysis) > 1:
+        years = sorted(year_analysis.keys(), reverse=True)
+        current = year_analysis[years[0]]
+        prev = year_analysis[years[1]] if len(years) > 1 else None
+
+        if prev:
+            if current['compressed'] and not prev['compressed']:
+                trends.append("Rank compression - top students not pulling away as much")
+            elif not current['compressed'] and prev['compressed']:
+                trends.append("Rank spread increasing - larger performance gaps")
+
+    return {
+        'by_year': year_analysis,
+        'trends': trends
+    }
+
+def analyze_relative_course_performance(conn, course_name, analysis_year):
+    """
+    Point 5: How students in this course performed relative to their other courses
+    """
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT DISTINCT student_id
+        FROM course_result cr
+        JOIN course c ON cr.course_id = c.course_id
+        WHERE c.name = ? AND cr.year = ?
+    """, (course_name, analysis_year))
+
+    student_ids = [row[0] for row in cursor.fetchall()]
+
+    if not student_ids:
+        return None
+
+    placeholders = ','.join('?' * len(student_ids))
+    cursor.execute(f"""
+        SELECT
+            cr.student_id,
+            c.name as course,
+            cr.combined_mark
+        FROM course_result cr
+        JOIN course c ON cr.course_id = c.course_id
+        WHERE cr.student_id IN ({placeholders})
+        AND cr.year = ?
+    """, (*student_ids, analysis_year))
+
+    student_courses = defaultdict(list)
+    for row in cursor.fetchall():
+        student_id, course, mark = row
+        student_courses[student_id].append({'course': course, 'mark': mark})
+
+    relative_performance = []
+    for student_id, courses in student_courses.items():
+        target_mark = next((c['mark'] for c in courses if c['course'] == course_name), None)
+        other_marks = [c['mark'] for c in courses if c['course'] != course_name and c['mark']]
+
+        if target_mark and other_marks:
+            other_avg = np.mean(other_marks)
+            relative = target_mark - other_avg
+            relative_performance.append(relative)
+
+    if not relative_performance:
+        return None
+
+    avg_relative = np.mean(relative_performance)
+    outperform_count = sum(1 for r in relative_performance if r > 5)
+    underperform_count = sum(1 for r in relative_performance if r < -5)
+
+    return {
+        'avg_relative_performance': avg_relative,
+        'outperformers': outperform_count,
+        'underperformers': underperform_count,
+        'interpretation': "Students perform better in this course than their other courses" if avg_relative > 3 else "Students perform worse in this course than their other courses" if avg_relative < -3 else "Performance consistent with other courses"
+    }
+
+def analyze_course_synergies_expanded(conn, course_name, analysis_year):
+    """
+    Point 6: Expanded synergy analysis - which courses work well/poorly together
+    """
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT DISTINCT student_id
+        FROM course_result cr
+        JOIN course c ON cr.course_id = c.course_id
+        WHERE c.name = ? AND cr.year = ?
+    """, (course_name, analysis_year))
+
+    student_ids = [row[0] for row in cursor.fetchall()]
+
+    if not student_ids:
+        return None
+
+    placeholders = ','.join('?' * len(student_ids))
+    cursor.execute(f"""
+        SELECT
+            c.name as other_course,
+            AVG(cr.combined_mark) as avg_mark,
+            COUNT(DISTINCT cr.student_id) as student_count
+        FROM course_result cr
+        JOIN course c ON cr.course_id = c.course_id
+        WHERE cr.student_id IN ({placeholders})
+        AND cr.year = ?
+        AND c.name != ?
+        GROUP BY c.name
+        HAVING COUNT(DISTINCT cr.student_id) >= 3
+    """, (*student_ids, analysis_year, course_name))
+
+    course_pairs = []
+    for row in cursor.fetchall():
+        other_course, avg_mark, count = row
+        course_pairs.append({
+            'course': other_course,
+            'avg_mark': avg_mark,
+            'students': count
+        })
+
+    positive = sorted([c for c in course_pairs if c['avg_mark'] > 85], key=lambda x: x['avg_mark'], reverse=True)[:5]
+    negative = sorted([c for c in course_pairs if c['avg_mark'] < 75], key=lambda x: x['avg_mark'])[:5]
+
+    return {
+        'positive_synergies': positive,
+        'negative_synergies': negative
+    }
+
+def analyze_nesa_bands(conn, course_name, analysis_year):
+    """
+    Point 9: NESA bands analysis
+    """
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT
+            band,
+            COUNT(*) as count,
+            AVG(combined_mark) as avg_mark,
+            AVG(scaled_score * 2) as avg_scaled
+        FROM course_result cr
+        JOIN course c ON cr.course_id = c.course_id
+        WHERE c.name = ?
+        AND cr.year = ?
+        AND band IS NOT NULL
+        GROUP BY band
+        ORDER BY band DESC
+    """, (course_name, analysis_year))
+
+    bands = []
+    total_students = 0
+    for row in cursor.fetchall():
+        band, count, avg_mark, avg_scaled = row
+        bands.append({
+            'band': band,
+            'count': count,
+            'avg_mark': avg_mark,
+            'avg_scaled': avg_scaled
+        })
+        total_students += count
+
+    if not bands:
+        return None
+
+    band_6_count = sum(b['count'] for b in bands if b['band'] == 'Band 6' or b['band'] == '6')
+    band_5_6_count = sum(b['count'] for b in bands if b['band'] in ['Band 6', '6', 'Band 5', '5'])
+
+    return {
+        'bands': bands,
+        'total_students': total_students,
+        'band_6_count': band_6_count,
+        'band_5_6_count': band_5_6_count,
+        'band_6_pct': (band_6_count / total_students * 100) if total_students > 0 else 0,
+        'band_5_6_pct': (band_5_6_count / total_students * 100) if total_students > 0 else 0
+    }
+
+def analyze_course_atar_correlation(conn, course_name, analysis_year):
+    """
+    Point 10: Course correlation with ATAR levels
+    """
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT
+            sym.psam_score as atar,
+            cr.combined_mark as hsc_mark,
+            cr.scaled_score * 2 as scaled_contribution
+        FROM course_result cr
+        JOIN course c ON cr.course_id = c.course_id
+        JOIN student_year_metric sym ON cr.student_id = sym.student_id AND cr.year = sym.year
+        WHERE c.name = ?
+        AND cr.year = ?
+    """, (course_name, analysis_year))
+
+    data = [(row[0], row[1], row[2]) for row in cursor.fetchall()]
+
+    if not data:
+        return None
+
+    high_atar = [(d[1], d[2]) for d in data if d[0] >= 90]
+    mid_atar = [(d[1], d[2]) for d in data if 70 <= d[0] < 90]
+    low_atar = [(d[1], d[2]) for d in data if d[0] < 70]
+
+    return {
+        'high_atar_students': {
+            'count': len(high_atar),
+            'avg_course_mark': np.mean([d[0] for d in high_atar]) if high_atar else 0,
+            'avg_contribution': np.mean([d[1] for d in high_atar]) if high_atar else 0
+        },
+        'mid_atar_students': {
+            'count': len(mid_atar),
+            'avg_course_mark': np.mean([d[0] for d in mid_atar]) if mid_atar else 0,
+            'avg_contribution': np.mean([d[1] for d in mid_atar]) if mid_atar else 0
+        },
+        'low_atar_students': {
+            'count': len(low_atar),
+            'avg_course_mark': np.mean([d[0] for d in low_atar]) if low_atar else 0,
+            'avg_contribution': np.mean([d[1] for d in low_atar]) if low_atar else 0
+        },
+        'correlation': "Predominantly high-ATAR course" if len(high_atar) > len(mid_atar) + len(low_atar) else "Mixed ATAR levels" if len(mid_atar) > len(high_atar) else "Lower-ATAR course"
+    }
+
 if __name__ == "__main__":
     print("Testing comprehensive school statistics...")
     BASE_DIR = Path(__file__).parent

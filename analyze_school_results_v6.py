@@ -32,6 +32,19 @@ from analyze_school_results_v5 import (
 # Import student-level analysis
 from analyze_students_v1 import get_student_multi_course_patterns, get_course_rank_analysis
 
+# Import comprehensive school statistics
+from analyze_school_stats_comprehensive import (
+    get_multi_year_cohort_trends,
+    analyze_atar_contribution_percentiles,
+    analyze_mxp_performance,
+    analyze_rank_changes_assessment_to_exam,
+    analyze_rank_to_scaled_progression,
+    analyze_relative_course_performance,
+    analyze_course_synergies_expanded,
+    analyze_nesa_bands,
+    analyze_course_atar_correlation
+)
+
 def generate_v6_course_analysis(course, conn, analysis_year, school_atar_avg, heatmap_path):
     """
     Generate complete V6 analysis for a single course
@@ -55,6 +68,19 @@ def generate_v6_course_analysis(course, conn, analysis_year, school_atar_avg, he
     # V6: Student-level rank analysis
     rank_analysis = get_course_rank_analysis(conn, course_name, analysis_year)
 
+    # V6: Comprehensive school statistics (all 10 points)
+    comp_stats = {
+        'cohort_trends': get_multi_year_cohort_trends(conn, course_name, analysis_year),
+        'atar_contribution': analyze_atar_contribution_percentiles(conn, course_name, analysis_year),
+        'mxp_performance': analyze_mxp_performance(conn, course_name, analysis_year),
+        'rank_changes': analyze_rank_changes_assessment_to_exam(conn, course_name, analysis_year),
+        'rank_progression': analyze_rank_to_scaled_progression(conn, course_name, analysis_year),
+        'relative_performance': analyze_relative_course_performance(conn, course_name, analysis_year),
+        'synergies': analyze_course_synergies_expanded(conn, course_name, analysis_year),
+        'bands': analyze_nesa_bands(conn, course_name, analysis_year),
+        'atar_correlation': analyze_course_atar_correlation(conn, course_name, analysis_year)
+    }
+
     return {
         'metrics': metrics,
         'multiyear': multiyear,
@@ -62,7 +88,8 @@ def generate_v6_course_analysis(course, conn, analysis_year, school_atar_avg, he
         'advanced_insights': advanced_insights,
         'deep_discoveries': deep_discoveries,
         'correlations': correlations,
-        'rank_analysis': rank_analysis
+        'rank_analysis': rank_analysis,
+        'comp_stats': comp_stats
     }
 
 def generate_v6_markdown(analysis, school_id, heatmaps_dir, atar_analysis, enriched_courses, conn, analysis_year):
@@ -264,6 +291,65 @@ def generate_v6_markdown(analysis, school_id, heatmaps_dir, atar_analysis, enric
                     if ra.get('largest_gap'):
                         gap = ra['largest_gap']
                         md.append(f"- Largest performance gap: {gap['gap_size']:.1f} points between ranks {gap['between_ranks']} and {gap['between_ranks']+1} ({gap['marks']})")
+
+                    md.append(f"")
+
+                # COMPREHENSIVE SCHOOL STATISTICS (All 10 Points)
+                if enrichment.get('comp_stats'):
+                    cs = enrichment['comp_stats']
+                    md.append(f"**Comprehensive Analysis:**")
+
+                    # Point 1: Cohort trends
+                    if cs.get('cohort_trends') and cs['cohort_trends'].get('changes'):
+                        notable_changes = [c for c in cs['cohort_trends']['changes'] if c['notable']]
+                        if notable_changes:
+                            md.append(f"- Cohort: {'; '.join([c['comment'] for c in notable_changes])}")
+
+                    # Point 4: ATAR contribution
+                    if cs.get('atar_contribution'):
+                        ac = cs['atar_contribution']
+                        if ac['zero_contributors'] > 0:
+                            md.append(f"- ATAR Impact: {ac['zero_contributors']} students (IDs: {', '.join(map(str, ac['zero_contributor_ids']))}) got NO ATAR benefit")
+
+                    # Point 5: Relative performance
+                    if cs.get('relative_performance'):
+                        rp = cs['relative_performance']
+                        md.append(f"- Relative: {rp['interpretation']}")
+
+                    # Point 6: Synergies
+                    if cs.get('synergies'):
+                        syn = cs['synergies']
+                        if syn.get('positive_synergies'):
+                            pos_courses = ', '.join([s['course'] for s in syn['positive_synergies'][:3]])
+                            md.append(f"- Strong pairings: {pos_courses}")
+                        if syn.get('negative_synergies'):
+                            neg_courses = ', '.join([s['course'] for s in syn['negative_synergies'][:3]])
+                            md.append(f"- Weak pairings: {neg_courses}")
+
+                    # Point 7: MXP
+                    if cs.get('mxp_performance'):
+                        mxp = cs['mxp_performance']
+                        if mxp['outperformers'] > 0 or mxp['underperformers'] > 0:
+                            md.append(f"- MXP: {mxp['outperformers']} exceeded expectations, {mxp['underperformers']} fell short")
+                            if mxp.get('outperformer_ids'):
+                                md.append(f"  - Top performers: Students {', '.join(map(str, mxp['outperformer_ids'][:3]))}")
+
+                    # Point 8: Rank changes
+                    if cs.get('rank_changes') and cs['rank_changes']['significant_changes'] > 0:
+                        rc = cs['rank_changes']
+                        top_changes = rc['changes'][:3]
+                        changes_str = ', '.join([f"Student {c['student_id']} ({c['direction']} {abs(c['rank_change'])} ranks)" for c in top_changes])
+                        md.append(f"- Rank shifts (assessment→exam): {changes_str}")
+
+                    # Point 9: Bands
+                    if cs.get('bands'):
+                        b = cs['bands']
+                        md.append(f"- Bands: {b['band_5_6_pct']:.0f}% in Band 5-6 ({b['band_5_6_count']}/{b['total_students']})")
+
+                    # Point 10: ATAR correlation
+                    if cs.get('atar_correlation'):
+                        atc = cs['atar_correlation']
+                        md.append(f"- ATAR profile: {atc['correlation']}")
 
                     md.append(f"")
 
