@@ -1,7 +1,11 @@
 {
   "permissions": {
     "allow": [
-      "Bash(exit 0)"
+      "Bash(exit 0)",
+      "Bash(git commit:*)",
+      "Bash(dir:*)",
+      "Bash(timeout 180 python:*)",
+      "Bash(git checkout:*)"
     ],
     "deny": [],
     "ask": []
