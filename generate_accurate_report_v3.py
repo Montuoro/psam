@@ -52,10 +52,21 @@ def generate_markdown_report(school_analysis, school_name, output_path, conn=Non
     md.append("## School Overview - Generalized Insights")
     md.append("")
     md.append(f"**Student Population:** {gen['total_students']} students")
+    if gen.get('ng_students_count', 0) > 0:
+        md.append(f"  - *Note: {gen['ng_students_count']} students with NG (Not Given) ATAR excluded from ATAR statistics*")
     md.append(f"**Average ATAR:** {gen['avg_atar']:.2f}")
     md.append(f"**ATAR Range:** {gen['min_atar']:.1f} - {gen['max_atar']:.1f}")
     md.append(f"**Total Courses:** {gen['total_courses']}")
     md.append("")
+
+    # Non-ATAR courses
+    if gen.get('non_atar_courses'):
+        md.append(f"**Courses with Non-ATAR Students:** {len(gen['non_atar_courses'])} courses")
+        md.append("")
+        for course_info in gen['non_atar_courses']:
+            pct = course_info['ng_pct']
+            md.append(f"- **{course_info['course']}**: {course_info['ng_count']}/{course_info['total_count']} students ({pct:.1f}%)")
+        md.append("")
     md.append(f"**Courses Requiring Attention:** {gen['courses_of_concern_count']} out of {gen['total_courses']} courses show concerning patterns")
     md.append("")
     md.append("---")
@@ -70,8 +81,30 @@ def generate_markdown_report(school_analysis, school_name, output_path, conn=Non
         md.append("")
         for course_concern in deep['courses_of_concern'][:10]:
             md.append(f"**{course_concern['course']}** ({course_concern['cohort_size']} students)")
+
+            # Generate plain language explanation
+            explanations = []
             for concern in course_concern['concerns']:
+                if "below expected MXP" in concern:
+                    explanations.append("Students are performing below their expected scaled marks (MXP), suggesting the course may not be maximizing their potential or assessment practices may need review.")
+                elif "internal-exam gap" in concern:
+                    if "internal higher" in concern:
+                        explanations.append("School internal assessments are significantly higher than external exam results, indicating potential over-marking or misalignment with HSC standards.")
+                    else:
+                        explanations.append("External exam results are significantly higher than school internal assessments, suggesting students may be under-marked internally or not adequately prepared for internal tasks.")
+                elif "major rank changes" in concern:
+                    explanations.append("A large proportion of students experienced significant rank position changes between internal and external assessments, indicating inconsistency in assessment or student preparation.")
+                elif "YoY decline" in concern:
+                    explanations.append("The course has shown a year-over-year decline in scaled marks, indicating a concerning downward trend that warrants investigation.")
+
                 md.append(f"- {concern}")
+
+            # Add comprehensive explanation
+            if explanations:
+                md.append("")
+                md.append(f"  *Why this course is included:* {' '.join(explanations)}")
+                md.append("")
+
             # Add YoY change and diff to school mean
             if course_concern.get('yoy_change'):
                 yoy = course_concern['yoy_change']
@@ -163,11 +196,62 @@ def generate_markdown_report(school_analysis, school_name, output_path, conn=Non
         md.append(f"  - Below expectations: {gen['mxp_below_pct']:.0f}%")
         md.append("")
 
+        # Identity Line Breakdown
+        if gen.get('above_identity') is not None:
+            md.append(f"- **Identity Line Breakdown (Actual vs Expected):**")
+            md.append(f"  - Above identity line: {gen['above_identity']} students ({gen['above_identity_pct']:.1f}%)")
+            md.append(f"  - On identity line: {gen['on_identity']} students ({gen['on_identity_pct']:.1f}%)")
+            md.append(f"  - Below identity line: {gen['below_identity']} students ({gen['below_identity_pct']:.1f}%)")
+            md.append("")
+
         # MULTI-YEAR TRENDS
         if multi['yoy_change']:
             yoy = multi['yoy_change']
             direction = "improved" if yoy['scaled_change'] > 0 else "declined"
             md.append(f"- **Year-over-Year:** Scaled mark {direction} by {abs(yoy['scaled_change']):.2f} points ({yoy['from_year']} → {yoy['to_year']})")
+            md.append("")
+
+        # 5-YEAR Z-SCORE TREND
+        if multi.get('z_scores') and len(multi['z_scores']) > 0:
+            z_trend_str = []
+            for z_data in multi['z_scores']:
+                sign = "+" if z_data['z_score'] > 0 else ""
+                z_trend_str.append(f"{z_data['year']}:{sign}{z_data['z_score']:.2f}")
+            md.append(f"- **5-Year Z-Score Trend:** {' | '.join(z_trend_str)}")
+            md.append("")
+            # Add interpretation
+            if len(multi['z_scores']) >= 2:
+                recent_z = multi['z_scores'][-1]['z_score']
+                if recent_z > 0.5:
+                    md.append(f"  *The course is performing above the school average (z={recent_z:.2f}).*")
+                elif recent_z < -0.5:
+                    md.append(f"  *The course is performing below the school average (z={recent_z:.2f}).*")
+                else:
+                    md.append(f"  *The course is performing near the school average (z={recent_z:.2f}).*")
+            md.append("")
+
+        # RANK TO SCALED MARK CORRELATION TEST
+        if multi.get('rank_correlation_test'):
+            rct = multi['rank_correlation_test']
+            md.append(f"- **Rank to AAS Scaled Mark - Statistical Testing:**")
+            md.append(f"  - {rct['recent_year']}: r={rct['recent_corr']:.3f}")
+            md.append(f"  - {rct['second_year']}: r={rct['second_corr']:.3f}")
+            md.append(f"  - {rct['third_year']}: r={rct['third_corr']:.3f}")
+            md.append("")
+
+            # Report significance
+            if rct['vs_2nd_significant'] or rct['vs_3rd_significant']:
+                md.append(f"  *Statistically significant difference detected:*")
+                if rct['vs_2nd_significant']:
+                    diff = rct['recent_corr'] - rct['second_corr']
+                    direction = "stronger" if diff > 0 else "weaker"
+                    md.append(f"  - {rct['recent_year']} vs {rct['second_year']}: {direction} correlation (p={rct['vs_2nd_p_value']:.4f})")
+                if rct['vs_3rd_significant']:
+                    diff = rct['recent_corr'] - rct['third_corr']
+                    direction = "stronger" if diff > 0 else "weaker"
+                    md.append(f"  - {rct['recent_year']} vs {rct['third_year']}: {direction} correlation (p={rct['vs_3rd_p_value']:.4f})")
+            else:
+                md.append(f"  *No statistically significant difference in rank-to-scaled-mark correlation across years (null hypothesis retained).*")
             md.append("")
 
         if len(multi['historical_scaled']) > 1:
@@ -232,34 +316,36 @@ def generate_markdown_report(school_analysis, school_name, output_path, conn=Non
         md.append("**Deeper Analysis:**")
         md.append("")
 
-        # Top performers (ATAR + Scaled + Rank, NO HSC)
-        if deep['top_3']:
-            md.append("*Top Performers:*")
-            for i, student in enumerate(deep['top_3'], 1):
+        # High performers (Band 6 or top 10%)
+        if deep.get('high_performers'):
+            md.append(f"*High Performers ({len(deep['high_performers'])} students - Band 6 or top 10%):*")
+            for student in deep['high_performers']:
                 scaled = student['actual_scaled'] if student['actual_scaled'] else 0
-                md.append(f"{i}. Student {student['student_id']}: ATAR {student['atar']:.1f}, Scaled {scaled:.1f}, Rank {student['rank']}")
+                atar = student['atar'] if student['atar'] else 0
+                md.append(f"- Student {student['student_id']}: ATAR {atar:.1f}, Scaled {scaled:.1f}, Rank {student['rank']}")
             md.append("")
 
-        # Bottom performers
-        if deep['bottom_3']:
-            md.append("*Students Requiring Support:*")
-            for student in reversed(deep['bottom_3']):
+        # Low performers (Band 1-2 or bottom 10%)
+        if deep.get('low_performers'):
+            md.append(f"*Students Requiring Support ({len(deep['low_performers'])} students - Band 1-2 or bottom 10%):*")
+            for student in deep['low_performers']:
                 scaled = student['actual_scaled'] if student['actual_scaled'] else 0
-                md.append(f"- Student {student['student_id']}: ATAR {student['atar']:.1f}, Scaled {scaled:.1f}, Rank {student['rank']}")
+                atar = student['atar'] if student['atar'] else 0
+                md.append(f"- Student {student['student_id']}: ATAR {atar:.1f}, Scaled {scaled:.1f}, Rank {student['rank']}")
             md.append("")
 
-        # Significant rank changes (internal → exam)
+        # Significant rank changes (internal → exam) - ALL students with >=3 position changes
         if deep['significant_rank_changes']:
-            md.append("*Significant Rank Changes (Internal → External):*")
-            for change in deep['significant_rank_changes'][:5]:
+            md.append(f"*Significant Rank Changes ({len(deep['significant_rank_changes'])} students with ≥3 position changes):*")
+            for change in deep['significant_rank_changes']:
                 direction = "improved" if change['rank_change'] > 0 else "dropped"
                 md.append(f"- Student {change['student_id']}: {direction} {abs(change['rank_change'])} positions (internal rank {change['internal_rank']} → external rank {change['exam_rank']})")
             md.append("")
 
-        # MXP underperformers
+        # MXP underperformers - ALL students with gap < -2
         if deep['mxp_underperformers']:
-            md.append("*Significantly Below Expectations (MXP):*")
-            for underperf in deep['mxp_underperformers'][:5]:
+            md.append(f"*Significantly Below Expectations ({len(deep['mxp_underperformers'])} students with MXP gap < -2):*")
+            for underperf in deep['mxp_underperformers']:
                 md.append(f"- Student {underperf['student_id']}: Scored {underperf['actual']:.1f} vs expected {underperf['expected']:.1f} (gap: {underperf['gap']:.1f})")
             md.append("")
 

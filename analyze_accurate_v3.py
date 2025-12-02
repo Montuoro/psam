@@ -254,7 +254,8 @@ def analyze_course(conn, course_name, year, school_avg_scaled=None):
         return None
 
     cohort_size = len(students)
-    atars = [s['atar'] for s in students if s['atar']]
+    # Exclude NG ATAR students (atar = 0) from average ATAR calculation
+    atars = [s['atar'] for s in students if s['atar'] and s['atar'] > 0]
     avg_atar = np.mean(atars) if atars else 0
 
     # Internal vs External (school assessment vs external exam)
@@ -310,6 +311,11 @@ def analyze_course(conn, course_name, year, school_avg_scaled=None):
     mxp_below = 0
     mxp_on_target = 0
 
+    # Identity line breakdown (above/below expected performance)
+    above_identity = 0
+    below_identity = 0
+    on_identity = 0
+
     for s in students:
         if s['actual_scaled'] is not None and s['expected_scaled'] is not None:
             gap = s['actual_scaled'] - s['expected_scaled']
@@ -317,10 +323,13 @@ def analyze_course(conn, course_name, year, school_avg_scaled=None):
 
             if gap > 0:
                 mxp_exceeded += 1
+                above_identity += 1
             elif gap < 0:
                 mxp_below += 1
+                below_identity += 1
             else:
                 mxp_on_target += 1
+                on_identity += 1
 
     avg_mxp_gap = np.mean(mxp_gaps) if mxp_gaps else 0
     median_mxp_gap = np.median(mxp_gaps) if mxp_gaps else 0
@@ -328,6 +337,12 @@ def analyze_course(conn, course_name, year, school_avg_scaled=None):
     mxp_exceeded_pct = (mxp_exceeded / cohort_size * 100) if cohort_size > 0 else 0
     mxp_below_pct = (mxp_below / cohort_size * 100) if cohort_size > 0 else 0
     mxp_on_target_pct = (mxp_on_target / cohort_size * 100) if cohort_size > 0 else 0
+
+    # Calculate proportions for identity line breakdown
+    total_with_mxp = len(mxp_gaps)
+    above_identity_pct = (above_identity / total_with_mxp * 100) if total_with_mxp > 0 else 0
+    below_identity_pct = (below_identity / total_with_mxp * 100) if total_with_mxp > 0 else 0
+    on_identity_pct = (on_identity / total_with_mxp * 100) if total_with_mxp > 0 else 0
 
     # Multi-year analysis
     cursor.execute("""
@@ -370,6 +385,106 @@ def analyze_course(conn, course_name, year, school_avg_scaled=None):
     if school_avg_scaled:
         diff_to_school_mean = current_avg_scaled - school_avg_scaled
 
+    # Calculate z-scores for 5-year trend
+    # Z-score shows how this course performs relative to school average each year
+    z_scores = []
+    for hist in historical_scaled:
+        # Get school-wide course averages for this year
+        cursor.execute("""
+            SELECT AVG(course_avg) as school_mean,
+                   STDEV(course_avg) as school_std
+            FROM (
+                SELECT AVG(cr.scaled_score) as course_avg
+                FROM course_result cr
+                JOIN course c ON cr.course_id = c.course_id
+                WHERE cr.year = ?
+                GROUP BY c.course_id
+            )
+        """, (hist['year'],))
+
+        result = cursor.fetchone()
+        if result and result[0] and result[1] and result[1] > 0:
+            school_mean = result[0]
+            school_std = result[1]
+            z_score = (hist['avg_scaled'] - school_mean) / school_std
+            z_scores.append({
+                'year': hist['year'],
+                'z_score': z_score,
+                'avg_scaled': hist['avg_scaled']
+            })
+
+    # Statistical testing: Rank to AAS scaled mark correlation across years
+    # Test if the relationship between internal rank and final scaled mark
+    # is statistically different between the most recent year and previous years
+    from scipy import stats as scipy_stats
+    rank_scaled_correlations = []
+
+    for hist_year in range(year - 2, year + 1):  # Last 3 years
+        cursor.execute("""
+            SELECT
+                cr.rank,
+                cr.scaled_score
+            FROM course_result cr
+            JOIN course c ON cr.course_id = c.course_id
+            WHERE c.name = ?
+            AND cr.year = ?
+            AND cr.rank IS NOT NULL
+            AND cr.scaled_score IS NOT NULL
+            ORDER BY cr.rank
+        """, (course_name, hist_year))
+
+        year_data = cursor.fetchall()
+        if len(year_data) >= 5:  # Need at least 5 data points
+            ranks = [row[0] for row in year_data]
+            scaled = [row[1] for row in year_data]
+
+            # Calculate Spearman correlation (rank correlation)
+            corr, p_value = scipy_stats.spearmanr(ranks, scaled)
+
+            rank_scaled_correlations.append({
+                'year': hist_year,
+                'correlation': corr,
+                'p_value': p_value,
+                'n': len(year_data)
+            })
+
+    # Compare most recent year with 2nd and 3rd most recent
+    rank_correlation_comparison = None
+    if len(rank_scaled_correlations) == 3:
+        recent = rank_scaled_correlations[2]  # Most recent
+        second = rank_scaled_correlations[1]  # 2nd most recent
+        third = rank_scaled_correlations[0]   # 3rd most recent
+
+        # Fisher's Z transformation for comparing correlations
+        def fisher_z(r):
+            return 0.5 * np.log((1 + r) / (1 - r))
+
+        z_recent = fisher_z(recent['correlation'])
+        z_second = fisher_z(second['correlation'])
+        z_third = fisher_z(third['correlation'])
+
+        # Test statistic for difference
+        se_diff_2nd = np.sqrt(1/(recent['n']-3) + 1/(second['n']-3))
+        z_stat_2nd = (z_recent - z_second) / se_diff_2nd
+        p_value_2nd = 2 * (1 - scipy_stats.norm.cdf(abs(z_stat_2nd)))
+
+        se_diff_3rd = np.sqrt(1/(recent['n']-3) + 1/(third['n']-3))
+        z_stat_3rd = (z_recent - z_third) / se_diff_3rd
+        p_value_3rd = 2 * (1 - scipy_stats.norm.cdf(abs(z_stat_3rd)))
+
+        rank_correlation_comparison = {
+            'recent_year': recent['year'],
+            'recent_corr': recent['correlation'],
+            'second_year': second['year'],
+            'second_corr': second['correlation'],
+            'third_year': third['year'],
+            'third_corr': third['correlation'],
+            'vs_2nd_p_value': p_value_2nd,
+            'vs_2nd_significant': p_value_2nd < 0.05,
+            'vs_3rd_p_value': p_value_3rd,
+            'vs_3rd_significant': p_value_3rd < 0.05
+        }
+
     # MXP trends
     cursor.execute("""
         SELECT
@@ -400,10 +515,24 @@ def analyze_course(conn, course_name, year, school_avg_scaled=None):
     # Class analysis
     class_analysis = analyze_class_performance(conn, course_name, year)
 
-    # Deeper analysis
-    top_3 = students[:min(3, len(students))]
-    bottom_3 = students[-min(3, len(students)):]
+    # Deeper analysis - COMPREHENSIVE with definitive cut-offs
+    # High performers: Band 6 (45+) OR top 10% of cohort
+    high_performers = []
+    scaled_threshold_high = np.percentile([s['actual_scaled'] for s in students if s['actual_scaled']], 90) if len(students) >= 10 else 45
+    for s in students:
+        if s['actual_scaled'] is not None:
+            if s['actual_scaled'] >= 45 or s['actual_scaled'] >= scaled_threshold_high:
+                high_performers.append(s)
 
+    # Low performers: Band 1-2 (< 30) OR bottom 10% of cohort
+    low_performers = []
+    scaled_threshold_low = np.percentile([s['actual_scaled'] for s in students if s['actual_scaled']], 10) if len(students) >= 10 else 30
+    for s in students:
+        if s['actual_scaled'] is not None:
+            if s['actual_scaled'] < 30 or s['actual_scaled'] <= scaled_threshold_low:
+                low_performers.append(s)
+
+    # MXP underperformers: ALL students with gap < -2
     mxp_underperformers = []
     for s in students:
         if s['actual_scaled'] is not None and s['expected_scaled'] is not None:
@@ -413,7 +542,9 @@ def analyze_course(conn, course_name, year, school_avg_scaled=None):
                     'student_id': s['student_id'],
                     'gap': gap,
                     'actual': s['actual_scaled'],
-                    'expected': s['expected_scaled']
+                    'expected': s['expected_scaled'],
+                    'rank': s.get('rank'),
+                    'hsc_mark': s.get('hsc_mark')
                 })
 
     return {
@@ -430,6 +561,12 @@ def analyze_course(conn, course_name, year, school_avg_scaled=None):
             'mxp_exceeded_pct': mxp_exceeded_pct,
             'mxp_below_pct': mxp_below_pct,
             'mxp_on_target_pct': mxp_on_target_pct,
+            'above_identity': above_identity,
+            'below_identity': below_identity,
+            'on_identity': on_identity,
+            'above_identity_pct': above_identity_pct,
+            'below_identity_pct': below_identity_pct,
+            'on_identity_pct': on_identity_pct,
             'significant_rank_changes_count': len(significant_rank_changes),
             'mean_rank_change': mean_rank_change,
             'current_avg_scaled': current_avg_scaled,
@@ -438,7 +575,9 @@ def analyze_course(conn, course_name, year, school_avg_scaled=None):
         'multiyear': {
             'historical_scaled': historical_scaled,
             'yoy_change': yoy_change,
-            'historical_mxp': historical_mxp
+            'historical_mxp': historical_mxp,
+            'z_scores': z_scores,
+            'rank_correlation_test': rank_correlation_comparison
         },
         'visualization': {
             'ascii_scatter': ascii_plot,
@@ -446,8 +585,8 @@ def analyze_course(conn, course_name, year, school_avg_scaled=None):
         },
         'class_analysis': class_analysis,
         'deeper': {
-            'top_3': top_3,
-            'bottom_3': bottom_3,
+            'high_performers': sorted(high_performers, key=lambda x: x['actual_scaled'], reverse=True),
+            'low_performers': sorted(low_performers, key=lambda x: x['actual_scaled']),
             'significant_rank_changes': sorted(significant_rank_changes, key=lambda x: abs(x['rank_change']), reverse=True),
             'mxp_underperformers': sorted(mxp_underperformers, key=lambda x: x['gap'])
         }
@@ -486,18 +625,49 @@ def analyze_school(conn, year):
         if analysis:
             course_analyses.append(analysis)
 
-    # School-wide stats
+    # School-wide stats (excluding NG/0.0 ATAR students)
     cursor.execute("""
         SELECT
             AVG(psam_score) as avg_atar,
             MIN(psam_score) as min_atar,
-            MAX(psam_score) as max_atar,
+            LEAST(MAX(psam_score), 99.95) as max_atar,
             COUNT(*) as total_students
         FROM student_year_metric
         WHERE year = ?
+        AND psam_score > 0
     """, (year,))
 
     school_stats = cursor.fetchone()
+
+    # Count total students including NG
+    cursor.execute("""
+        SELECT COUNT(*) FROM student_year_metric WHERE year = ?
+    """, (year,))
+    total_students_including_ng = cursor.fetchone()[0]
+
+    # Find courses with non-ATAR students
+    cursor.execute("""
+        SELECT
+            c.name as course_name,
+            COUNT(DISTINCT CASE WHEN sym.psam_score = 0 THEN sym.student_id END) as ng_count,
+            COUNT(DISTINCT sym.student_id) as total_count
+        FROM course c
+        JOIN course_result cr ON c.course_id = cr.course_id
+        JOIN student_year_metric sym ON cr.student_id = sym.student_id AND cr.year = sym.year
+        WHERE cr.year = ?
+        GROUP BY c.name
+        HAVING ng_count > 0
+        ORDER BY ng_count DESC, c.name
+    """, (year,))
+
+    non_atar_courses = []
+    for row in cursor.fetchall():
+        non_atar_courses.append({
+            'course': row[0],
+            'ng_count': row[1],
+            'total_count': row[2],
+            'ng_pct': (row[1] / row[2] * 100) if row[2] > 0 else 0
+        })
 
     # Identify courses of concern with CLEAR descriptions
     courses_of_concern = []
@@ -541,8 +711,11 @@ def analyze_school(conn, year):
             'min_atar': school_stats[1],
             'max_atar': school_stats[2],
             'total_students': school_stats[3],
+            'total_students_including_ng': total_students_including_ng,
+            'ng_students_count': total_students_including_ng - school_stats[3],
             'total_courses': len(course_analyses),
-            'courses_of_concern_count': len(courses_of_concern)
+            'courses_of_concern_count': len(courses_of_concern),
+            'non_atar_courses': non_atar_courses
         },
         'school_deeper': {
             'courses_of_concern': sorted(courses_of_concern, key=lambda x: len(x['concerns']), reverse=True)

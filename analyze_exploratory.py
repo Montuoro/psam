@@ -16,7 +16,7 @@ def analyze_course_selection_optimization(conn, year):
     """
     cursor = conn.cursor()
 
-    # Get each student's courses and ATAR
+    # Get each student's courses and ATAR (exclude NG ATAR students)
     cursor.execute("""
         SELECT
             sym.student_id,
@@ -26,6 +26,7 @@ def analyze_course_selection_optimization(conn, year):
         JOIN course_result cr ON sym.student_id = cr.student_id AND sym.year = cr.year
         JOIN course c ON cr.course_id = c.course_id
         WHERE sym.year = ?
+        AND sym.psam_score > 0
         GROUP BY sym.student_id
     """, (year,))
 
@@ -75,7 +76,7 @@ def analyze_course_selection_optimization(conn, year):
 
     return {
         'total_students': len(students),
-        'mismatches': mismatches[:10]  # Top 10
+        'mismatches': mismatches  # ALL mismatches (no limit)
     }
 
 def analyze_extension_decisions(conn, year):
@@ -84,7 +85,7 @@ def analyze_extension_decisions(conn, year):
     """
     cursor = conn.cursor()
 
-    # Find students who took extensions
+    # Find students who took extensions (exclude NG ATAR students)
     cursor.execute("""
         SELECT
             sym.student_id,
@@ -96,6 +97,7 @@ def analyze_extension_decisions(conn, year):
         JOIN course_result cr ON sym.student_id = cr.student_id AND sym.year = cr.year
         JOIN course c ON cr.course_id = c.course_id
         WHERE sym.year = ?
+        AND sym.psam_score > 0
         AND (c.name LIKE '%Extension%' OR c.name LIKE '%Ext %')
     """, (year,))
 
@@ -136,8 +138,8 @@ def analyze_extension_decisions(conn, year):
 
     return {
         'total_extension_students': len(extension_students),
-        'successful_extensions': successful_extensions[:5],
-        'struggling_extensions': struggling_extensions[:5]
+        'successful_extensions': successful_extensions,  # ALL successful students
+        'struggling_extensions': struggling_extensions  # ALL struggling students
     }
 
 def analyze_unit_selection_strategy(conn, year):
@@ -159,6 +161,7 @@ def analyze_unit_selection_strategy(conn, year):
             SELECT course_id, 2 as units FROM course
         ) c2 ON cr.course_id = c2.course_id
         WHERE sym.year = ?
+        AND sym.psam_score > 0
         GROUP BY sym.student_id
     """, (year,))
 
@@ -167,13 +170,15 @@ def analyze_unit_selection_strategy(conn, year):
         student_id, atar, total_unit_scores, num_courses, total_units = row
         unit_count = total_units if total_units else num_courses * 2
 
-        students_by_units[unit_count].append({
-            'student_id': student_id,
-            'atar': atar,
-            'num_courses': num_courses
-        })
+        # ONLY include students with >= 10 units
+        if unit_count >= 10:
+            students_by_units[unit_count].append({
+                'student_id': student_id,
+                'atar': atar,
+                'num_courses': num_courses
+            })
 
-    # Compare ATARs by unit count
+    # Compare ATARs by unit count (only for >= 10 units)
     unit_performance = {}
     for units, students in students_by_units.items():
         if len(students) >= 3:
@@ -184,8 +189,8 @@ def analyze_unit_selection_strategy(conn, year):
                 'median_atar': np.median(atars)
             }
 
-    # Count STUDENTS taking more than 10 units (not unit tiers)
-    students_over_10 = sum(len(students) for units, students in students_by_units.items() if units > 10)
+    # Count STUDENTS taking 10 or more units
+    students_over_10 = sum(len(students) for units, students in students_by_units.items())
 
     return {
         'unit_performance': dict(sorted(unit_performance.items())),
@@ -200,15 +205,16 @@ def analyze_cohort_trends_multiyear(conn, years=[2022, 2023, 2024]):
 
     cohort_stats = []
     for year in years:
-        # Cohort ATAR stats
+        # Cohort ATAR stats (exclude NG students, cap max at 99.95)
         cursor.execute("""
             SELECT
                 AVG(psam_score) as avg_atar,
                 MIN(psam_score) as min_atar,
-                MAX(psam_score) as max_atar,
+                LEAST(MAX(psam_score), 99.95) as max_atar,
                 COUNT(*) as cohort_size
             FROM student_year_metric
             WHERE year = ?
+            AND psam_score > 0
         """, (year,))
 
         atar_stats = cursor.fetchone()
@@ -278,7 +284,7 @@ def analyze_optimal_course_combinations(conn, year):
     """
     cursor = conn.cursor()
 
-    # Get course combinations and ATARs
+    # Get course combinations and ATARs (exclude NG students)
     cursor.execute("""
         SELECT
             sym.student_id,
@@ -288,6 +294,7 @@ def analyze_optimal_course_combinations(conn, year):
         JOIN course_result cr ON sym.student_id = cr.student_id AND sym.year = cr.year
         JOIN course c ON cr.course_id = c.course_id
         WHERE sym.year = ?
+        AND sym.psam_score > 0
         GROUP BY sym.student_id
         HAVING COUNT(DISTINCT c.course_id) >= 5
     """, (year,))
@@ -317,7 +324,7 @@ def analyze_optimal_course_combinations(conn, year):
                 })
 
     return {
-        'high_performing_pairs': sorted(high_performing_pairs, key=lambda x: x['avg_atar'], reverse=True)[:10]
+        'high_performing_pairs': sorted(high_performing_pairs, key=lambda x: x['avg_atar'], reverse=True)  # ALL high-performing pairs
     }
 
 def analyze_extension_trends_multiyear(conn, years=[2022, 2023, 2024]):
@@ -384,6 +391,7 @@ def analyze_unit_strategy_multiyear(conn, years=[2022, 2023, 2024]):
                 SELECT course_id, 2 as units FROM course
             ) c2 ON cr.course_id = c2.course_id
             WHERE sym.year = ?
+            AND sym.psam_score > 0
             GROUP BY sym.student_id
         """, (year,))
 
@@ -391,9 +399,12 @@ def analyze_unit_strategy_multiyear(conn, years=[2022, 2023, 2024]):
         for row in cursor.fetchall():
             student_id, atar, num_courses, total_units = row
             unit_count = total_units if total_units else num_courses * 2
-            students_by_units[unit_count].append(atar)
 
-        # Calculate averages
+            # ONLY include students with >= 10 units
+            if unit_count >= 10:
+                students_by_units[unit_count].append(atar)
+
+        # Calculate averages (only for >= 10 units)
         unit_performance = {}
         for units, atars in students_by_units.items():
             if len(atars) >= 3:
@@ -501,7 +512,7 @@ def analyze_triple_course_combinations(conn, year):
     """
     cursor = conn.cursor()
 
-    # Get course combinations and ATARs
+    # Get course combinations and ATARs (exclude NG students)
     cursor.execute("""
         SELECT
             sym.student_id,
@@ -511,6 +522,7 @@ def analyze_triple_course_combinations(conn, year):
         JOIN course_result cr ON sym.student_id = cr.student_id AND sym.year = cr.year
         JOIN course c ON cr.course_id = c.course_id
         WHERE sym.year = ?
+        AND sym.psam_score > 0
         GROUP BY sym.student_id
         HAVING COUNT(DISTINCT c.course_id) >= 5
     """, (year,))
@@ -540,7 +552,7 @@ def analyze_triple_course_combinations(conn, year):
                     'num_students': len(atars)
                 })
 
-    return sorted(high_performing_triples, key=lambda x: x['avg_atar'], reverse=True)[:10]
+    return sorted(high_performing_triples, key=lambda x: x['avg_atar'], reverse=True)  # ALL high-performing triples
 
 def analyze_poor_course_combinations(conn, year):
     """
@@ -548,7 +560,7 @@ def analyze_poor_course_combinations(conn, year):
     """
     cursor = conn.cursor()
 
-    # Get course combinations and ATARs
+    # Get course combinations and ATARs (exclude NG students)
     cursor.execute("""
         SELECT
             sym.student_id,
@@ -558,6 +570,7 @@ def analyze_poor_course_combinations(conn, year):
         JOIN course_result cr ON sym.student_id = cr.student_id AND sym.year = cr.year
         JOIN course c ON cr.course_id = c.course_id
         WHERE sym.year = ?
+        AND sym.psam_score > 0
         GROUP BY sym.student_id
         HAVING COUNT(DISTINCT c.course_id) >= 5
     """, (year,))
@@ -586,7 +599,7 @@ def analyze_poor_course_combinations(conn, year):
                     'num_students': len(atars)
                 })
 
-    return sorted(low_performing_pairs, key=lambda x: x['avg_atar'])[:10]
+    return sorted(low_performing_pairs, key=lambda x: x['avg_atar'])  # ALL low-performing pairs
 
 def analyze_hidden_cohorts(conn, years=[2022, 2023, 2024]):
     """
@@ -640,7 +653,7 @@ def analyze_hidden_cohorts(conn, years=[2022, 2023, 2024]):
             'year': year,
             'description': '80-90 ATAR with Advanced but no Extension',
             'count': len(cohort_1_students),
-            'examples': cohort_1_students[:5]
+            'examples': cohort_1_students  # ALL students in this cohort
         })
 
         # COHORT 2: 70-80 ATAR not taking Advanced courses
@@ -666,14 +679,14 @@ def analyze_hidden_cohorts(conn, years=[2022, 2023, 2024]):
                 cohort_2_students.append({
                     'student_id': student_id,
                     'atar': atar,
-                    'courses': [c for c in courses if 'Standard' in c or 'Mathematics' in c][:3]
+                    'courses': [c for c in courses if 'Standard' in c or 'Mathematics' in c]  # ALL relevant courses
                 })
 
         all_cohorts['cohort_2'].append({
             'year': year,
             'description': '70-80 ATAR not taking any Advanced courses',
             'count': len(cohort_2_students),
-            'examples': cohort_2_students[:5]
+            'examples': cohort_2_students  # ALL students in this cohort
         })
 
         # COHORT 3: 90-95 ATAR taking only 1 extension
@@ -706,7 +719,7 @@ def analyze_hidden_cohorts(conn, years=[2022, 2023, 2024]):
             'year': year,
             'description': '90-95 ATAR taking only 1 extension',
             'count': len(cohort_3_students),
-            'examples': cohort_3_students[:5]
+            'examples': cohort_3_students  # ALL students in this cohort
         })
 
         # COHORT 4: High ATAR (>95) taking <12 units
@@ -737,7 +750,7 @@ def analyze_hidden_cohorts(conn, years=[2022, 2023, 2024]):
             'year': year,
             'description': 'High ATAR (>95) taking <12 units',
             'count': len(cohort_4_students),
-            'examples': cohort_4_students[:5]
+            'examples': cohort_4_students  # ALL students in this cohort
         })
 
     return all_cohorts
