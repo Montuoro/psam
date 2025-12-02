@@ -87,11 +87,6 @@ def generate_markdown_report(school_analysis, school_name, output_path, conn=Non
             for concern in course_concern['concerns']:
                 if "below expected MXP" in concern:
                     explanations.append("Students are performing below their expected scaled marks (MXP), suggesting the course may not be maximizing their potential or assessment practices may need review.")
-                elif "internal-exam gap" in concern:
-                    if "internal higher" in concern:
-                        explanations.append("School internal assessments are significantly higher than external exam results, indicating potential over-marking or misalignment with HSC standards.")
-                    else:
-                        explanations.append("External exam results are significantly higher than school internal assessments, suggesting students may be under-marked internally or not adequately prepared for internal tasks.")
                 elif "major rank changes" in concern:
                     explanations.append("A large proportion of students experienced significant rank position changes between internal and external assessments, indicating inconsistency in assessment or student preparation.")
                 elif "YoY decline" in concern:
@@ -171,10 +166,11 @@ def generate_markdown_report(school_analysis, school_name, output_path, conn=Non
         md.append(f"- **Average Student ATAR:** {gen['avg_atar']:.1f}")
         md.append("")
 
-        # Internal vs External (CORRECTED)
+        # Internal vs External - ASSESSMENT QUALITY METRIC (not student performance)
         gap_direction = "higher" if gen['internal_exam_gap'] > 0 else "lower"
         gap_severity = "significantly" if abs(gen['internal_exam_gap']) > 8 else "moderately" if abs(gen['internal_exam_gap']) > 4 else "slightly"
-        md.append(f"- **Internal vs External Assessment:** School internal assessment (avg {gen['avg_internal']:.1f}) vs external exam (avg {gen['avg_exam']:.1f}) - internal marks were {gap_severity} {gap_direction} by {abs(gen['internal_exam_gap']):.1f} points")
+        md.append(f"- **Internal vs External Assessment (Assessment Quality):** School internal assessment (avg {gen['avg_internal']:.1f}) vs external exam (avg {gen['avg_exam']:.1f}) - internal marks were {gap_severity} {gap_direction} by {abs(gen['internal_exam_gap']):.1f} points")
+        md.append(f"  - *Note: This reflects marking calibration, not student performance*")
         md.append("")
 
         # Rank changes

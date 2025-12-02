@@ -669,6 +669,7 @@ def analyze_school(conn, year):
         })
 
     # Identify courses of concern with CLEAR descriptions
+    # NOTE: Internal-exam gaps are NOT included here as they reflect assessment quality, not student performance
     courses_of_concern = []
     for analysis in course_analyses:
         gen = analysis['generalized']
@@ -677,11 +678,6 @@ def analyze_school(conn, year):
         # MXP issues with CLEAR wording
         if gen['mxp_below_pct'] > 50:
             concerns.append(f"{gen['mxp_below_pct']:.0f}% below expected MXP (avg gap: {gen['mxp_avg_gap']:.1f})")
-
-        # Internal-exam misalignment
-        if abs(gen['internal_exam_gap']) > 8:
-            direction = "higher" if gen['internal_exam_gap'] > 0 else "lower"
-            concerns.append(f"Large internal-exam gap ({gen['internal_exam_gap']:.1f}pts, internal {direction})")
 
         # Significant rank changes with MEAN
         if gen['significant_rank_changes_count'] > gen['cohort_size'] * 0.3:
