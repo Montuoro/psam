@@ -184,14 +184,17 @@ def analyze_unit_selection_strategy(conn, year):
                 'median_atar': np.median(atars)
             }
 
+    # Count STUDENTS taking more than 10 units (not unit tiers)
+    students_over_10 = sum(len(students) for units, students in students_by_units.items() if units > 10)
+
     return {
         'unit_performance': dict(sorted(unit_performance.items())),
-        'students_over_10': sum(1 for u in students_by_units.keys() if u > 10)
+        'students_over_10': students_over_10
     }
 
 def analyze_cohort_trends_multiyear(conn, years=[2022, 2023, 2024]):
     """
-    Multi-year cohort trends
+    Multi-year cohort trends with HSC and scaled marks
     """
     cursor = conn.cursor()
 
@@ -209,6 +212,19 @@ def analyze_cohort_trends_multiyear(conn, years=[2022, 2023, 2024]):
         """, (year,))
 
         atar_stats = cursor.fetchone()
+
+        # Mean HSC mark and scaled mark across all courses
+        cursor.execute("""
+            SELECT
+                AVG(cr.combined_mark) as avg_hsc,
+                AVG(cr.scaled_score * 2) as avg_scaled
+            FROM course_result cr
+            WHERE cr.year = ?
+            AND cr.combined_mark IS NOT NULL
+            AND cr.scaled_score IS NOT NULL
+        """, (year,))
+
+        marks_stats = cursor.fetchone()
 
         # Extension course uptake
         cursor.execute("""
@@ -228,6 +244,8 @@ def analyze_cohort_trends_multiyear(conn, years=[2022, 2023, 2024]):
             'min_atar': atar_stats[1],
             'max_atar': atar_stats[2],
             'cohort_size': atar_stats[3],
+            'avg_hsc': marks_stats[0] if marks_stats[0] else 0,
+            'avg_scaled': marks_stats[1] if marks_stats[1] else 0,
             'extension_students': extension_count,
             'extension_pct': (extension_count / atar_stats[3] * 100) if atar_stats[3] > 0 else 0
         })
@@ -554,13 +572,19 @@ def analyze_poor_course_combinations(conn, year):
 
 def analyze_hidden_cohorts(conn, years=[2022, 2023, 2024]):
     """
-    Find 'hidden cohorts' - students in 80-90 ATAR range who might benefit from extensions
+    Find multiple 'hidden cohorts' - students who might benefit from different course strategies
     """
     cursor = conn.cursor()
 
-    hidden_cohorts = []
+    all_cohorts = {
+        'cohort_1': [],  # 80-90 ATAR with Advanced but no Extension
+        'cohort_2': [],  # 70-80 ATAR not taking Advanced courses
+        'cohort_3': [],  # 90-95 ATAR taking only 1 extension
+        'cohort_4': []   # High ATAR (>95) taking <12 units
+    }
+
     for year in years:
-        # Find students in 80-90 range WITHOUT extensions
+        # COHORT 1: 80-90 ATAR with Advanced but no Extension
         cursor.execute("""
             SELECT DISTINCT
                 sym.student_id,
@@ -582,28 +606,123 @@ def analyze_hidden_cohorts(conn, years=[2022, 2023, 2024]):
             GROUP BY sym.student_id
         """, (year, year))
 
-        potential_students = []
+        cohort_1_students = []
         for row in cursor.fetchall():
             student_id, atar, courses_str = row
             courses = courses_str.split(',')
-
-            # Look for students taking "Advanced" but not "Extension"
             advanced_courses = [c for c in courses if 'Advanced' in c]
-
             if advanced_courses:
-                potential_students.append({
+                cohort_1_students.append({
                     'student_id': student_id,
                     'atar': atar,
-                    'advanced_courses': advanced_courses
+                    'courses': advanced_courses
                 })
 
-        hidden_cohorts.append({
+        all_cohorts['cohort_1'].append({
             'year': year,
-            'count': len(potential_students),
-            'examples': potential_students[:5]
+            'description': '80-90 ATAR with Advanced but no Extension',
+            'count': len(cohort_1_students),
+            'examples': cohort_1_students[:5]
         })
 
-    return hidden_cohorts
+        # COHORT 2: 70-80 ATAR not taking Advanced courses
+        cursor.execute("""
+            SELECT DISTINCT
+                sym.student_id,
+                sym.psam_score as atar,
+                GROUP_CONCAT(c.name) as courses
+            FROM student_year_metric sym
+            JOIN course_result cr ON sym.student_id = cr.student_id AND sym.year = cr.year
+            JOIN course c ON cr.course_id = c.course_id
+            WHERE sym.year = ?
+            AND sym.psam_score BETWEEN 70 AND 80
+            GROUP BY sym.student_id
+        """, (year,))
+
+        cohort_2_students = []
+        for row in cursor.fetchall():
+            student_id, atar, courses_str = row
+            courses = courses_str.split(',')
+            has_advanced = any('Advanced' in c for c in courses)
+            if not has_advanced:
+                cohort_2_students.append({
+                    'student_id': student_id,
+                    'atar': atar,
+                    'courses': [c for c in courses if 'Standard' in c or 'Mathematics' in c][:3]
+                })
+
+        all_cohorts['cohort_2'].append({
+            'year': year,
+            'description': '70-80 ATAR not taking any Advanced courses',
+            'count': len(cohort_2_students),
+            'examples': cohort_2_students[:5]
+        })
+
+        # COHORT 3: 90-95 ATAR taking only 1 extension
+        cursor.execute("""
+            SELECT
+                sym.student_id,
+                sym.psam_score as atar,
+                COUNT(DISTINCT cr.course_id) as num_extensions,
+                GROUP_CONCAT(c.name) as extension_courses
+            FROM student_year_metric sym
+            JOIN course_result cr ON sym.student_id = cr.student_id AND sym.year = cr.year
+            JOIN course c ON cr.course_id = c.course_id
+            WHERE sym.year = ?
+            AND sym.psam_score BETWEEN 90 AND 95
+            AND (c.name LIKE '%Extension%' OR c.name LIKE '%Ext %')
+            GROUP BY sym.student_id
+            HAVING num_extensions = 1
+        """, (year,))
+
+        cohort_3_students = []
+        for row in cursor.fetchall():
+            student_id, atar, num_ext, ext_courses = row
+            cohort_3_students.append({
+                'student_id': student_id,
+                'atar': atar,
+                'courses': [ext_courses]
+            })
+
+        all_cohorts['cohort_3'].append({
+            'year': year,
+            'description': '90-95 ATAR taking only 1 extension',
+            'count': len(cohort_3_students),
+            'examples': cohort_3_students[:5]
+        })
+
+        # COHORT 4: High ATAR (>95) taking <12 units
+        cursor.execute("""
+            SELECT
+                sym.student_id,
+                sym.psam_score as atar,
+                COUNT(DISTINCT cr.course_id) as num_courses
+            FROM student_year_metric sym
+            JOIN course_result cr ON sym.student_id = cr.student_id AND sym.year = cr.year
+            WHERE sym.year = ?
+            AND sym.psam_score > 95
+            GROUP BY sym.student_id
+        """, (year,))
+
+        cohort_4_students = []
+        for row in cursor.fetchall():
+            student_id, atar, num_courses = row
+            total_units = num_courses * 2
+            if total_units < 12:
+                cohort_4_students.append({
+                    'student_id': student_id,
+                    'atar': atar,
+                    'units': total_units
+                })
+
+        all_cohorts['cohort_4'].append({
+            'year': year,
+            'description': 'High ATAR (>95) taking <12 units',
+            'count': len(cohort_4_students),
+            'examples': cohort_4_students[:5]
+        })
+
+    return all_cohorts
 
 def generate_exploratory_insights(conn, year):
     """

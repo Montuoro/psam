@@ -3199,7 +3199,7 @@
 
 ### Unit Selection Strategy
 
-**3 students** took more than 10 units.
+**131 students** took more than 10 units.
 
 **Average ATAR by unit count (current year):**
 
@@ -3243,18 +3243,24 @@
 - Cohort size: 181 students
 - Average ATAR: 77.64
 - ATAR range: 0.0 - 99.9
+- Mean HSC mark: 81.2
+- Mean scaled mark: 76.9
 - Extension students: 94 (51.9%)
 
 **2023:**
 - Cohort size: 200 students
 - Average ATAR: 80.33
 - ATAR range: 0.0 - 100.0
+- Mean HSC mark: 80.5
+- Mean scaled mark: 75.5
 - Extension students: 110 (55.0%)
 
 **2024:**
 - Cohort size: 205 students
 - Average ATAR: 77.67
 - ATAR range: 0.0 - 100.0
+- Mean HSC mark: 83.1
+- Mean scaled mark: 76.8
 - Extension students: 100 (48.8%)
 
 **Year-over-year changes:**
@@ -3318,35 +3324,71 @@
 
 ---
 
-### Hidden Cohorts - Potential for Extension Courses
+### Hidden Cohorts - Students Who May Benefit from Different Strategies
 
-*Students in ATAR range 80-90 who took Advanced courses but NO extensions - potential candidates for extension courses:*
+*Analysis of students who might achieve higher ATARs with different course selections:*
+
+#### Cohort 1: Extension Course Candidates
+*Students in ATAR range 80-90 taking Advanced courses but NO extensions:*
 
 **2022:** 22 students identified
-
-*Examples:*
 - Student 35344969 (ATAR 84.9): Taking English Advanced
 - Student 35345086 (ATAR 88.1): Taking Mathematics Advanced, English Advanced
 - Student 35345108 (ATAR 88.6): Taking Mathematics Advanced, English Advanced
-- Student 35345116 (ATAR 86.5): Taking English Advanced
-- Student 35345280 (ATAR 84.9): Taking English Advanced
 
 **2023:** 17 students identified
-
-*Examples:*
 - Student 35820515 (ATAR 83.8): Taking English Advanced, Mathematics Advanced
 - Student 36260033 (ATAR 86.3): Taking English Advanced
 - Student 36260122 (ATAR 83.2): Taking English Advanced
-- Student 36260130 (ATAR 89.0): Taking English Advanced, Mathematics Advanced
-- Student 36260149 (ATAR 88.2): Taking English Advanced
 
 **2024:** 20 students identified
-
-*Examples:*
 - Student 36828110 (ATAR 88.9): Taking English Advanced
 - Student 36909129 (ATAR 87.5): Taking English Advanced
 - Student 37250112 (ATAR 89.6): Taking English Advanced, Mathematics Advanced
-- Student 37250155 (ATAR 87.1): Taking English Advanced, Mathematics Advanced
-- Student 37250236 (ATAR 83.9): Taking English Advanced
+
+#### Cohort 2: Advanced Course Candidates
+*Students in ATAR range 70-80 NOT taking any Advanced courses:*
+
+**2022:** 1 students identified
+- Student 33941773 (ATAR 70.2): Taking English Standard, Mathematics Standard 2
+
+**2023:** 0 students identified
+
+**2024:** 1 students identified
+- Student 37268097 (ATAR 70.4): Taking English Standard, Mathematics Standard 2
+
+#### Cohort 3: Additional Extension Candidates
+*High-performing students (90-95 ATAR) taking only 1 extension course:*
+
+**2022:** 4 students identified
+- Student 34716374 (ATAR 93.3): Taking History Extension
+- Student 35345779 (ATAR 93.2): Taking English Extension 1
+- Student 35345817 (ATAR 91.5): Taking Chinese Extension
+
+**2023:** 10 students identified
+- Student 35344977 (ATAR 94.6): Taking English Extension 1
+- Student 35572449 (ATAR 91.2): Taking Mathematics Ext 1
+- Student 36260106 (ATAR 91.2): Taking Mathematics Ext 1
+
+**2024:** 13 students identified
+- Student 37247529 (ATAR 92.9): Taking Mathematics Ext 1
+- Student 37250295 (ATAR 91.2): Taking English Extension 1
+- Student 37250414 (ATAR 92.2): Taking Mathematics Ext 1
+
+#### Cohort 4: Additional Units Candidates
+*Top students (>95 ATAR) taking fewer than 12 units:*
+
+**2022:** 2 students identified
+- Student 35345663 (ATAR 96.4): Taking only 10 units
+- Student 35346112 (ATAR 97.2): Taking only 10 units
+
+**2023:** 2 students identified
+- Student 36260238 (ATAR 95.5): Taking only 10 units
+- Student 36260610 (ATAR 96.4): Taking only 10 units
+
+**2024:** 8 students identified
+- Student 36254114 (ATAR 95.0): Taking only 10 units
+- Student 37250376 (ATAR 95.8): Taking only 10 units
+- Student 37250546 (ATAR 96.8): Taking only 10 units
 
 ---

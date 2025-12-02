@@ -448,6 +448,8 @@ def generate_markdown_report(school_analysis, school_name, output_path, conn=Non
                     md.append(f"- Cohort size: {stat['cohort_size']} students")
                     md.append(f"- Average ATAR: {stat['avg_atar']:.2f}")
                     md.append(f"- ATAR range: {stat['min_atar']:.1f} - {stat['max_atar']:.1f}")
+                    md.append(f"- Mean HSC mark: {stat['avg_hsc']:.1f}")
+                    md.append(f"- Mean scaled mark: {stat['avg_scaled']:.1f}")
                     md.append(f"- Extension students: {stat['extension_students']} ({stat['extension_pct']:.1f}%)")
                     md.append("")
 
@@ -511,21 +513,64 @@ def generate_markdown_report(school_analysis, school_name, output_path, conn=Non
                 md.append("---")
                 md.append("")
 
-            # 8. Hidden Cohorts
+            # 8. Hidden Cohorts (Multiple Types)
             if 'hidden_cohorts' in insights:
-                md.append("### Hidden Cohorts - Potential for Extension Courses")
+                md.append("### Hidden Cohorts - Students Who May Benefit from Different Strategies")
                 md.append("")
-                md.append("*Students in ATAR range 80-90 who took Advanced courses but NO extensions - potential candidates for extension courses:*")
+                md.append("*Analysis of students who might achieve higher ATARs with different course selections:*")
                 md.append("")
+
                 hc = insights['hidden_cohorts']
-                for year_cohort in hc:
-                    md.append(f"**{year_cohort['year']}:** {year_cohort['count']} students identified")
-                    if year_cohort['examples']:
-                        md.append("")
-                        md.append("*Examples:*")
-                        for student in year_cohort['examples']:
-                            md.append(f"- Student {student['student_id']} (ATAR {student['atar']:.1f}): Taking {', '.join(student['advanced_courses'])}")
+
+                # Cohort 1: 80-90 ATAR with Advanced but no Extension
+                if 'cohort_1' in hc:
+                    md.append("#### Cohort 1: Extension Course Candidates")
+                    md.append("*Students in ATAR range 80-90 taking Advanced courses but NO extensions:*")
                     md.append("")
+                    for year_data in hc['cohort_1']:
+                        md.append(f"**{year_data['year']}:** {year_data['count']} students identified")
+                        if year_data['examples']:
+                            for student in year_data['examples'][:3]:
+                                md.append(f"- Student {student['student_id']} (ATAR {student['atar']:.1f}): Taking {', '.join(student['courses'])}")
+                        md.append("")
+
+                # Cohort 2: 70-80 ATAR not taking Advanced
+                if 'cohort_2' in hc:
+                    md.append("#### Cohort 2: Advanced Course Candidates")
+                    md.append("*Students in ATAR range 70-80 NOT taking any Advanced courses:*")
+                    md.append("")
+                    for year_data in hc['cohort_2']:
+                        md.append(f"**{year_data['year']}:** {year_data['count']} students identified")
+                        if year_data['examples']:
+                            for student in year_data['examples'][:3]:
+                                courses_str = ', '.join(student['courses']) if student['courses'] else 'Standard courses'
+                                md.append(f"- Student {student['student_id']} (ATAR {student['atar']:.1f}): Taking {courses_str}")
+                        md.append("")
+
+                # Cohort 3: 90-95 ATAR taking only 1 extension
+                if 'cohort_3' in hc:
+                    md.append("#### Cohort 3: Additional Extension Candidates")
+                    md.append("*High-performing students (90-95 ATAR) taking only 1 extension course:*")
+                    md.append("")
+                    for year_data in hc['cohort_3']:
+                        md.append(f"**{year_data['year']}:** {year_data['count']} students identified")
+                        if year_data['examples']:
+                            for student in year_data['examples'][:3]:
+                                md.append(f"- Student {student['student_id']} (ATAR {student['atar']:.1f}): Taking {student['courses'][0]}")
+                        md.append("")
+
+                # Cohort 4: High ATAR (>95) taking <12 units
+                if 'cohort_4' in hc:
+                    md.append("#### Cohort 4: Additional Units Candidates")
+                    md.append("*Top students (>95 ATAR) taking fewer than 12 units:*")
+                    md.append("")
+                    for year_data in hc['cohort_4']:
+                        md.append(f"**{year_data['year']}:** {year_data['count']} students identified")
+                        if year_data['examples']:
+                            for student in year_data['examples'][:3]:
+                                md.append(f"- Student {student['student_id']} (ATAR {student['atar']:.1f}): Taking only {student['units']} units")
+                        md.append("")
+
                 md.append("---")
                 md.append("")
 
