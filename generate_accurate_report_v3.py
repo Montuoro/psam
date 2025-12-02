@@ -394,6 +394,17 @@ def generate_markdown_report(school_analysis, school_name, output_path, conn=Non
                     md.append(f"- Student {student['student_id']} (ATAR {student['atar']:.1f}): {', '.join(student['struggling_in'])}")
                 md.append("")
 
+            # Extension trends over 3 years
+            if 'extension_trends' in insights:
+                md.append("**Extension Uptake Trends (3-Year):**")
+                md.append("")
+                for trend in insights['extension_trends']:
+                    md.append(f"**{trend['year']}:** {trend['total_with_extensions']} students ({trend['pct_with_extensions']:.1f}% of cohort)")
+                    if trend['by_count']:
+                        count_str = ", ".join([f"{count} ext: {num} students" for count, num in sorted(trend['by_count'].items())])
+                        md.append(f"- Breakdown: {count_str}")
+                md.append("")
+
             md.append("---")
             md.append("")
 
@@ -405,10 +416,20 @@ def generate_markdown_report(school_analysis, school_name, output_path, conn=Non
             md.append("")
 
             if us['unit_performance']:
-                md.append("**Average ATAR by unit count:**")
+                md.append("**Average ATAR by unit count (current year):**")
                 md.append("")
                 for units, perf in sorted(us['unit_performance'].items()):
                     md.append(f"- **{units} units** ({perf['count']} students): Avg ATAR {perf['avg_atar']:.1f}, Median {perf['median_atar']:.1f}")
+                md.append("")
+
+            # Multi-year unit strategy with ASCII graph
+            if 'unit_strategy_multiyear' in insights:
+                usm = insights['unit_strategy_multiyear']
+                md.append("**3-Year Unit Selection Trend:**")
+                md.append("")
+                md.append("```")
+                md.append(usm['ascii_graph'])
+                md.append("```")
                 md.append("")
 
             md.append("---")
@@ -444,13 +465,13 @@ def generate_markdown_report(school_analysis, school_name, output_path, conn=Non
             md.append("---")
             md.append("")
 
-            # 5. Optimal Course Combinations
-            md.append("### High-Performing Course Combinations")
+            # 5. Optimal Course Combinations (Pairs)
+            md.append("### High-Performing Course Combinations (2-Course Pairs)")
             md.append("")
             oc = insights['optimal_combinations']
 
             if oc['high_performing_pairs']:
-                md.append(f"**Top {len(oc['high_performing_pairs'])} course combinations** with highest average ATARs:")
+                md.append(f"**Top {len(oc['high_performing_pairs'])} course pairs** with highest average ATARs:")
                 md.append("")
                 for pair in oc['high_performing_pairs']:
                     md.append(f"- **{pair['courses']}**: Avg ATAR {pair['avg_atar']:.1f} ({pair['num_students']} students)")
@@ -461,6 +482,52 @@ def generate_markdown_report(school_analysis, school_name, output_path, conn=Non
 
             md.append("---")
             md.append("")
+
+            # 6. Triple Course Combinations
+            if 'triple_combinations' in insights and insights['triple_combinations']:
+                md.append("### High-Performing Course Combinations (3-Course Triples)")
+                md.append("")
+                tc = insights['triple_combinations']
+                md.append(f"**Top {len(tc)} 3-course combinations** with highest average ATARs:")
+                md.append("")
+                for triple in tc:
+                    md.append(f"- **{triple['courses']}**: Avg ATAR {triple['avg_atar']:.1f} ({triple['num_students']} students)")
+                md.append("")
+                md.append("---")
+                md.append("")
+
+            # 7. Poor Course Combinations
+            if 'poor_combinations' in insights and insights['poor_combinations']:
+                md.append("### Course Combinations Associated with Lower ATARs")
+                md.append("")
+                pc = insights['poor_combinations']
+                md.append(f"**Course pairs with average ATAR below 75:**")
+                md.append("")
+                for pair in pc:
+                    md.append(f"- **{pair['courses']}**: Avg ATAR {pair['avg_atar']:.1f} ({pair['num_students']} students)")
+                md.append("")
+                md.append("*Note: These combinations may indicate students facing challenges or require additional support.*")
+                md.append("")
+                md.append("---")
+                md.append("")
+
+            # 8. Hidden Cohorts
+            if 'hidden_cohorts' in insights:
+                md.append("### Hidden Cohorts - Potential for Extension Courses")
+                md.append("")
+                md.append("*Students in ATAR range 80-90 who took Advanced courses but NO extensions - potential candidates for extension courses:*")
+                md.append("")
+                hc = insights['hidden_cohorts']
+                for year_cohort in hc:
+                    md.append(f"**{year_cohort['year']}:** {year_cohort['count']} students identified")
+                    if year_cohort['examples']:
+                        md.append("")
+                        md.append("*Examples:*")
+                        for student in year_cohort['examples']:
+                            md.append(f"- Student {student['student_id']} (ATAR {student['atar']:.1f}): Taking {', '.join(student['advanced_courses'])}")
+                    md.append("")
+                md.append("---")
+                md.append("")
 
         except Exception as e:
             md.append(f"*Error generating exploratory insights: {str(e)}*")

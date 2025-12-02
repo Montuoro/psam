@@ -3186,19 +3186,52 @@
 - Student 37251399 (ATAR 86.0): English Extension 2
 - Student 37251666 (ATAR 72.4): Science Extension
 
+**Extension Uptake Trends (3-Year):**
+
+**2022:** 94 students (51.9% of cohort)
+- Breakdown: 1 ext: 28 students, 2 ext: 48 students, 3 ext: 14 students, 4 ext: 4 students
+**2023:** 110 students (55.0% of cohort)
+- Breakdown: 1 ext: 39 students, 2 ext: 52 students, 3 ext: 15 students, 4 ext: 4 students
+**2024:** 100 students (48.8% of cohort)
+- Breakdown: 1 ext: 43 students, 2 ext: 44 students, 3 ext: 10 students, 4 ext: 3 students
+
 ---
 
 ### Unit Selection Strategy
 
 **3 students** took more than 10 units.
 
-**Average ATAR by unit count:**
+**Average ATAR by unit count (current year):**
 
 - **2 units** (29 students): Avg ATAR 0.0, Median 0.0
 - **10 units** (44 students): Avg ATAR 82.2, Median 87.4
 - **12 units** (96 students): Avg ATAR 92.6, Median 94.3
 - **14 units** (29 students): Avg ATAR 97.2, Median 98.6
 - **16 units** (6 students): Avg ATAR 98.8, Median 99.3
+
+**3-Year Unit Selection Trend:**
+
+```
+  Unit Count vs ATAR (1=2022, 2=2023, 3=2024)
+ 100 |                                                             
+  93 |                                                   3        3
+  86 |                                           3                 
+  79 |                                  3                          
+  71 |                                  2                          
+  64 |                                                             
+  57 |                                                             
+  50 |                                                             
+  43 |                                                             
+  36 |                                                             
+  29 |                                                             
+  21 |                                                             
+  14 |                                                             
+   7 |                                                             
+   0 | 3                                                           
+      +------------------------------------------------------------
+       2                                                         16
+       Units -->
+```
 
 ---
 
@@ -3236,9 +3269,9 @@
 
 ---
 
-### High-Performing Course Combinations
+### High-Performing Course Combinations (2-Course Pairs)
 
-**Top 10 course combinations** with highest average ATARs:
+**Top 10 course pairs** with highest average ATARs:
 
 - **English Extension 1 + Mathematics Ext 2**: Avg ATAR 99.6 (3 students)
 - **History Extension + Mathematics Ext 1**: Avg ATAR 99.3 (4 students)
@@ -3250,5 +3283,70 @@
 - **Mathematics Advanced + Mathematics Ext 2**: Avg ATAR 98.4 (17 students)
 - **Economics + Mathematics Ext 2**: Avg ATAR 98.4 (10 students)
 - **English Advanced + History Extension**: Avg ATAR 98.2 (7 students)
+
+---
+
+### High-Performing Course Combinations (3-Course Triples)
+
+**Top 10 3-course combinations** with highest average ATARs:
+
+- **Chemistry + English Extension 1 + Mathematics Ext 2**: Avg ATAR 99.6 (3 students)
+- **English Advanced + English Extension 1 + Mathematics Ext 2**: Avg ATAR 99.6 (3 students)
+- **English Extension 1 + Mathematics Ext 1 + Mathematics Ext 2**: Avg ATAR 99.6 (3 students)
+- **Economics + Mathematics Advanced + Mathematics Ext 2**: Avg ATAR 99.5 (3 students)
+- **English Advanced + History Extension + Mathematics Ext 1**: Avg ATAR 99.3 (4 students)
+- **History Extension + Mathematics Advanced + Mathematics Ext 1**: Avg ATAR 99.3 (4 students)
+- **History Extension + Mathematics Ext 1 + Modern History**: Avg ATAR 99.3 (4 students)
+- **Business Studies + English Advanced + Mathematics Ext 2**: Avg ATAR 99.2 (3 students)
+- **Business Studies + Mathematics Ext 1 + Mathematics Ext 2**: Avg ATAR 99.2 (3 students)
+- **English Advanced + English Extension 1 + Latin Continuers**: Avg ATAR 99.1 (3 students)
+
+---
+
+### Course Combinations Associated with Lower ATARs
+
+**Course pairs with average ATAR below 75:**
+
+- **Business Studies + English Standard**: Avg ATAR 58.5 (3 students)
+- **Biology + English Standard**: Avg ATAR 58.6 (5 students)
+- **English Standard + PDHPE**: Avg ATAR 60.6 (7 students)
+- **English Standard + Mathematics Standard 2**: Avg ATAR 62.6 (8 students)
+- **English Standard + Geography**: Avg ATAR 65.2 (3 students)
+- **Design and Technology + English Standard**: Avg ATAR 65.3 (3 students)
+
+*Note: These combinations may indicate students facing challenges or require additional support.*
+
+---
+
+### Hidden Cohorts - Potential for Extension Courses
+
+*Students in ATAR range 80-90 who took Advanced courses but NO extensions - potential candidates for extension courses:*
+
+**2022:** 22 students identified
+
+*Examples:*
+- Student 35344969 (ATAR 84.9): Taking English Advanced
+- Student 35345086 (ATAR 88.1): Taking Mathematics Advanced, English Advanced
+- Student 35345108 (ATAR 88.6): Taking Mathematics Advanced, English Advanced
+- Student 35345116 (ATAR 86.5): Taking English Advanced
+- Student 35345280 (ATAR 84.9): Taking English Advanced
+
+**2023:** 17 students identified
+
+*Examples:*
+- Student 35820515 (ATAR 83.8): Taking English Advanced, Mathematics Advanced
+- Student 36260033 (ATAR 86.3): Taking English Advanced
+- Student 36260122 (ATAR 83.2): Taking English Advanced
+- Student 36260130 (ATAR 89.0): Taking English Advanced, Mathematics Advanced
+- Student 36260149 (ATAR 88.2): Taking English Advanced
+
+**2024:** 20 students identified
+
+*Examples:*
+- Student 36828110 (ATAR 88.9): Taking English Advanced
+- Student 36909129 (ATAR 87.5): Taking English Advanced
+- Student 37250112 (ATAR 89.6): Taking English Advanced, Mathematics Advanced
+- Student 37250155 (ATAR 87.1): Taking English Advanced, Mathematics Advanced
+- Student 37250236 (ATAR 83.9): Taking English Advanced
 
 ---

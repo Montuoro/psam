@@ -302,6 +302,309 @@ def analyze_optimal_course_combinations(conn, year):
         'high_performing_pairs': sorted(high_performing_pairs, key=lambda x: x['avg_atar'], reverse=True)[:10]
     }
 
+def analyze_extension_trends_multiyear(conn, years=[2022, 2023, 2024]):
+    """
+    Track extension course uptake trends over multiple years
+    """
+    cursor = conn.cursor()
+
+    extension_trends = []
+    for year in years:
+        # Count students by number of extensions taken
+        cursor.execute("""
+            SELECT
+                sym.student_id,
+                COUNT(DISTINCT cr.course_id) as num_extensions
+            FROM student_year_metric sym
+            JOIN course_result cr ON sym.student_id = cr.student_id AND sym.year = cr.year
+            JOIN course c ON cr.course_id = c.course_id
+            WHERE sym.year = ?
+            AND (c.name LIKE '%Extension%' OR c.name LIKE '%Ext %')
+            GROUP BY sym.student_id
+        """, (year,))
+
+        extension_counts = Counter()
+        for row in cursor.fetchall():
+            student_id, num_extensions = row
+            extension_counts[num_extensions] += 1
+
+        # Get total cohort size
+        cursor.execute("""
+            SELECT COUNT(*) FROM student_year_metric WHERE year = ?
+        """, (year,))
+        cohort_size = cursor.fetchone()[0]
+
+        total_with_extensions = sum(extension_counts.values())
+
+        extension_trends.append({
+            'year': year,
+            'cohort_size': cohort_size,
+            'total_with_extensions': total_with_extensions,
+            'pct_with_extensions': (total_with_extensions / cohort_size * 100) if cohort_size > 0 else 0,
+            'by_count': dict(extension_counts)
+        })
+
+    return extension_trends
+
+def analyze_unit_strategy_multiyear(conn, years=[2022, 2023, 2024]):
+    """
+    Multi-year unit selection strategy with ASCII visualization
+    """
+    cursor = conn.cursor()
+
+    unit_data = []
+    for year in years:
+        cursor.execute("""
+            SELECT
+                sym.student_id,
+                sym.psam_score as atar,
+                COUNT(DISTINCT cr.course_id) as num_courses,
+                SUM(c2.units) as total_units
+            FROM student_year_metric sym
+            JOIN course_result cr ON sym.student_id = cr.student_id AND sym.year = cr.year
+            LEFT JOIN (
+                SELECT course_id, 2 as units FROM course
+            ) c2 ON cr.course_id = c2.course_id
+            WHERE sym.year = ?
+            GROUP BY sym.student_id
+        """, (year,))
+
+        students_by_units = defaultdict(list)
+        for row in cursor.fetchall():
+            student_id, atar, num_courses, total_units = row
+            unit_count = total_units if total_units else num_courses * 2
+            students_by_units[unit_count].append(atar)
+
+        # Calculate averages
+        unit_performance = {}
+        for units, atars in students_by_units.items():
+            if len(atars) >= 3:
+                unit_performance[units] = {
+                    'count': len(atars),
+                    'avg_atar': np.mean(atars),
+                    'median_atar': np.median(atars)
+                }
+
+        unit_data.append({
+            'year': year,
+            'unit_performance': unit_performance
+        })
+
+    # Create ASCII graph
+    ascii_graph = create_unit_atar_ascii_graph(unit_data)
+
+    return {
+        'unit_data': unit_data,
+        'ascii_graph': ascii_graph
+    }
+
+def create_unit_atar_ascii_graph(unit_data, width=60, height=15):
+    """
+    Create ASCII graph of unit count vs ATAR over multiple years
+    """
+    if not unit_data:
+        return "No data available"
+
+    # Collect all data points
+    all_points = []
+    for year_data in unit_data:
+        year = year_data['year']
+        for units, perf in year_data['unit_performance'].items():
+            all_points.append({
+                'year': year,
+                'units': units,
+                'avg_atar': perf['avg_atar']
+            })
+
+    if not all_points:
+        return "No data available"
+
+    # Get ranges
+    min_units = min(p['units'] for p in all_points)
+    max_units = max(p['units'] for p in all_points)
+    min_atar = 0
+    max_atar = 100
+
+    units_range = max_units - min_units
+    if units_range == 0:
+        units_range = 1
+
+    atar_range = max_atar - min_atar
+
+    # Create grid
+    grid = [[' ' for _ in range(width)] for _ in range(height)]
+
+    # Plot points
+    year_symbols = {unit_data[0]['year']: '1', unit_data[1]['year']: '2', unit_data[2]['year']: '3'}
+
+    for point in all_points:
+        x = int((point['units'] - min_units) / units_range * (width - 1))
+        y = height - 1 - int((point['avg_atar'] - min_atar) / atar_range * (height - 1))
+
+        if 0 <= x < width and 0 <= y < height:
+            symbol = year_symbols.get(point['year'], '*')
+            grid[y][x] = symbol
+
+    # Build output
+    lines = []
+    lines.append(f"  Unit Count vs ATAR (1={unit_data[0]['year']}, 2={unit_data[1]['year']}, 3={unit_data[2]['year']})")
+
+    for i, row in enumerate(grid):
+        atar_val = max_atar - (i * atar_range / (height - 1))
+        lines.append(f" {atar_val:3.0f} | {''.join(row)}")
+
+    lines.append("      +" + "-" * width)
+    lines.append(f"       {min_units:<{width//2}}{max_units:>{width//2}}")
+    lines.append("       Units -->")
+
+    return '\n'.join(lines)
+
+def analyze_triple_course_combinations(conn, year):
+    """
+    Find 3-course combinations that produce high ATARs
+    """
+    cursor = conn.cursor()
+
+    # Get course combinations and ATARs
+    cursor.execute("""
+        SELECT
+            sym.student_id,
+            sym.psam_score as atar,
+            GROUP_CONCAT(c.name) as courses
+        FROM student_year_metric sym
+        JOIN course_result cr ON sym.student_id = cr.student_id AND sym.year = cr.year
+        JOIN course c ON cr.course_id = c.course_id
+        WHERE sym.year = ?
+        GROUP BY sym.student_id
+        HAVING COUNT(DISTINCT c.course_id) >= 5
+    """, (year,))
+
+    # Find common course triples and their average ATAR
+    course_triple_atars = defaultdict(list)
+    for row in cursor.fetchall():
+        student_id, atar, courses_str = row
+        courses = sorted(courses_str.split(','))
+
+        # Look at triples of courses
+        for i in range(len(courses)):
+            for j in range(i+1, len(courses)):
+                for k in range(j+1, len(courses)):
+                    triple = f"{courses[i]} + {courses[j]} + {courses[k]}"
+                    course_triple_atars[triple].append(atar)
+
+    # Find high-performing triples
+    high_performing_triples = []
+    for triple, atars in course_triple_atars.items():
+        if len(atars) >= 3:  # At least 3 students
+            avg_atar = np.mean(atars)
+            if avg_atar > 90:
+                high_performing_triples.append({
+                    'courses': triple,
+                    'avg_atar': avg_atar,
+                    'num_students': len(atars)
+                })
+
+    return sorted(high_performing_triples, key=lambda x: x['avg_atar'], reverse=True)[:10]
+
+def analyze_poor_course_combinations(conn, year):
+    """
+    Find course combinations that produce lower ATARs
+    """
+    cursor = conn.cursor()
+
+    # Get course combinations and ATARs
+    cursor.execute("""
+        SELECT
+            sym.student_id,
+            sym.psam_score as atar,
+            GROUP_CONCAT(c.name) as courses
+        FROM student_year_metric sym
+        JOIN course_result cr ON sym.student_id = cr.student_id AND sym.year = cr.year
+        JOIN course c ON cr.course_id = c.course_id
+        WHERE sym.year = ?
+        GROUP BY sym.student_id
+        HAVING COUNT(DISTINCT c.course_id) >= 5
+    """, (year,))
+
+    # Find common course pairs and their average ATAR
+    course_pair_atars = defaultdict(list)
+    for row in cursor.fetchall():
+        student_id, atar, courses_str = row
+        courses = sorted(courses_str.split(','))
+
+        # Look at pairs of courses
+        for i in range(len(courses)):
+            for j in range(i+1, len(courses)):
+                pair = f"{courses[i]} + {courses[j]}"
+                course_pair_atars[pair].append(atar)
+
+    # Find low-performing pairs
+    low_performing_pairs = []
+    for pair, atars in course_pair_atars.items():
+        if len(atars) >= 3:  # At least 3 students
+            avg_atar = np.mean(atars)
+            if avg_atar < 75:
+                low_performing_pairs.append({
+                    'courses': pair,
+                    'avg_atar': avg_atar,
+                    'num_students': len(atars)
+                })
+
+    return sorted(low_performing_pairs, key=lambda x: x['avg_atar'])[:10]
+
+def analyze_hidden_cohorts(conn, years=[2022, 2023, 2024]):
+    """
+    Find 'hidden cohorts' - students in 80-90 ATAR range who might benefit from extensions
+    """
+    cursor = conn.cursor()
+
+    hidden_cohorts = []
+    for year in years:
+        # Find students in 80-90 range WITHOUT extensions
+        cursor.execute("""
+            SELECT DISTINCT
+                sym.student_id,
+                sym.psam_score as atar,
+                GROUP_CONCAT(c.name) as courses
+            FROM student_year_metric sym
+            JOIN course_result cr ON sym.student_id = cr.student_id AND sym.year = cr.year
+            JOIN course c ON cr.course_id = c.course_id
+            WHERE sym.year = ?
+            AND sym.psam_score BETWEEN 80 AND 90
+            AND sym.student_id NOT IN (
+                SELECT DISTINCT sym2.student_id
+                FROM student_year_metric sym2
+                JOIN course_result cr2 ON sym2.student_id = cr2.student_id AND sym2.year = cr2.year
+                JOIN course c2 ON cr2.course_id = c2.course_id
+                WHERE sym2.year = ?
+                AND (c2.name LIKE '%Extension%' OR c2.name LIKE '%Ext %')
+            )
+            GROUP BY sym.student_id
+        """, (year, year))
+
+        potential_students = []
+        for row in cursor.fetchall():
+            student_id, atar, courses_str = row
+            courses = courses_str.split(',')
+
+            # Look for students taking "Advanced" but not "Extension"
+            advanced_courses = [c for c in courses if 'Advanced' in c]
+
+            if advanced_courses:
+                potential_students.append({
+                    'student_id': student_id,
+                    'atar': atar,
+                    'advanced_courses': advanced_courses
+                })
+
+        hidden_cohorts.append({
+            'year': year,
+            'count': len(potential_students),
+            'examples': potential_students[:5]
+        })
+
+    return hidden_cohorts
+
 def generate_exploratory_insights(conn, year):
     """
     Main function to generate all exploratory insights
@@ -312,9 +615,14 @@ def generate_exploratory_insights(conn, year):
         'year': year,
         'course_selection': analyze_course_selection_optimization(conn, year),
         'extensions': analyze_extension_decisions(conn, year),
+        'extension_trends': analyze_extension_trends_multiyear(conn),
         'unit_strategy': analyze_unit_selection_strategy(conn, year),
+        'unit_strategy_multiyear': analyze_unit_strategy_multiyear(conn),
         'cohort_trends': analyze_cohort_trends_multiyear(conn),
-        'optimal_combinations': analyze_optimal_course_combinations(conn, year)
+        'optimal_combinations': analyze_optimal_course_combinations(conn, year),
+        'triple_combinations': analyze_triple_course_combinations(conn, year),
+        'poor_combinations': analyze_poor_course_combinations(conn, year),
+        'hidden_cohorts': analyze_hidden_cohorts(conn)
     }
 
     return insights
