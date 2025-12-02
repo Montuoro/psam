@@ -166,23 +166,27 @@ def generate_markdown_report(school_analysis, school_name, output_path):
             md.append("")
             md.append(f"- **{len(classes)} classes** in this course")
 
-            # Top 3 performing classes
-            top_classes = classes[:min(3, len(classes))]
-            if top_classes:
-                md.append(f"- *Top performing classes:*")
-                for cls in top_classes:
+            # Categorize by MXP gap
+            high_performing = [cls for cls in classes if cls['avg_mxp_gap'] > 0]
+            low_performing = [cls for cls in classes if cls['avg_mxp_gap'] < 0]
+            on_target = [cls for cls in classes if cls['avg_mxp_gap'] == 0]
+
+            # High-performing classes (above expected mean)
+            if high_performing:
+                md.append(f"- *High-performing classes (above expected mean):*")
+                # Sort by gap descending, show top 5
+                for cls in sorted(high_performing, key=lambda x: x['avg_mxp_gap'], reverse=True)[:5]:
                     teacher = cls['teacher_name'] if cls['teacher_name'] != 'Unknown' else 'Teacher unknown'
                     md.append(f"  - {cls['class_name']} ({teacher}): Avg scaled {cls['avg_scaled']:.1f}, MXP gap {cls['avg_mxp_gap']:+.1f}")
 
-            # Bottom 3 classes if there are concerns
-            if len(classes) >= 3:
-                bottom_classes = classes[-min(3, len(classes)):]
-                if bottom_classes and any(cls['avg_mxp_gap'] < -2 for cls in bottom_classes):
-                    md.append(f"- *Classes needing support:*")
-                    for cls in reversed(bottom_classes):
-                        if cls['avg_mxp_gap'] < -2:
-                            teacher = cls['teacher_name'] if cls['teacher_name'] != 'Unknown' else 'Teacher unknown'
-                            md.append(f"  - {cls['class_name']} ({teacher}): Avg scaled {cls['avg_scaled']:.1f}, MXP gap {cls['avg_mxp_gap']:+.1f}")
+            # Low-performing classes (below expected mean)
+            if low_performing:
+                md.append(f"- *Low-performing classes (below expected mean):*")
+                # Sort by gap ascending (most negative first), show worst 5
+                for cls in sorted(low_performing, key=lambda x: x['avg_mxp_gap'])[:5]:
+                    teacher = cls['teacher_name'] if cls['teacher_name'] != 'Unknown' else 'Teacher unknown'
+                    md.append(f"  - {cls['class_name']} ({teacher}): Avg scaled {cls['avg_scaled']:.1f}, MXP gap {cls['avg_mxp_gap']:+.1f}")
+
             md.append("")
 
         # DEEPER ANALYSIS
@@ -286,20 +290,33 @@ def generate_markdown_report(school_analysis, school_name, output_path):
             md.append("```")
             md.append("")
 
-        # CLASS-LEVEL ANALYSIS (positive tone for successful courses)
+        # CLASS-LEVEL ANALYSIS (same categorization for successful courses)
         if course_analysis.get('class_analysis') and len(course_analysis['class_analysis']) > 0:
             classes = course_analysis['class_analysis']
             md.append("**Class Performance:**")
             md.append("")
             md.append(f"- **{len(classes)} classes** in this course")
 
-            # Top 3 performing classes
-            top_classes = classes[:min(3, len(classes))]
-            if top_classes:
-                md.append(f"- *Excellent class performance:*")
-                for cls in top_classes:
+            # Categorize by MXP gap
+            high_performing = [cls for cls in classes if cls['avg_mxp_gap'] > 0]
+            low_performing = [cls for cls in classes if cls['avg_mxp_gap'] < 0]
+
+            # High-performing classes (above expected mean)
+            if high_performing:
+                md.append(f"- *High-performing classes (above expected mean):*")
+                # Sort by gap descending, show top 5
+                for cls in sorted(high_performing, key=lambda x: x['avg_mxp_gap'], reverse=True)[:5]:
                     teacher = cls['teacher_name'] if cls['teacher_name'] != 'Unknown' else 'Teacher unknown'
                     md.append(f"  - {cls['class_name']} ({teacher}): Avg scaled {cls['avg_scaled']:.1f}, MXP gap {cls['avg_mxp_gap']:+.1f}")
+
+            # Low-performing classes (below expected mean)
+            if low_performing:
+                md.append(f"- *Low-performing classes (below expected mean):*")
+                # Sort by gap ascending (most negative first), show worst 5
+                for cls in sorted(low_performing, key=lambda x: x['avg_mxp_gap'])[:5]:
+                    teacher = cls['teacher_name'] if cls['teacher_name'] != 'Unknown' else 'Teacher unknown'
+                    md.append(f"  - {cls['class_name']} ({teacher}): Avg scaled {cls['avg_scaled']:.1f}, MXP gap {cls['avg_mxp_gap']:+.1f}")
+
             md.append("")
 
         # HIGHLIGHTS

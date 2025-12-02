@@ -200,13 +200,11 @@
 **Class Performance:**
 
 - **4 classes** in this course
-- *Top performing classes:*
+- *High-performing classes (above expected mean):*
   - Biology - 3121 - B (Teacher unknown): Avg scaled 38.6, MXP gap +0.5
-  - Biology - 3121 - D (Teacher unknown): Avg scaled 34.4, MXP gap -2.5
+- *Low-performing classes (below expected mean):*
   - Biology - 3121 - C (Teacher unknown): Avg scaled 34.3, MXP gap -5.2
-- *Classes needing support:*
   - Biology - 3121 - A (Teacher unknown): Avg scaled 32.6, MXP gap -4.9
-  - Biology - 3121 - C (Teacher unknown): Avg scaled 34.3, MXP gap -5.2
   - Biology - 3121 - D (Teacher unknown): Avg scaled 34.4, MXP gap -2.5
 
 **Deeper Analysis:**
@@ -289,9 +287,9 @@
 **Class Performance:**
 
 - **3 classes** in this course
-- *Top performing classes:*
-  - Business Studies - 5121 - A (Teacher unknown): Avg scaled 41.0, MXP gap +3.3
+- *High-performing classes (above expected mean):*
   - Business Studies - 5121 - B (Teacher unknown): Avg scaled 40.0, MXP gap +4.8
+  - Business Studies - 5121 - A (Teacher unknown): Avg scaled 41.0, MXP gap +3.3
   - Business Studies - 5121 - C (Teacher unknown): Avg scaled 36.7, MXP gap +1.1
 
 **Deeper Analysis:**
@@ -374,12 +372,11 @@
 **Class Performance:**
 
 - **4 classes** in this course
-- *Top performing classes:*
+- *Low-performing classes (below expected mean):*
+  - Chemistry - 3122 - B (Teacher unknown): Avg scaled 36.5, MXP gap -3.8
+  - Chemistry - 3122 - D (Teacher unknown): Avg scaled 36.8, MXP gap -1.6
   - Chemistry - 3122 - A (Teacher unknown): Avg scaled 39.9, MXP gap -0.9
   - Chemistry - 3122 - C (Teacher unknown): Avg scaled 39.3, MXP gap -0.1
-  - Chemistry - 3122 - D (Teacher unknown): Avg scaled 36.8, MXP gap -1.6
-- *Classes needing support:*
-  - Chemistry - 3122 - B (Teacher unknown): Avg scaled 36.5, MXP gap -3.8
 
 **Deeper Analysis:**
 
@@ -578,9 +575,9 @@
 **Class Performance:**
 
 - **2 classes** in this course
-- *Top performing classes:*
-  - Design and Technology - 4120 - C (Teacher unknown): Avg scaled 38.3, MXP gap +0.5
+- *High-performing classes (above expected mean):*
   - Design and Technology - 4120 - B (Teacher unknown): Avg scaled 38.2, MXP gap +3.6
+  - Design and Technology - 4120 - C (Teacher unknown): Avg scaled 38.3, MXP gap +0.5
 
 **Deeper Analysis:**
 
@@ -660,7 +657,7 @@
 **Class Performance:**
 
 - **1 classes** in this course
-- *Top performing classes:*
+- *Low-performing classes (below expected mean):*
   - Drama - 8121 - A (Teacher unknown): Avg scaled 35.3, MXP gap -0.8
 
 **Deeper Analysis:**
@@ -743,10 +740,11 @@
 **Class Performance:**
 
 - **3 classes** in this course
-- *Top performing classes:*
+- *High-performing classes (above expected mean):*
   - Economics - 5122 - C (Teacher unknown): Avg scaled 40.6, MXP gap +1.6
-  - Economics - 5122 - A (Teacher unknown): Avg scaled 40.2, MXP gap -0.5
   - Economics - 5122 - B (Teacher unknown): Avg scaled 39.3, MXP gap +0.6
+- *Low-performing classes (below expected mean):*
+  - Economics - 5122 - A (Teacher unknown): Avg scaled 40.2, MXP gap -0.5
 
 **Deeper Analysis:**
 
@@ -828,10 +826,17 @@
 **Class Performance:**
 
 - **10 classes** in this course
-- *Top performing classes:*
-  - English Advanced - 1120 - C (Teacher unknown): Avg scaled 43.9, MXP gap +3.8
+- *High-performing classes (above expected mean):*
   - English Extension 1 - 1123 - BX (Teacher unknown): Avg scaled 42.9, MXP gap +3.8
+  - English Advanced - 1120 - C (Teacher unknown): Avg scaled 43.9, MXP gap +3.8
+  - English Extension 2 - 1124 - AY (Teacher unknown): Avg scaled 41.8, MXP gap +3.7
+  - English Extension 1 - 1123 - AX (Teacher unknown): Avg scaled 42.1, MXP gap +3.1
   - English Advanced - 1120 - A (Teacher unknown): Avg scaled 42.4, MXP gap +2.5
+- *Low-performing classes (below expected mean):*
+  - English Advanced - 1120 - E (Teacher unknown): Avg scaled 35.8, MXP gap -1.2
+  - English Advanced - 1120 - F (Teacher unknown): Avg scaled 35.9, MXP gap -0.8
+  - English Advanced - 1120 - G (Teacher unknown): Avg scaled 35.9, MXP gap -0.8
+  - English Advanced - 1120 - B (Teacher unknown): Avg scaled 39.0, MXP gap -0.4
 
 **Deeper Analysis:**
 
@@ -913,10 +918,14 @@
 **Class Performance:**
 
 - **6 classes** in this course
-- *Top performing classes:*
-  - English Advanced - 1120 - C (Teacher unknown): Avg scaled 41.6, MXP gap +0.9
+- *High-performing classes (above expected mean):*
   - English Extension 1 - 1123 - BX (Teacher unknown): Avg scaled 40.9, MXP gap +2.0
   - English Advanced - 1120 - D (Teacher unknown): Avg scaled 40.7, MXP gap +1.0
+  - English Advanced - 1120 - C (Teacher unknown): Avg scaled 41.6, MXP gap +0.9
+  - English Extension 2 - 1124 - AY (Teacher unknown): Avg scaled 39.3, MXP gap +0.5
+  - English Extension 1 - 1123 - AX (Teacher unknown): Avg scaled 39.4, MXP gap +0.2
+- *Low-performing classes (below expected mean):*
+  - English Advanced - 1120 - A (Teacher unknown): Avg scaled 38.2, MXP gap -0.3
 
 **Deeper Analysis:**
 
@@ -997,11 +1006,11 @@
 **Class Performance:**
 
 - **4 classes** in this course
-- *Top performing classes:*
-  - English Extension 1 - 1123 - BX (Teacher unknown): Avg scaled 44.9, MXP gap +4.6
+- *High-performing classes (above expected mean):*
   - English Advanced - 1120 - C (Teacher unknown): Avg scaled 44.8, MXP gap +5.2
+  - English Extension 1 - 1123 - BX (Teacher unknown): Avg scaled 44.9, MXP gap +4.6
   - English Extension 2 - 1124 - AY (Teacher unknown): Avg scaled 40.7, MXP gap +1.4
-- *Classes needing support:*
+- *Low-performing classes (below expected mean):*
   - English Extension 1 - 1123 - AX (Teacher unknown): Avg scaled 33.6, MXP gap -4.8
 
 **Deeper Analysis:**
@@ -1080,7 +1089,7 @@
 **Class Performance:**
 
 - **1 classes** in this course
-- *Top performing classes:*
+- *Low-performing classes (below expected mean):*
   - English Standard - 1122 - A (Teacher unknown): Avg scaled 25.9, MXP gap -5.8
 
 **Deeper Analysis:**
@@ -1161,7 +1170,7 @@
 **Class Performance:**
 
 - **1 classes** in this course
-- *Top performing classes:*
+- *Low-performing classes (below expected mean):*
   - French Continuers - 7121 - A (Teacher unknown): Avg scaled 35.9, MXP gap -2.5
 
 **Deeper Analysis:**
@@ -1233,10 +1242,11 @@
 **Class Performance:**
 
 - **3 classes** in this course
-- *Top performing classes:*
-  - Geography - 5123 - B (Teacher unknown): Avg scaled 38.1, MXP gap -0.4
-  - Geography - 5123 - C (Teacher unknown): Avg scaled 37.8, MXP gap -0.4
+- *High-performing classes (above expected mean):*
   - Geography - 5123 - A (Teacher unknown): Avg scaled 36.9, MXP gap +2.0
+- *Low-performing classes (below expected mean):*
+  - Geography - 5123 - C (Teacher unknown): Avg scaled 37.8, MXP gap -0.4
+  - Geography - 5123 - B (Teacher unknown): Avg scaled 38.1, MXP gap -0.4
 
 **Deeper Analysis:**
 
@@ -1316,7 +1326,7 @@
 **Class Performance:**
 
 - **1 classes** in this course
-- *Top performing classes:*
+- *Low-performing classes (below expected mean):*
   - German Continuers - 7122 - AX (Teacher unknown): Avg scaled 25.7, MXP gap -14.0
 
 **Deeper Analysis:**
@@ -1452,12 +1462,15 @@
 **Class Performance:**
 
 - **9 classes** in this course
-- *Top performing classes:*
+- *High-performing classes (above expected mean):*
   - Mathematics Ext 2 - 2126 - AY (Teacher unknown): Avg scaled 45.4, MXP gap +2.9
   - Mathematics Ext 1 - 2920 - AX (Teacher unknown): Avg scaled 45.4, MXP gap +2.9
   - Mathematics - 2128 - A (Teacher unknown): Avg scaled 45.4, MXP gap +2.9
-- *Classes needing support:*
+  - Mathematics Ext 1 - 2920 - CX (Teacher unknown): Avg scaled 41.4, MXP gap +1.5
+  - Mathematics - 2128 - C (Teacher unknown): Avg scaled 41.4, MXP gap +1.5
+- *Low-performing classes (below expected mean):*
   - Mathematics - 2128 - F (Teacher unknown): Avg scaled 33.8, MXP gap -4.1
+  - Mathematics - 2128 - E (Teacher unknown): Avg scaled 35.9, MXP gap -1.0
 
 **Deeper Analysis:**
 
@@ -1539,10 +1552,12 @@
 **Class Performance:**
 
 - **10 classes** in this course
-- *Top performing classes:*
+- *High-performing classes (above expected mean):*
+  - Mathematics Ext 2 - 2126 - BY (Betina Wrightson): Avg scaled 44.6, MXP gap +4.0
+  - Mathematics Ext 1 - 2920 - BX (Betina Wrightson): Avg scaled 44.6, MXP gap +4.0
+  - Mathematics - 2128 - B (Betina Wrightson): Avg scaled 44.6, MXP gap +4.0
   - Mathematics Ext 2 - 2126 - AY (Teacher unknown): Avg scaled 46.1, MXP gap +3.6
   - Mathematics Ext 1 - 2920 - AX (Teacher unknown): Avg scaled 46.1, MXP gap +3.6
-  - Mathematics - 2128 - A (Teacher unknown): Avg scaled 46.1, MXP gap +3.6
 
 **Deeper Analysis:**
 
@@ -1624,10 +1639,12 @@
 **Class Performance:**
 
 - **6 classes** in this course
-- *Top performing classes:*
+- *High-performing classes (above expected mean):*
   - Mathematics Ext 2 - 2126 - AY (Teacher unknown): Avg scaled 45.8, MXP gap +3.2
   - Mathematics Ext 1 - 2920 - AX (Teacher unknown): Avg scaled 45.8, MXP gap +3.2
   - Mathematics - 2128 - A (Teacher unknown): Avg scaled 45.8, MXP gap +3.2
+  - Mathematics Ext 2 - 2126 - BY (Betina Wrightson): Avg scaled 43.9, MXP gap +3.1
+  - Mathematics Ext 1 - 2920 - BX (Betina Wrightson): Avg scaled 43.9, MXP gap +3.1
 
 **Deeper Analysis:**
 
@@ -1706,12 +1723,11 @@
 **Class Performance:**
 
 - **3 classes** in this course
-- *Top performing classes:*
+- *High-performing classes (above expected mean):*
   - Mathematics Std 2 - 2127 - G (Teacher unknown): Avg scaled 38.2, MXP gap +0.9
+- *Low-performing classes (below expected mean):*
+  - Mathematics Std 2 - 2127 - I (Teacher unknown): Avg scaled 27.6, MXP gap -4.1
   - Mathematics Std 2 - 2127 - H (Teacher unknown): Avg scaled 33.9, MXP gap -0.9
-  - Mathematics Std 2 - 2127 - I (Teacher unknown): Avg scaled 27.6, MXP gap -4.1
-- *Classes needing support:*
-  - Mathematics Std 2 - 2127 - I (Teacher unknown): Avg scaled 27.6, MXP gap -4.1
 
 **Deeper Analysis:**
 
@@ -1793,7 +1809,7 @@
 **Class Performance:**
 
 - **3 classes** in this course
-- *Top performing classes:*
+- *High-performing classes (above expected mean):*
   - Modern History - 6121 - A (Teacher unknown): Avg scaled 43.0, MXP gap +3.8
   - Modern History - 6121 - B (Teacher unknown): Avg scaled 39.2, MXP gap +2.3
   - Modern History - 6121 - C (Teacher unknown): Avg scaled 37.1, MXP gap +0.2
@@ -1878,9 +1894,9 @@
 **Class Performance:**
 
 - **2 classes** in this course
-- *Top performing classes:*
-  - PDHPE - 9121 - B (Teacher unknown): Avg scaled 33.5, MXP gap -2.2
+- *Low-performing classes (below expected mean):*
   - PDHPE - 9121 - A (Teacher unknown): Avg scaled 30.0, MXP gap -4.4
+  - PDHPE - 9121 - B (Teacher unknown): Avg scaled 33.5, MXP gap -2.2
 
 **Deeper Analysis:**
 
@@ -1962,9 +1978,9 @@
 **Class Performance:**
 
 - **2 classes** in this course
-- *Top performing classes:*
-  - Physics - 3124 - A (Teacher unknown): Avg scaled 38.3, MXP gap -2.9
+- *Low-performing classes (below expected mean):*
   - Physics - 3124 - B (Teacher unknown): Avg scaled 34.9, MXP gap -6.9
+  - Physics - 3124 - A (Teacher unknown): Avg scaled 38.3, MXP gap -2.9
 
 **Deeper Analysis:**
 
@@ -2114,7 +2130,7 @@
 **Class Performance:**
 
 - **1 classes** in this course
-- *Top performing classes:*
+- *Low-performing classes (below expected mean):*
   - Studies of Religion II - 0126 - A (Teacher unknown): Avg scaled 36.0, MXP gap -1.0
 
 **Deeper Analysis:**
@@ -2194,9 +2210,10 @@
 **Class Performance:**
 
 - **3 classes** in this course
-- *Top performing classes:*
-  - Visual Arts - 8124 - A (Teacher unknown): Avg scaled 39.5, MXP gap +2.5
+- *High-performing classes (above expected mean):*
   - Visual Arts - 8124 - C (Teacher unknown): Avg scaled 36.0, MXP gap +3.4
+  - Visual Arts - 8124 - A (Teacher unknown): Avg scaled 39.5, MXP gap +2.5
+- *Low-performing classes (below expected mean):*
   - Visual Arts - 8124 - B (Teacher unknown): Avg scaled 35.6, MXP gap -0.5
 
 **Deeper Analysis:**
@@ -2279,7 +2296,7 @@
 **Class Performance:**
 
 - **1 classes** in this course
-- *Excellent class performance:*
+- *High-performing classes (above expected mean):*
   - Ancient History - 6120 - A (Teacher unknown): Avg scaled 42.6, MXP gap +4.5
 
 **Highlights:**
@@ -2337,7 +2354,7 @@
 **Class Performance:**
 
 - **2 classes** in this course
-- *Excellent class performance:*
+- *High-performing classes (above expected mean):*
   - Chinese Extension - 7120C - AX (Teacher unknown): Avg scaled 42.7, MXP gap +8.0
   - Chinese Continuers 1 - 7120B - A (Teacher unknown): Avg scaled 40.6, MXP gap +3.5
 
@@ -2396,7 +2413,7 @@
 **Class Performance:**
 
 - **2 classes** in this course
-- *Excellent class performance:*
+- *High-performing classes (above expected mean):*
   - Chinese Extension - 7120C - AX (Teacher unknown): Avg scaled 40.7, MXP gap +5.9
   - Chinese Continuers 1 - 7120B - A (Teacher unknown): Avg scaled 40.7, MXP gap +5.9
 
@@ -2455,7 +2472,7 @@
 **Class Performance:**
 
 - **1 classes** in this course
-- *Excellent class performance:*
+- *High-performing classes (above expected mean):*
   - Chinese in Context - 7120E - A (Teacher unknown): Avg scaled 41.6, MXP gap +2.4
 
 **Highlights:**
@@ -2513,7 +2530,7 @@
 **Class Performance:**
 
 - **1 classes** in this course
-- *Excellent class performance:*
+- *High-performing classes (above expected mean):*
   - Earth & Env Science - 3128 - A (Teacher unknown): Avg scaled 40.7, MXP gap +1.6
 
 **Highlights:**
@@ -2673,7 +2690,7 @@
 **Class Performance:**
 
 - **1 classes** in this course
-- *Excellent class performance:*
+- *High-performing classes (above expected mean):*
   - History Extension - 6124 - AX (Teacher unknown): Avg scaled 42.2, MXP gap +2.5
 
 **Highlights:**
@@ -2782,8 +2799,9 @@
 **Class Performance:**
 
 - **2 classes** in this course
-- *Excellent class performance:*
+- *High-performing classes (above expected mean):*
   - Latin Extension - 7128 - AX (Teacher unknown): Avg scaled 38.7, MXP gap +0.7
+- *Low-performing classes (below expected mean):*
   - Latin Continuers - 7124 - A (Teacher unknown): Avg scaled 38.7, MXP gap -0.7
 
 **Highlights:**
@@ -2841,7 +2859,7 @@
 **Class Performance:**
 
 - **2 classes** in this course
-- *Excellent class performance:*
+- *High-performing classes (above expected mean):*
   - Latin Extension - 7128 - AX (Teacher unknown): Avg scaled 39.8, MXP gap +1.3
   - Latin Continuers - 7124 - A (Teacher unknown): Avg scaled 39.8, MXP gap +1.3
 
@@ -2900,7 +2918,7 @@
 **Class Performance:**
 
 - **1 classes** in this course
-- *Excellent class performance:*
+- *High-performing classes (above expected mean):*
   - Music 1 - 8125 - B (Teacher unknown): Avg scaled 40.8, MXP gap +7.3
 
 **Highlights:**
@@ -3060,7 +3078,7 @@
 **Class Performance:**
 
 - **1 classes** in this course
-- *Excellent class performance:*
+- *High-performing classes (above expected mean):*
   - Science Extension - 3129 - A (Teacher unknown): Avg scaled 33.8, MXP gap +3.3
 
 **Highlights:**
@@ -3118,7 +3136,7 @@
 **Class Performance:**
 
 - **1 classes** in this course
-- *Excellent class performance:*
+- *Low-performing classes (below expected mean):*
   - Studies of Religion I - 0120 - A (Teacher unknown): Avg scaled 37.7, MXP gap -1.7
 
 **Highlights:**
