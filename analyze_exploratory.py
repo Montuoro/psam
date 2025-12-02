@@ -449,27 +449,45 @@ def create_unit_atar_ascii_graph(unit_data, width=60, height=15):
 
     atar_range = max_atar - min_atar
 
-    # Create grid
-    grid = [[' ' for _ in range(width)] for _ in range(height)]
+    # Create grid (store lists to handle multiple points at same position)
+    grid = [[[] for _ in range(width)] for _ in range(height)]
+
+    # Create year symbol mapping dynamically
+    year_symbols = {}
+    for i, year_data in enumerate(unit_data):
+        year_symbols[year_data['year']] = str(i + 1)
 
     # Plot points
-    year_symbols = {unit_data[0]['year']: '1', unit_data[1]['year']: '2', unit_data[2]['year']: '3'}
-
     for point in all_points:
         x = int((point['units'] - min_units) / units_range * (width - 1))
         y = height - 1 - int((point['avg_atar'] - min_atar) / atar_range * (height - 1))
 
         if 0 <= x < width and 0 <= y < height:
             symbol = year_symbols.get(point['year'], '*')
-            grid[y][x] = symbol
+            if symbol not in grid[y][x]:
+                grid[y][x].append(symbol)
+
+    # Convert grid lists to strings (combine symbols if multiple at same position)
+    display_grid = []
+    for row in grid:
+        display_row = []
+        for cell in row:
+            if cell:
+                # Sort to always show in order: 1, 2, 3
+                display_row.append(''.join(sorted(cell)))
+            else:
+                display_row.append(' ')
+        display_grid.append(display_row)
 
     # Build output
     lines = []
     lines.append(f"  Unit Count vs ATAR (1={unit_data[0]['year']}, 2={unit_data[1]['year']}, 3={unit_data[2]['year']})")
 
-    for i, row in enumerate(grid):
+    for i, row in enumerate(display_grid):
         atar_val = max_atar - (i * atar_range / (height - 1))
-        lines.append(f" {atar_val:3.0f} | {''.join(row)}")
+        # Pad each cell to ensure consistent spacing
+        display_row = ''.join(cell if cell != ' ' else ' ' for cell in row)
+        lines.append(f" {atar_val:3.0f} | {display_row}")
 
     lines.append("      +" + "-" * width)
     lines.append(f"       {min_units:<{width//2}}{max_units:>{width//2}}")
