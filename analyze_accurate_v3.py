@@ -627,7 +627,7 @@ def analyze_school(conn, year):
         SELECT
             AVG(psam_score) as avg_atar,
             MIN(psam_score) as min_atar,
-            LEAST(MAX(psam_score), 99.95) as max_atar,
+            MAX(psam_score) as max_atar,
             COUNT(*) as total_students
         FROM student_year_metric
         WHERE year = ?
@@ -635,6 +635,8 @@ def analyze_school(conn, year):
     """, (year,))
 
     school_stats = cursor.fetchone()
+    # Cap max ATAR at 99.95
+    school_stats = (school_stats[0], school_stats[1], min(school_stats[2], 99.95), school_stats[3])
 
     # Count total students including NG
     cursor.execute("""

@@ -210,7 +210,7 @@ def analyze_cohort_trends_multiyear(conn, years=[2022, 2023, 2024]):
             SELECT
                 AVG(psam_score) as avg_atar,
                 MIN(psam_score) as min_atar,
-                LEAST(MAX(psam_score), 99.95) as max_atar,
+                MAX(psam_score) as max_atar,
                 COUNT(*) as cohort_size
             FROM student_year_metric
             WHERE year = ?
@@ -218,6 +218,8 @@ def analyze_cohort_trends_multiyear(conn, years=[2022, 2023, 2024]):
         """, (year,))
 
         atar_stats = cursor.fetchone()
+        # Cap max ATAR at 99.95
+        atar_stats = (atar_stats[0], atar_stats[1], min(atar_stats[2], 99.95), atar_stats[3])
 
         # Mean HSC mark and scaled mark across all courses
         cursor.execute("""
