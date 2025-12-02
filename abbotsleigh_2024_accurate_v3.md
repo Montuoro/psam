@@ -3147,3 +3147,108 @@
 3. Student 37250147: ATAR 97.8, Scaled 42.4, Rank 4
 
 ---
+
+## Exploratory Insights
+
+*This section provides deep cohort-level analysis to identify patterns, trends, and optimization opportunities that may not be immediately visible in course-level data.*
+
+---
+
+### Course Selection Optimization
+
+**Analysis of 205 students** to identify potential course selection mismatches:
+
+**Found 3 students** with interesting patterns:
+
+- **Student 37250856** (ATAR 92.9): High ATAR student with many low-scaled courses
+  - Low-scaled courses: Software Design & Develop, Physics, Biology
+- **Student 37251674** (ATAR 90.5): High ATAR student with many low-scaled courses
+  - Low-scaled courses: Mathematics Ext 1, Latin Extension, Latin Continuers
+- **Student 37722030** (ATAR 0.0): Low ATAR despite high-scaled courses
+  - High-scaled courses: Latin Continuers, Mathematics Advanced
+
+---
+
+### Extension Course Performance
+
+**100 students** took extension courses:
+
+**High-performing extension students (5 students):**
+
+- Student 37250104 (ATAR 94.5): Mathematics Ext 1, Mathematics Ext 2
+- Student 36254106 (ATAR 95.8): Mathematics Ext 1, Mathematics Ext 2
+- Student 36254122 (ATAR 99.2): Mathematics Ext 2, Mathematics Ext 1, English Extension 1
+- Student 37250201 (ATAR 99.6): Mathematics Ext 1, Mathematics Ext 2
+- Student 36254130 (ATAR 99.9): Mathematics Ext 1, History Extension
+
+**Students struggling in extensions (2 students):**
+
+- Student 37251399 (ATAR 86.0): English Extension 2
+- Student 37251666 (ATAR 72.4): Science Extension
+
+---
+
+### Unit Selection Strategy
+
+**3 students** took more than 10 units.
+
+**Average ATAR by unit count:**
+
+- **2 units** (29 students): Avg ATAR 0.0, Median 0.0
+- **10 units** (44 students): Avg ATAR 82.2, Median 87.4
+- **12 units** (96 students): Avg ATAR 92.6, Median 94.3
+- **14 units** (29 students): Avg ATAR 97.2, Median 98.6
+- **16 units** (6 students): Avg ATAR 98.8, Median 99.3
+
+---
+
+### Multi-Year Cohort Trends
+
+**Cohort statistics over time:**
+
+**2022:**
+- Cohort size: 181 students
+- Average ATAR: 77.64
+- ATAR range: 0.0 - 99.9
+- Extension students: 94 (51.9%)
+
+**2023:**
+- Cohort size: 200 students
+- Average ATAR: 80.33
+- ATAR range: 0.0 - 100.0
+- Extension students: 110 (55.0%)
+
+**2024:**
+- Cohort size: 205 students
+- Average ATAR: 77.67
+- ATAR range: 0.0 - 100.0
+- Extension students: 100 (48.8%)
+
+**Year-over-year changes:**
+
+**2022 → 2023:**
+- ATAR change: ↑ 2.68 points
+- Extension uptake: ↑ 3.1%
+
+**2023 → 2024:**
+- ATAR change: ↓ 2.65 points
+- Extension uptake: ↓ 6.2%
+
+---
+
+### High-Performing Course Combinations
+
+**Top 10 course combinations** with highest average ATARs:
+
+- **English Extension 1 + Mathematics Ext 2**: Avg ATAR 99.6 (3 students)
+- **History Extension + Mathematics Ext 1**: Avg ATAR 99.3 (4 students)
+- **Business Studies + Mathematics Ext 2**: Avg ATAR 99.2 (3 students)
+- **English Extension 1 + Latin Continuers**: Avg ATAR 99.1 (3 students)
+- **English Extension 1 + Latin Extension**: Avg ATAR 99.1 (3 students)
+- **Geography + Physics**: Avg ATAR 98.8 (3 students)
+- **History Extension + Mathematics Advanced**: Avg ATAR 98.7 (5 students)
+- **Mathematics Advanced + Mathematics Ext 2**: Avg ATAR 98.4 (17 students)
+- **Economics + Mathematics Ext 2**: Avg ATAR 98.4 (10 students)
+- **English Advanced + History Extension**: Avg ATAR 98.2 (7 students)
+
+---

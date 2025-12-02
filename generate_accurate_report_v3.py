@@ -5,15 +5,17 @@ New features:
 2. YoY change and difference to school mean
 3. ASCII scatter plot (scaled mark vs ATAR)
 4. Class-level analysis
+5. Exploratory insights (cohort-level deep analysis)
 """
 import sqlite3
 from pathlib import Path
 from datetime import datetime
 from analyze_accurate_v3 import analyze_school
+from analyze_exploratory import generate_exploratory_insights
 
-def generate_markdown_report(school_analysis, school_name, output_path):
+def generate_markdown_report(school_analysis, school_name, output_path, conn=None, year=None):
     """
-    Generate markdown report with all V2 corrections
+    Generate markdown report with all V3 features including exploratory insights
     """
     md = []
 
@@ -334,21 +336,153 @@ def generate_markdown_report(school_analysis, school_name, output_path):
         md.append("---")
         md.append("")
 
+    # === EXPLORATORY INSIGHTS ===
+    # NEW ADDITION: Deep cohort-level analysis across multiple years
+    if conn and year:
+        md.append("## Exploratory Insights")
+        md.append("")
+        md.append("*This section provides deep cohort-level analysis to identify patterns, trends, and optimization opportunities that may not be immediately visible in course-level data.*")
+        md.append("")
+        md.append("---")
+        md.append("")
+
+        try:
+            insights = generate_exploratory_insights(conn, year)
+
+            # 1. Course Selection Optimization
+            md.append("### Course Selection Optimization")
+            md.append("")
+            cs = insights['course_selection']
+            md.append(f"**Analysis of {cs['total_students']} students** to identify potential course selection mismatches:")
+            md.append("")
+
+            if cs['mismatches']:
+                md.append(f"**Found {len(cs['mismatches'])} students** with interesting patterns:")
+                md.append("")
+                for mismatch in cs['mismatches']:
+                    md.append(f"- **Student {mismatch['student_id']}** (ATAR {mismatch['atar']:.1f}): {mismatch['issue']}")
+                    if 'low_courses' in mismatch:
+                        md.append(f"  - Low-scaled courses: {', '.join(mismatch['low_courses'])}")
+                    if 'high_courses' in mismatch:
+                        md.append(f"  - High-scaled courses: {', '.join(mismatch['high_courses'])}")
+                md.append("")
+            else:
+                md.append("No significant course selection mismatches detected.")
+                md.append("")
+
+            md.append("---")
+            md.append("")
+
+            # 2. Extension Course Decisions
+            md.append("### Extension Course Performance")
+            md.append("")
+            ext = insights['extensions']
+            md.append(f"**{ext['total_extension_students']} students** took extension courses:")
+            md.append("")
+
+            if ext['successful_extensions']:
+                md.append(f"**High-performing extension students ({len(ext['successful_extensions'])} students):**")
+                md.append("")
+                for student in ext['successful_extensions']:
+                    md.append(f"- Student {student['student_id']} (ATAR {student['atar']:.1f}): {', '.join(student['extensions'])}")
+                md.append("")
+
+            if ext['struggling_extensions']:
+                md.append(f"**Students struggling in extensions ({len(ext['struggling_extensions'])} students):**")
+                md.append("")
+                for student in ext['struggling_extensions']:
+                    md.append(f"- Student {student['student_id']} (ATAR {student['atar']:.1f}): {', '.join(student['struggling_in'])}")
+                md.append("")
+
+            md.append("---")
+            md.append("")
+
+            # 3. Unit Selection Strategy
+            md.append("### Unit Selection Strategy")
+            md.append("")
+            us = insights['unit_strategy']
+            md.append(f"**{us['students_over_10']} students** took more than 10 units.")
+            md.append("")
+
+            if us['unit_performance']:
+                md.append("**Average ATAR by unit count:**")
+                md.append("")
+                for units, perf in sorted(us['unit_performance'].items()):
+                    md.append(f"- **{units} units** ({perf['count']} students): Avg ATAR {perf['avg_atar']:.1f}, Median {perf['median_atar']:.1f}")
+                md.append("")
+
+            md.append("---")
+            md.append("")
+
+            # 4. Multi-Year Cohort Trends
+            md.append("### Multi-Year Cohort Trends")
+            md.append("")
+            ct = insights['cohort_trends']
+
+            if ct['cohort_stats']:
+                md.append("**Cohort statistics over time:**")
+                md.append("")
+                for stat in ct['cohort_stats']:
+                    md.append(f"**{stat['year']}:**")
+                    md.append(f"- Cohort size: {stat['cohort_size']} students")
+                    md.append(f"- Average ATAR: {stat['avg_atar']:.2f}")
+                    md.append(f"- ATAR range: {stat['min_atar']:.1f} - {stat['max_atar']:.1f}")
+                    md.append(f"- Extension students: {stat['extension_students']} ({stat['extension_pct']:.1f}%)")
+                    md.append("")
+
+            if ct['trends']:
+                md.append("**Year-over-year changes:**")
+                md.append("")
+                for trend in ct['trends']:
+                    atar_dir = "↑" if trend['atar_change'] > 0 else "↓"
+                    ext_dir = "↑" if trend['extension_pct_change'] > 0 else "↓"
+                    md.append(f"**{trend['from_year']} → {trend['to_year']}:**")
+                    md.append(f"- ATAR change: {atar_dir} {abs(trend['atar_change']):.2f} points")
+                    md.append(f"- Extension uptake: {ext_dir} {abs(trend['extension_pct_change']):.1f}%")
+                    md.append("")
+
+            md.append("---")
+            md.append("")
+
+            # 5. Optimal Course Combinations
+            md.append("### High-Performing Course Combinations")
+            md.append("")
+            oc = insights['optimal_combinations']
+
+            if oc['high_performing_pairs']:
+                md.append(f"**Top {len(oc['high_performing_pairs'])} course combinations** with highest average ATARs:")
+                md.append("")
+                for pair in oc['high_performing_pairs']:
+                    md.append(f"- **{pair['courses']}**: Avg ATAR {pair['avg_atar']:.1f} ({pair['num_students']} students)")
+                md.append("")
+            else:
+                md.append("Insufficient data to identify course combination patterns.")
+                md.append("")
+
+            md.append("---")
+            md.append("")
+
+        except Exception as e:
+            md.append(f"*Error generating exploratory insights: {str(e)}*")
+            md.append("")
+
     # Write to file
     output_path.write_text('\n'.join(md), encoding='utf-8')
     return str(output_path)
 
 if __name__ == "__main__":
-    print("Generating accurate report V3...")
+    print("Generating accurate report V3 with exploratory insights...")
     BASE_DIR = Path(__file__).parent
     conn = sqlite3.connect(BASE_DIR / "capsules/output/abbotsleigh.db")
 
-    # Analyze school
-    school_analysis = analyze_school(conn, 2024)
+    year = 2024
 
-    # Generate report
+    # Analyze school
+    school_analysis = analyze_school(conn, year)
+
+    # Generate report (now with exploratory insights)
     output_path = BASE_DIR / "abbotsleigh_2024_accurate_v3.md"
-    report_path = generate_markdown_report(school_analysis, "Abbotsleigh", output_path)
+    report_path = generate_markdown_report(school_analysis, "Abbotsleigh", output_path, conn=conn, year=year)
 
     print(f"Report generated: {report_path}")
     print(f"\nQuick stats:")
