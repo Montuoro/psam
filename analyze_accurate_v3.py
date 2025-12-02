@@ -71,6 +71,65 @@ def create_ascii_scatter(students, width=60, height=15):
 
     return "\n".join(lines)
 
+def create_rank_order_scatter(internal_ranks, exam_ranks, width=60, height=15):
+    """
+    Create ASCII scatter plot of internal rank vs external rank
+    X-axis: Internal rank, Y-axis: External rank
+    Points on diagonal = no rank change, off diagonal = rank switched
+    """
+    if not internal_ranks or not exam_ranks:
+        return "No data available"
+
+    # Create list of rank pairs
+    rank_pairs = []
+    for student_id in internal_ranks:
+        if student_id in exam_ranks:
+            rank_pairs.append((internal_ranks[student_id], exam_ranks[student_id]))
+
+    if not rank_pairs:
+        return "No data available"
+
+    # Get ranges
+    max_rank = max(max(p[0] for p in rank_pairs), max(p[1] for p in rank_pairs))
+    min_rank = 1
+
+    # Handle edge case
+    rank_range = max_rank - min_rank
+    if rank_range == 0:
+        rank_range = 1
+
+    # Create grid
+    grid = [[' ' for _ in range(width)] for _ in range(height)]
+
+    # Draw diagonal line (y=x, no rank change)
+    for i in range(width):
+        y = height - 1 - int(i * (height - 1) / (width - 1))
+        if 0 <= y < height:
+            grid[y][i] = '.'
+
+    # Plot points
+    for int_rank, ext_rank in rank_pairs:
+        x = int((int_rank - min_rank) / rank_range * (width - 1))
+        y = height - 1 - int((ext_rank - min_rank) / rank_range * (height - 1))
+
+        if 0 <= x < width and 0 <= y < height:
+            grid[y][x] = '*'
+
+    # Build output
+    lines = []
+    lines.append(f"  Rank Order: Internal vs External (n={len(rank_pairs)})")
+    lines.append("  (* = student, . = no change diagonal)")
+
+    for i, row in enumerate(grid):
+        ext_rank_val = max_rank - (i * rank_range / (height - 1))
+        lines.append(f" {ext_rank_val:3.0f} | {''.join(row)}")
+
+    lines.append("      +" + "-" * width)
+    lines.append(f"       {min_rank:<{width//2}.0f}{max_rank:>{width//2}.0f}")
+    lines.append("       Internal Rank -->")
+
+    return '\n'.join(lines)
+
 def analyze_class_performance(conn, course_name, year):
     """
     Analyze performance by class/teacher within a course
@@ -165,42 +224,42 @@ def analyze_course(conn, course_name, year, school_avg_scaled=None):
     atars = [s['atar'] for s in students if s['atar']]
     avg_atar = np.mean(atars) if atars else 0
 
-    # Moderated vs External
-    moderated_marks = [s['moderated_assessment'] for s in students if s['moderated_assessment']]
+    # Internal vs External (school assessment vs external exam)
+    internal_marks = [s['school_assessment'] for s in students if s['school_assessment']]
     exam_marks = [s['scaled_exam_mark'] for s in students if s['scaled_exam_mark']]
-    avg_moderated = np.mean(moderated_marks) if moderated_marks else 0
+    avg_internal = np.mean(internal_marks) if internal_marks else 0
     avg_exam = np.mean(exam_marks) if exam_marks else 0
-    moderated_exam_gap = avg_moderated - avg_exam
+    internal_exam_gap = avg_internal - avg_exam
 
-    # Rank order changes
+    # Rank order changes (Internal vs External)
     rank_changes = []
     for student in students:
-        if student['moderated_assessment'] and student['scaled_exam_mark']:
+        if student['school_assessment'] and student['scaled_exam_mark']:
             rank_changes.append({
                 'student_id': student['student_id'],
-                'moderated': student['moderated_assessment'],
+                'internal': student['school_assessment'],
                 'exam': student['scaled_exam_mark']
             })
 
-    moderated_ranked = sorted(rank_changes, key=lambda x: x['moderated'], reverse=True)
+    internal_ranked = sorted(rank_changes, key=lambda x: x['internal'], reverse=True)
     exam_ranked = sorted(rank_changes, key=lambda x: x['exam'], reverse=True)
 
-    moderated_ranks = {s['student_id']: i+1 for i, s in enumerate(moderated_ranked)}
+    internal_ranks = {s['student_id']: i+1 for i, s in enumerate(internal_ranked)}
     exam_ranks = {s['student_id']: i+1 for i, s in enumerate(exam_ranked)}
 
     significant_rank_changes = []
     rank_change_values = []
-    for student_id in moderated_ranks:
-        mod_rank = moderated_ranks[student_id]
-        exam_rank = exam_ranks[student_id]
-        rank_change = mod_rank - exam_rank
+    for student_id in internal_ranks:
+        int_rank = internal_ranks[student_id]
+        ext_rank = exam_ranks[student_id]
+        rank_change = int_rank - ext_rank
 
         if abs(rank_change) >= 3:
             significant_rank_changes.append({
                 'student_id': student_id,
                 'rank_change': rank_change,
-                'mod_rank': mod_rank,
-                'exam_rank': exam_rank
+                'internal_rank': int_rank,
+                'exam_rank': ext_rank
             })
             rank_change_values.append(abs(rank_change))
 
@@ -302,6 +361,9 @@ def analyze_course(conn, course_name, year, school_avg_scaled=None):
     # ASCII scatter plot
     ascii_plot = create_ascii_scatter(students)
 
+    # Rank order scatter plot
+    rank_order_plot = create_rank_order_scatter(internal_ranks, exam_ranks)
+
     # Class analysis
     class_analysis = analyze_class_performance(conn, course_name, year)
 
@@ -326,9 +388,9 @@ def analyze_course(conn, course_name, year, school_avg_scaled=None):
         'generalized': {
             'cohort_size': cohort_size,
             'avg_atar': avg_atar,
-            'avg_moderated': avg_moderated,
+            'avg_internal': avg_internal,
             'avg_exam': avg_exam,
-            'moderated_exam_gap': moderated_exam_gap,
+            'internal_exam_gap': internal_exam_gap,
             'band_counts': band_counts,
             'mxp_avg_gap': avg_mxp_gap,
             'mxp_median_gap': median_mxp_gap,
@@ -346,7 +408,8 @@ def analyze_course(conn, course_name, year, school_avg_scaled=None):
             'historical_mxp': historical_mxp
         },
         'visualization': {
-            'ascii_scatter': ascii_plot
+            'ascii_scatter': ascii_plot,
+            'rank_order_scatter': rank_order_plot
         },
         'class_analysis': class_analysis,
         'deeper': {
@@ -413,10 +476,10 @@ def analyze_school(conn, year):
         if gen['mxp_below_pct'] > 50:
             concerns.append(f"{gen['mxp_below_pct']:.0f}% below expected MXP (avg gap: {gen['mxp_avg_gap']:.1f})")
 
-        # Moderated-exam misalignment
-        if abs(gen['moderated_exam_gap']) > 8:
-            direction = "over-moderated" if gen['moderated_exam_gap'] > 0 else "under-moderated"
-            concerns.append(f"Large moderated-exam gap ({gen['moderated_exam_gap']:.1f}pts, {direction})")
+        # Internal-exam misalignment
+        if abs(gen['internal_exam_gap']) > 8:
+            direction = "higher" if gen['internal_exam_gap'] > 0 else "lower"
+            concerns.append(f"Large internal-exam gap ({gen['internal_exam_gap']:.1f}pts, internal {direction})")
 
         # Significant rank changes with MEAN
         if gen['significant_rank_changes_count'] > gen['cohort_size'] * 0.3:

@@ -138,15 +138,15 @@ def generate_markdown_report(school_analysis, school_name, output_path, conn=Non
         md.append(f"- **Average Student ATAR:** {gen['avg_atar']:.1f}")
         md.append("")
 
-        # Moderated vs External (CORRECTED)
-        gap_direction = "over-moderated" if gen['moderated_exam_gap'] > 0 else "under-moderated"
-        gap_severity = "significantly" if abs(gen['moderated_exam_gap']) > 8 else "moderately" if abs(gen['moderated_exam_gap']) > 4 else "slightly"
-        md.append(f"- **Moderated vs External Exam:** State-moderated internal (avg {gen['avg_moderated']:.1f}) vs external exam (avg {gen['avg_exam']:.1f}) - students were {gap_severity} {gap_direction} by {abs(gen['moderated_exam_gap']):.1f} points")
+        # Internal vs External (CORRECTED)
+        gap_direction = "higher" if gen['internal_exam_gap'] > 0 else "lower"
+        gap_severity = "significantly" if abs(gen['internal_exam_gap']) > 8 else "moderately" if abs(gen['internal_exam_gap']) > 4 else "slightly"
+        md.append(f"- **Internal vs External Assessment:** School internal assessment (avg {gen['avg_internal']:.1f}) vs external exam (avg {gen['avg_exam']:.1f}) - internal marks were {gap_severity} {gap_direction} by {abs(gen['internal_exam_gap']):.1f} points")
         md.append("")
 
         # Rank changes
         if gen['significant_rank_changes_count'] > 0:
-            md.append(f"- **Rank Order Changes:** {gen['significant_rank_changes_count']} students had significant rank changes (3+ positions) between moderated and external assessments")
+            md.append(f"- **Rank Order Changes:** {gen['significant_rank_changes_count']} students had significant rank changes (3+ positions) between internal and external assessments (mean change: {gen['mean_rank_change']:.1f} positions)")
             md.append("")
 
         # Bands
@@ -186,6 +186,15 @@ def generate_markdown_report(school_analysis, school_name, output_path, conn=Non
             md.append("")
             md.append("```")
             md.append(course_analysis['visualization']['ascii_scatter'])
+            md.append("```")
+            md.append("")
+
+        # RANK ORDER SCATTER PLOT
+        if course_analysis.get('visualization') and course_analysis['visualization'].get('rank_order_scatter'):
+            md.append("**Rank Order Changes (Internal vs External):**")
+            md.append("")
+            md.append("```")
+            md.append(course_analysis['visualization']['rank_order_scatter'])
             md.append("```")
             md.append("")
 
@@ -239,12 +248,12 @@ def generate_markdown_report(school_analysis, school_name, output_path, conn=Non
                 md.append(f"- Student {student['student_id']}: ATAR {student['atar']:.1f}, Scaled {scaled:.1f}, Rank {student['rank']}")
             md.append("")
 
-        # Significant rank changes (moderated → exam)
+        # Significant rank changes (internal → exam)
         if deep['significant_rank_changes']:
-            md.append("*Significant Rank Changes (Moderated → External):*")
+            md.append("*Significant Rank Changes (Internal → External):*")
             for change in deep['significant_rank_changes'][:5]:
                 direction = "improved" if change['rank_change'] > 0 else "dropped"
-                md.append(f"- Student {change['student_id']}: {direction} {abs(change['rank_change'])} positions (rank {change['mod_rank']} → {change['exam_rank']})")
+                md.append(f"- Student {change['student_id']}: {direction} {abs(change['rank_change'])} positions (internal rank {change['internal_rank']} → external rank {change['exam_rank']})")
             md.append("")
 
         # MXP underperformers

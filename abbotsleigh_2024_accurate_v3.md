@@ -12,13 +12,41 @@
 **ATAR Range:** 0.0 - 100.0
 **Total Courses:** 43
 
-**Courses Requiring Attention:** 30 out of 43 courses show concerning patterns
+**Courses Requiring Attention:** 33 out of 43 courses show concerning patterns
 
 ---
 
 ## School Overview - Deeper Analysis
 
 ### Courses of Concern
+
+**Aboriginal Studies** (1 students)
+- 100% below expected MXP (avg gap: -4.6)
+- Large internal-exam gap (-9.0pts, internal lower)
+- YoY decline of 5.5 scaled marks
+- YoY change: ↓ 5.46 scaled marks
+- School comparison: 15.0 marks below school mean
+
+**Biology** (70 students)
+- 56% below expected MXP (avg gap: -3.0)
+- Large internal-exam gap (-11.1pts, internal lower)
+- 48 students had major rank changes (mean change: 9.5 positions)
+- YoY change: ↓ 0.89 scaled marks
+- School comparison: 3.6 marks below school mean
+
+**Chinese and Literature** (1 students)
+- 100% below expected MXP (avg gap: -1.0)
+- Large internal-exam gap (-8.4pts, internal lower)
+- YoY decline of 7.3 scaled marks
+- YoY change: ↓ 7.30 scaled marks
+- School comparison: 12.9 marks below school mean
+
+**English Standard** (14 students)
+- 64% below expected MXP (avg gap: -5.8)
+- Large internal-exam gap (-14.4pts, internal lower)
+- 5 students had major rank changes (mean change: 4.4 positions)
+- YoY change: ↑ 6.12 scaled marks
+- School comparison: 12.4 marks below school mean
 
 **PDHPE** (33 students)
 - 67% below expected MXP (avg gap: -3.4)
@@ -27,17 +55,11 @@
 - YoY change: ↓ 3.23 scaled marks
 - School comparison: 6.8 marks below school mean
 
-**Aboriginal Studies** (1 students)
-- 100% below expected MXP (avg gap: -4.6)
-- YoY decline of 5.5 scaled marks
-- YoY change: ↓ 5.46 scaled marks
-- School comparison: 15.0 marks below school mean
-
-**Biology** (70 students)
-- 56% below expected MXP (avg gap: -3.0)
-- 48 students had major rank changes (mean change: 9.5 positions)
-- YoY change: ↓ 0.89 scaled marks
-- School comparison: 3.6 marks below school mean
+**Business Studies** (42 students)
+- Large internal-exam gap (-19.8pts, internal lower)
+- 26 students had major rank changes (mean change: 8.9 positions)
+- YoY change: ↑ 0.96 scaled marks
+- School comparison: 0.4 marks above school mean
 
 **Chemistry** (70 students)
 - 59% below expected MXP (avg gap: -1.5)
@@ -45,40 +67,23 @@
 - YoY change: ↑ 1.01 scaled marks
 - School comparison: 0.3 marks below school mean
 
-**Chinese and Literature** (1 students)
-- 100% below expected MXP (avg gap: -1.0)
-- YoY decline of 7.3 scaled marks
-- YoY change: ↓ 7.30 scaled marks
-- School comparison: 12.9 marks below school mean
+**Design and Technology** (21 students)
+- Large internal-exam gap (-11.0pts, internal lower)
+- 9 students had major rank changes (mean change: 5.2 positions)
+- YoY change: ↑ 8.13 scaled marks
+- School comparison: 0.1 marks below school mean
 
-**English Standard** (14 students)
-- 64% below expected MXP (avg gap: -5.8)
-- 5 students had major rank changes (mean change: 4.4 positions)
-- YoY change: ↑ 6.12 scaled marks
-- School comparison: 12.4 marks below school mean
+**Drama** (19 students)
+- Large internal-exam gap (-12.4pts, internal lower)
+- 8 students had major rank changes (mean change: 5.2 positions)
+- YoY change: ↑ 1.81 scaled marks
+- School comparison: 3.1 marks below school mean
 
-**German Continuers** (6 students)
-- 100% below expected MXP (avg gap: -14.0)
-- YoY decline of 11.2 scaled marks
-- YoY change: ↓ 11.20 scaled marks
-- School comparison: 12.7 marks below school mean
-
-**Physics** (33 students)
-- 70% below expected MXP (avg gap: -4.7)
-- 19 students had major rank changes (mean change: 4.8 positions)
-- YoY change: ↑ 0.01 scaled marks
-- School comparison: 1.8 marks below school mean
-
-**Visual Arts** (43 students)
-- 32 students had major rank changes (mean change: 9.6 positions)
-- YoY decline of 2.1 scaled marks
-- YoY change: ↓ 2.05 scaled marks
-- School comparison: 1.5 marks below school mean
-
-**Business Studies** (42 students)
-- 26 students had major rank changes (mean change: 8.9 positions)
-- YoY change: ↑ 0.96 scaled marks
-- School comparison: 0.4 marks above school mean
+**Economics** (39 students)
+- Large internal-exam gap (-10.5pts, internal lower)
+- 25 students had major rank changes (mean change: 6.5 positions)
+- YoY change: ↑ 0.43 scaled marks
+- School comparison: 1.8 marks above school mean
 
 ---
 
@@ -95,7 +100,7 @@
 - **Cohort Size:** 6 students
 - **Average Student ATAR:** 88.4
 
-- **Moderated vs External Exam:** State-moderated internal (avg 74.5) vs external exam (avg 74.3) - students were slightly over-moderated by 0.2 points
+- **Internal vs External Assessment:** School internal assessment (avg 75.8) vs external exam (avg 74.3) - internal marks were slightly higher by 1.5 points
 
 - **Band Distribution:** 2: 1, 4: 3, 5: 1, 6: 1
 
@@ -135,6 +140,31 @@
        Scaled Mark -->
 ```
 
+**Rank Order Changes (Internal vs External):**
+
+```
+  Rank Order: Internal vs External (n=6)
+  (* = student, . = no change diagonal)
+   6 |                                                            *
+   6 |                                                        .... 
+   5 |                                                    ....     
+   5 |                                    *           ....         
+   5 |                                            ....             
+   4 |                                       .....                 
+   4 |                        *          ....                      
+   4 |                               ....                          
+   3 |                           ....                              
+   3 |                       ....                     *            
+   2 |                  .....                                      
+   2 |              ....                                           
+   2 |          ..*.                                               
+   1 |      ....                                                   
+   1 | *....                                                       
+      +------------------------------------------------------------
+       1                                                          6
+       Internal Rank -->
+```
+
 **Class Performance:**
 
 - **1 classes** in this course
@@ -169,7 +199,7 @@
 - **Cohort Size:** 2 students
 - **Average Student ATAR:** 96.9
 
-- **Moderated vs External Exam:** State-moderated internal (avg 47.2) vs external exam (avg 47.2) - students were slightly under-moderated by 0.0 points
+- **Internal vs External Assessment:** School internal assessment (avg 43.5) vs external exam (avg 47.2) - internal marks were slightly lower by 3.7 points
 
 - **Band Distribution:** E4: 2
 
@@ -209,6 +239,31 @@
        Scaled Mark -->
 ```
 
+**Rank Order Changes (Internal vs External):**
+
+```
+  Rank Order: Internal vs External (n=2)
+  (* = student, . = no change diagonal)
+   2 |                                                            *
+   2 |                                                        .... 
+   2 |                                                    ....     
+   2 |                                                ....         
+   2 |                                            ....             
+   2 |                                       .....                 
+   2 |                                   ....                      
+   2 |                               ....                          
+   1 |                           ....                              
+   1 |                       ....                                  
+   1 |                  .....                                      
+   1 |              ....                                           
+   1 |          ....                                               
+   1 |      ....                                                   
+   1 | *....                                                       
+      +------------------------------------------------------------
+       1                                                          2
+       Internal Rank -->
+```
+
 **Deeper Analysis:**
 
 *Top Performers:*
@@ -231,7 +286,7 @@
 - **Cohort Size:** 3 students
 - **Average Student ATAR:** 89.5
 
-- **Moderated vs External Exam:** State-moderated internal (avg 40.6) vs external exam (avg 40.6) - students were slightly under-moderated by 0.0 points
+- **Internal vs External Assessment:** School internal assessment (avg 40.3) vs external exam (avg 40.6) - internal marks were slightly lower by 0.3 points
 
 - **Band Distribution:** E2: 1, E3: 1, E4: 1
 
@@ -271,6 +326,31 @@
        Scaled Mark -->
 ```
 
+**Rank Order Changes (Internal vs External):**
+
+```
+  Rank Order: Internal vs External (n=3)
+  (* = student, . = no change diagonal)
+   3 |                                                            *
+   3 |                                                        .... 
+   3 |                                                    ....     
+   3 |                                                ....         
+   2 |                                            ....             
+   2 |                                       .....                 
+   2 |                                   ....                      
+   2 |                              *....                          
+   2 |                           ....                              
+   2 |                       ....                                  
+   2 |                  .....                                      
+   1 |              ....                                           
+   1 |          ....                                               
+   1 |      ....                                                   
+   1 | *....                                                       
+      +------------------------------------------------------------
+       1                                                          3
+       Internal Rank -->
+```
+
 **Class Performance:**
 
 - **1 classes** in this course
@@ -298,7 +378,7 @@
 - **Cohort Size:** 1 students
 - **Average Student ATAR:** 76.2
 
-- **Moderated vs External Exam:** State-moderated internal (avg 84.4) vs external exam (avg 83.4) - students were slightly over-moderated by 1.0 points
+- **Internal vs External Assessment:** School internal assessment (avg 75.0) vs external exam (avg 83.4) - internal marks were significantly lower by 8.4 points
 
 - **Band Distribution:** 5: 1
 
@@ -338,6 +418,31 @@
        Scaled Mark -->
 ```
 
+**Rank Order Changes (Internal vs External):**
+
+```
+  Rank Order: Internal vs External (n=1)
+  (* = student, . = no change diagonal)
+   1 |                                                            .
+   1 |                                                        .... 
+   1 |                                                    ....     
+   1 |                                                ....         
+   1 |                                            ....             
+   1 |                                       .....                 
+   1 |                                   ....                      
+   0 |                               ....                          
+   0 |                           ....                              
+   0 |                       ....                                  
+   0 |                  .....                                      
+   0 |              ....                                           
+   0 |          ....                                               
+   0 |      ....                                                   
+   0 | *....                                                       
+      +------------------------------------------------------------
+       1                                                          1
+       Internal Rank -->
+```
+
 **Deeper Analysis:**
 
 *Top Performers:*
@@ -355,7 +460,7 @@
 - **Cohort Size:** 11 students
 - **Average Student ATAR:** 97.2
 
-- **Moderated vs External Exam:** State-moderated internal (avg 87.3) vs external exam (avg 87.2) - students were slightly over-moderated by 0.1 points
+- **Internal vs External Assessment:** School internal assessment (avg 86.2) vs external exam (avg 87.2) - internal marks were slightly lower by 1.0 points
 
 - **Band Distribution:** 4: 1, 5: 5, 6: 5
 
@@ -395,6 +500,31 @@
        Scaled Mark -->
 ```
 
+**Rank Order Changes (Internal vs External):**
+
+```
+  Rank Order: Internal vs External (n=11)
+  (* = student, . = no change diagonal)
+  11 |                                                            *
+  10 |                                                        .... 
+  10 |                                                *   ....     
+   9 |                                          *     ....         
+   8 |                                            ....             
+   7 |                                       .....          *      
+   7 |                                   .*..                      
+   6 |                              *....                          
+   5 |                           ....                              
+   5 |                  *    ....                                  
+   4 |                  ..... *                                    
+   3 |              ....                                           
+   2 |          ..*.                                               
+   2 | *    ....                                                   
+   1 | .....*                                                      
+      +------------------------------------------------------------
+       1                                                         11
+       Internal Rank -->
+```
+
 **Class Performance:**
 
 - **2 classes** in this course
@@ -429,7 +559,7 @@
 - **Cohort Size:** 8 students
 - **Average Student ATAR:** 96.9
 
-- **Moderated vs External Exam:** State-moderated internal (avg 44.2) vs external exam (avg 44.2) - students were slightly under-moderated by 0.0 points
+- **Internal vs External Assessment:** School internal assessment (avg 42.9) vs external exam (avg 44.2) - internal marks were slightly lower by 1.3 points
 
 - **Band Distribution:** E3: 3, E4: 5
 
@@ -469,6 +599,31 @@
        Scaled Mark -->
 ```
 
+**Rank Order Changes (Internal vs External):**
+
+```
+  Rank Order: Internal vs External (n=8)
+  (* = student, . = no change diagonal)
+   8 |                                                            *
+   8 |                                                        .... 
+   7 |                                                   *....     
+   6 |                                                ....         
+   6 |                                           *....             
+   6 |                                       .....                 
+   5 |                                  *....                      
+   4 |                               ....                          
+   4 |                 *         ....                              
+   4 |                       ....                                  
+   3 |         *        .....                                      
+   2 |              ....                                           
+   2 |          ....            *                                  
+   2 |      ....                                                   
+   1 | *....                                                       
+      +------------------------------------------------------------
+       1                                                          8
+       Internal Rank -->
+```
+
 **Class Performance:**
 
 - **2 classes** in this course
@@ -501,9 +656,9 @@
 - **Cohort Size:** 33 students
 - **Average Student ATAR:** 95.2
 
-- **Moderated vs External Exam:** State-moderated internal (avg 81.6) vs external exam (avg 81.6) - students were slightly under-moderated by 0.0 points
+- **Internal vs External Assessment:** School internal assessment (avg 75.6) vs external exam (avg 81.6) - internal marks were moderately lower by 6.0 points
 
-- **Rank Order Changes:** 19 students had significant rank changes (3+ positions) between moderated and external assessments
+- **Rank Order Changes:** 19 students had significant rank changes (3+ positions) between internal and external assessments (mean change: 4.8 positions)
 
 - **Band Distribution:** 3: 5, 4: 7, 5: 13, 6: 8
 
@@ -543,6 +698,31 @@
        Scaled Mark -->
 ```
 
+**Rank Order Changes (Internal vs External):**
+
+```
+  Rank Order: Internal vs External (n=33)
+  (* = student, . = no change diagonal)
+  33 |                                                        *   .
+  31 |                                                  *     ....*
+  28 |                                                    ..*.  *  
+  26 |                                                *...*        
+  24 |                                    *  *    ...*             
+  22 |                            *     *    .....                 
+  19 |                              *    ....  *                   
+  17 |                          *    .*..  *                       
+  15 |                     *     ....              *               
+  12 |            *          .*..                                  
+  10 |               *  .*...                                      
+   8 |        *     ....     *                   *                 
+   6 |          ...*   *                                           
+   3 |  *   ....*                                                  
+   1 | *..*.*                                                      
+      +------------------------------------------------------------
+       1                                                         33
+       Internal Rank -->
+```
+
 **Class Performance:**
 
 - **2 classes** in this course
@@ -562,12 +742,12 @@
 - Student 36753358: ATAR 96.8, Scaled 30.2, Rank 6
 - Student 37251631: ATAR 86.3, Scaled 26.7, Rank 6
 
-*Significant Rank Changes (Moderated → External):*
-- Student 37251151: improved 15 positions (rank 24 → 9)
-- Student 36753390: improved 10 positions (rank 25 → 15)
-- Student 37251518: dropped 7 positions (rank 7 → 14)
-- Student 36254351: dropped 6 positions (rank 16 → 22)
-- Student 36254238: improved 4 positions (rank 10 → 6)
+*Significant Rank Changes (Internal → External):*
+- Student 37251151: improved 15 positions (internal rank 24 → external rank 9)
+- Student 36753390: improved 10 positions (internal rank 25 → external rank 15)
+- Student 37251518: dropped 7 positions (internal rank 7 → external rank 14)
+- Student 36254351: dropped 6 positions (internal rank 16 → external rank 22)
+- Student 36254238: improved 4 positions (internal rank 10 → external rank 6)
 
 *Significantly Below Expectations (MXP):*
 - Student 37250996: Scored 23.6 vs expected 39.7 (gap: -16.1)
@@ -585,9 +765,9 @@
 - **Cohort Size:** 14 students
 - **Average Student ATAR:** 69.0
 
-- **Moderated vs External Exam:** State-moderated internal (avg 77.3) vs external exam (avg 76.8) - students were slightly over-moderated by 0.5 points
+- **Internal vs External Assessment:** School internal assessment (avg 62.4) vs external exam (avg 76.8) - internal marks were significantly lower by 14.4 points
 
-- **Rank Order Changes:** 5 students had significant rank changes (3+ positions) between moderated and external assessments
+- **Rank Order Changes:** 5 students had significant rank changes (3+ positions) between internal and external assessments (mean change: 4.4 positions)
 
 - **Band Distribution:** 3: 2, 4: 8, 5: 4
 
@@ -627,6 +807,31 @@
        Scaled Mark -->
 ```
 
+**Rank Order Changes (Internal vs External):**
+
+```
+  Rank Order: Internal vs External (n=14)
+  (* = student, . = no change diagonal)
+  14 |                                                            *
+  13 |                                                        .... 
+  12 |                                                  * ....     
+  11 |                                              * ....         
+  10 |                                            ....       *     
+   9 |          *                            .....                 
+   8 |                            *      ....                      
+   8 |              *                ....                          
+   7 |                           ....          *                   
+   6 |                       *...                                  
+   5 |                  .....              *                       
+   4 |              ....              *                            
+   3 |          ....     *                                         
+   2 |     *....                                                   
+   1 | *....                                                       
+      +------------------------------------------------------------
+       1                                                         14
+       Internal Rank -->
+```
+
 **Class Performance:**
 
 - **1 classes** in this course
@@ -645,12 +850,12 @@
 - Student 36753358: ATAR 96.8, Scaled 39.7, Rank 4
 - Student 37250953: ATAR 76.2, Scaled 28.0, Rank 4
 
-*Significant Rank Changes (Moderated → External):*
-- Student 37250422: dropped 7 positions (rank 3 → 10)
-- Student 37251666: dropped 4 positions (rank 4 → 8)
-- Student 37250953: improved 4 positions (rank 8 → 4)
-- Student 37507040: improved 4 positions (rank 9 → 5)
-- Student 37379948: improved 3 positions (rank 10 → 7)
+*Significant Rank Changes (Internal → External):*
+- Student 37250422: dropped 7 positions (internal rank 3 → external rank 10)
+- Student 37251666: dropped 4 positions (internal rank 4 → external rank 8)
+- Student 37250953: improved 4 positions (internal rank 8 → external rank 4)
+- Student 37507040: improved 4 positions (internal rank 9 → external rank 5)
+- Student 37379948: improved 3 positions (internal rank 10 → external rank 7)
 
 *Significantly Below Expectations (MXP):*
 - Student 37251607: Scored 16.0 vs expected 35.0 (gap: -19.0)
@@ -668,9 +873,9 @@
 - **Cohort Size:** 33 students
 - **Average Student ATAR:** 83.1
 
-- **Moderated vs External Exam:** State-moderated internal (avg 83.5) vs external exam (avg 83.2) - students were slightly over-moderated by 0.4 points
+- **Internal vs External Assessment:** School internal assessment (avg 77.1) vs external exam (avg 83.2) - internal marks were moderately lower by 6.1 points
 
-- **Rank Order Changes:** 13 students had significant rank changes (3+ positions) between moderated and external assessments
+- **Rank Order Changes:** 13 students had significant rank changes (3+ positions) between internal and external assessments (mean change: 6.8 positions)
 
 - **Band Distribution:** 3: 2, 4: 5, 5: 18, 6: 8
 
@@ -710,6 +915,31 @@
        Scaled Mark -->
 ```
 
+**Rank Order Changes (Internal vs External):**
+
+```
+  Rank Order: Internal vs External (n=33)
+  (* = student, . = no change diagonal)
+  33 |                                                            *
+  31 |                                             *          ..*. 
+  28 |                                                    ..*.*    
+  26 |                                                ..*.*        
+  24 |                                       *   *...*             
+  22 |                       *    *          .....                 
+  19 |                                   .*..  *                   
+  17 |                               ...*  *          *            
+  15 |                     *     ...*                              
+  12 | *                     ...*                                  
+  10 |        *         ..... *                                    
+   8 |            * ...* *                                         
+   6 |          *...                  *                            
+   3 |    * *...                                                   
+   1 | .*...       * *                                             
+      +------------------------------------------------------------
+       1                                                         33
+       Internal Rank -->
+```
+
 **Class Performance:**
 
 - **2 classes** in this course
@@ -729,12 +959,12 @@
 - Student 36254238: ATAR 99.4, Scaled 39.0, Rank 6
 - Student 37251593: ATAR 80.9, Scaled 28.4, Rank 5
 
-*Significant Rank Changes (Moderated → External):*
-- Student 36254238: dropped 12 positions (rank 1 → 13)
-- Student 37250392: improved 11 positions (rank 18 → 7)
-- Student 37250260: dropped 10 positions (rank 13 → 23)
-- Student 37250732: improved 8 positions (rank 9 → 1)
-- Student 37251135: improved 8 positions (rank 27 → 19)
+*Significant Rank Changes (Internal → External):*
+- Student 36254238: dropped 12 positions (internal rank 1 → external rank 13)
+- Student 37250392: improved 11 positions (internal rank 18 → external rank 7)
+- Student 37250260: dropped 10 positions (internal rank 13 → external rank 23)
+- Student 37250732: improved 8 positions (internal rank 9 → external rank 1)
+- Student 37251135: improved 8 positions (internal rank 27 → external rank 19)
 
 *Significantly Below Expectations (MXP):*
 - Student 37251607: Scored 17.5 vs expected 35.0 (gap: -17.4)
@@ -752,7 +982,7 @@
 - **Cohort Size:** 7 students
 - **Average Student ATAR:** 89.7
 
-- **Moderated vs External Exam:** State-moderated internal (avg 84.5) vs external exam (avg 84.5) - students were slightly over-moderated by 0.1 points
+- **Internal vs External Assessment:** School internal assessment (avg 82.0) vs external exam (avg 84.5) - internal marks were slightly lower by 2.5 points
 
 - **Band Distribution:** 4: 1, 5: 4, 6: 2
 
@@ -792,6 +1022,31 @@
        Scaled Mark -->
 ```
 
+**Rank Order Changes (Internal vs External):**
+
+```
+  Rank Order: Internal vs External (n=7)
+  (* = student, . = no change diagonal)
+   7 |                                                            *
+   7 |                                                        .... 
+   6 |                                                    ....     
+   6 |                                        *       ....         
+   5 |                                            ....             
+   5 |                    *                  .....                 
+   4 |                                   ....                      
+   4 |                               ....               *          
+   4 |                           ....                              
+   3 |                       ....                                  
+   3 |                  .....       *                              
+   2 |              ....                                           
+   2 |          *...                                               
+   1 |      ....                                                   
+   1 | *....                                                       
+      +------------------------------------------------------------
+       1                                                          7
+       Internal Rank -->
+```
+
 **Deeper Analysis:**
 
 *Top Performers:*
@@ -820,7 +1075,7 @@
 - **Cohort Size:** 1 students
 - **Average Student ATAR:** 57.1
 
-- **Moderated vs External Exam:** State-moderated internal (avg 82.2) vs external exam (avg 85.0) - students were slightly under-moderated by 2.8 points
+- **Internal vs External Assessment:** School internal assessment (avg 76.0) vs external exam (avg 85.0) - internal marks were significantly lower by 9.0 points
 
 - **Band Distribution:** 5: 1
 
@@ -860,6 +1115,31 @@
        Scaled Mark -->
 ```
 
+**Rank Order Changes (Internal vs External):**
+
+```
+  Rank Order: Internal vs External (n=1)
+  (* = student, . = no change diagonal)
+   1 |                                                            .
+   1 |                                                        .... 
+   1 |                                                    ....     
+   1 |                                                ....         
+   1 |                                            ....             
+   1 |                                       .....                 
+   1 |                                   ....                      
+   0 |                               ....                          
+   0 |                           ....                              
+   0 |                       ....                                  
+   0 |                  .....                                      
+   0 |              ....                                           
+   0 |          ....                                               
+   0 |      ....                                                   
+   0 | *....                                                       
+      +------------------------------------------------------------
+       1                                                          1
+       Internal Rank -->
+```
+
 **Deeper Analysis:**
 
 *Top Performers:*
@@ -880,7 +1160,7 @@
 - **Cohort Size:** 4 students
 - **Average Student ATAR:** 92.7
 
-- **Moderated vs External Exam:** State-moderated internal (avg 44.2) vs external exam (avg 44.2) - students were slightly under-moderated by 0.0 points
+- **Internal vs External Assessment:** School internal assessment (avg 45.2) vs external exam (avg 44.2) - internal marks were slightly higher by 1.1 points
 
 - **Band Distribution:** 4: 1, 6: 3
 
@@ -920,6 +1200,31 @@
        Scaled Mark -->
 ```
 
+**Rank Order Changes (Internal vs External):**
+
+```
+  Rank Order: Internal vs External (n=4)
+  (* = student, . = no change diagonal)
+   4 |                                                            *
+   4 |                                                        .... 
+   4 |                                                    ....     
+   3 |                                                ....         
+   3 |                                            ....             
+   3 | *                                     .....                 
+   3 |                                   ....                      
+   2 |                               ....                          
+   2 |                           ....                              
+   2 |                       ....                                  
+   2 |                  .....                 *                    
+   2 |              ....                                           
+   1 |          ....                                               
+   1 |      ....                                                   
+   1 | .....              *                                        
+      +------------------------------------------------------------
+       1                                                          4
+       Internal Rank -->
+```
+
 **Class Performance:**
 
 - **1 classes** in this course
@@ -950,9 +1255,9 @@
 - **Cohort Size:** 70 students
 - **Average Student ATAR:** 88.9
 
-- **Moderated vs External Exam:** State-moderated internal (avg 83.6) vs external exam (avg 83.6) - students were slightly over-moderated by 0.0 points
+- **Internal vs External Assessment:** School internal assessment (avg 72.5) vs external exam (avg 83.6) - internal marks were significantly lower by 11.1 points
 
-- **Rank Order Changes:** 48 students had significant rank changes (3+ positions) between moderated and external assessments
+- **Rank Order Changes:** 48 students had significant rank changes (3+ positions) between internal and external assessments (mean change: 9.5 positions)
 
 - **Band Distribution:** 2: 1, 3: 2, 4: 16, 5: 34, 6: 17
 
@@ -992,6 +1297,31 @@
        Scaled Mark -->
 ```
 
+**Rank Order Changes (Internal vs External):**
+
+```
+  Rank Order: Internal vs External (n=70)
+  (* = student, . = no change diagonal)
+  70 |                                                            *
+  65 |                                               *        .*** 
+  60 |                                      *           * *.*.     
+  55 |                                        *       *... * *     
+  50 |                                     *     *.**.   *         
+  45 |                               *    *  *..*.            *    
+  40 |                        *          **..  *       *           
+  36 |                           *  *..**         *                
+  31 |  *         **     *      *....                              
+  26 |           *           .... *** *                            
+  21 |          * *     *.... *                 *                  
+  16 |         *    ...** * *                                      
+  11 | *    *   ....  *    * *                                     
+   6 |    ***...    *          *                                   
+   1 | *.*.. **      *                                             
+      +------------------------------------------------------------
+       1                                                         70
+       Internal Rank -->
+```
+
 **Class Performance:**
 
 - **4 classes** in this course
@@ -1014,12 +1344,12 @@
 - Student 37251623: ATAR 94.1, Scaled 31.3, Rank 6
 - Student 37251577: ATAR 92.3, Scaled 34.1, Rank 6
 
-*Significant Rank Changes (Moderated → External):*
-- Student 36254211: dropped 32 positions (rank 3 → 35)
-- Student 37250910: improved 24 positions (rank 49 → 25)
-- Student 37250309: dropped 20 positions (rank 14 → 34)
-- Student 37250546: improved 20 positions (rank 30 → 10)
-- Student 37250961: dropped 18 positions (rank 45 → 63)
+*Significant Rank Changes (Internal → External):*
+- Student 36254211: dropped 32 positions (internal rank 3 → external rank 35)
+- Student 37250910: improved 24 positions (internal rank 49 → external rank 25)
+- Student 37250309: dropped 20 positions (internal rank 14 → external rank 34)
+- Student 37250546: improved 20 positions (internal rank 30 → external rank 10)
+- Student 37250961: dropped 18 positions (internal rank 45 → external rank 63)
 
 *Significantly Below Expectations (MXP):*
 - Student 37251607: Scored 8.8 vs expected 35.0 (gap: -26.2)
@@ -1037,9 +1367,9 @@
 - **Cohort Size:** 8 students
 - **Average Student ATAR:** 94.7
 
-- **Moderated vs External Exam:** State-moderated internal (avg 44.9) vs external exam (avg 45.0) - students were slightly under-moderated by 0.1 points
+- **Internal vs External Assessment:** School internal assessment (avg 42.1) vs external exam (avg 45.0) - internal marks were slightly lower by 2.9 points
 
-- **Rank Order Changes:** 4 students had significant rank changes (3+ positions) between moderated and external assessments
+- **Rank Order Changes:** 4 students had significant rank changes (3+ positions) between internal and external assessments (mean change: 3.8 positions)
 
 - **Band Distribution:** E2: 1, E3: 2, E4: 5
 
@@ -1079,6 +1409,31 @@
        Scaled Mark -->
 ```
 
+**Rank Order Changes (Internal vs External):**
+
+```
+  Rank Order: Internal vs External (n=8)
+  (* = student, . = no change diagonal)
+   8 |                                                            *
+   8 |                                                        .... 
+   7 |                          *                         ....     
+   6 |                                                ....         
+   6 | *                                          ....             
+   6 |                                       .....                 
+   5 |                 *                 ....                      
+   4 |                               ....                          
+   4 |                           ....                    *         
+   4 |                       ....                                  
+   3 |                  .....           *                          
+   2 |              ....                                           
+   2 |          ....                             *                 
+   2 |      ....                                                   
+   1 | .....   *                                                   
+      +------------------------------------------------------------
+       1                                                          8
+       Internal Rank -->
+```
+
 **Class Performance:**
 
 - **4 classes** in this course
@@ -1101,11 +1456,11 @@
 - Student 36539992: ATAR 95.8, Scaled 38.2, Rank 6
 - Student 37250678: ATAR 99.5, Scaled 43.5, Rank 6
 
-*Significant Rank Changes (Moderated → External):*
-- Student 37250678: dropped 5 positions (rank 1 → 6)
-- Student 37250643: improved 4 positions (rank 6 → 2)
-- Student 36539992: dropped 3 positions (rank 4 → 7)
-- Student 37162639: improved 3 positions (rank 7 → 4)
+*Significant Rank Changes (Internal → External):*
+- Student 37250678: dropped 5 positions (internal rank 1 → external rank 6)
+- Student 37250643: improved 4 positions (internal rank 6 → external rank 2)
+- Student 36539992: dropped 3 positions (internal rank 4 → external rank 7)
+- Student 37162639: improved 3 positions (internal rank 7 → external rank 4)
 
 *Significantly Below Expectations (MXP):*
 - Student 37251399: Scored 25.0 vs expected 30.3 (gap: -5.3)
@@ -1120,7 +1475,7 @@
 - **Cohort Size:** 1 students
 - **Average Student ATAR:** 98.8
 
-- **Moderated vs External Exam:** State-moderated internal (avg 93.8) vs external exam (avg 94.4) - students were slightly under-moderated by 0.6 points
+- **Internal vs External Assessment:** School internal assessment (avg 93.0) vs external exam (avg 94.4) - internal marks were slightly lower by 1.4 points
 
 - **Band Distribution:** 6: 1
 
@@ -1160,6 +1515,31 @@
        Scaled Mark -->
 ```
 
+**Rank Order Changes (Internal vs External):**
+
+```
+  Rank Order: Internal vs External (n=1)
+  (* = student, . = no change diagonal)
+   1 |                                                            .
+   1 |                                                        .... 
+   1 |                                                    ....     
+   1 |                                                ....         
+   1 |                                            ....             
+   1 |                                       .....                 
+   1 |                                   ....                      
+   0 |                               ....                          
+   0 |                           ....                              
+   0 |                       ....                                  
+   0 |                  .....                                      
+   0 |              ....                                           
+   0 |          ....                                               
+   0 |      ....                                                   
+   0 | *....                                                       
+      +------------------------------------------------------------
+       1                                                          1
+       Internal Rank -->
+```
+
 **Deeper Analysis:**
 
 *Top Performers:*
@@ -1180,7 +1560,7 @@
 - **Cohort Size:** 5 students
 - **Average Student ATAR:** 93.9
 
-- **Moderated vs External Exam:** State-moderated internal (avg 83.9) vs external exam (avg 83.5) - students were slightly over-moderated by 0.4 points
+- **Internal vs External Assessment:** School internal assessment (avg 85.6) vs external exam (avg 83.5) - internal marks were slightly higher by 2.1 points
 
 - **Band Distribution:** 4: 1, 5: 3, 6: 1
 
@@ -1220,6 +1600,31 @@
        Scaled Mark -->
 ```
 
+**Rank Order Changes (Internal vs External):**
+
+```
+  Rank Order: Internal vs External (n=5)
+  (* = student, . = no change diagonal)
+   5 |                                                            *
+   5 |                                                        .... 
+   4 |                                                    ....     
+   4 |                                                ....         
+   4 |                              *             ....             
+   4 |                                       .....                 
+   3 |                                   ....                      
+   3 |               *               ....                          
+   3 |                           ....                              
+   2 |                       ....                                  
+   2 |                  .....                                      
+   2 |              ....                           *               
+   2 |          ....                                               
+   1 |      ....                                                   
+   1 | *....                                                       
+      +------------------------------------------------------------
+       1                                                          5
+       Internal Rank -->
+```
+
 **Class Performance:**
 
 - **1 classes** in this course
@@ -1250,9 +1655,9 @@
 - **Cohort Size:** 30 students
 - **Average Student ATAR:** 95.2
 
-- **Moderated vs External Exam:** State-moderated internal (avg 45.6) vs external exam (avg 45.5) - students were slightly over-moderated by 0.1 points
+- **Internal vs External Assessment:** School internal assessment (avg 41.8) vs external exam (avg 45.5) - internal marks were slightly lower by 3.8 points
 
-- **Rank Order Changes:** 25 students had significant rank changes (3+ positions) between moderated and external assessments
+- **Rank Order Changes:** 25 students had significant rank changes (3+ positions) between internal and external assessments (mean change: 9.8 positions)
 
 - **Band Distribution:** E3: 6, E4: 24
 
@@ -1292,6 +1697,31 @@
        Scaled Mark -->
 ```
 
+**Rank Order Changes (Internal vs External):**
+
+```
+  Rank Order: Internal vs External (n=30)
+  (* = student, . = no change diagonal)
+  30 |                                                       *    .
+  28 |                         *                              .*.. 
+  26 |                                   *       *        ....     
+  24 |                 *             *                ....         
+  22 |                           *                ....            *
+  20 |                                     * .....     *           
+  18 |             *     *               ....                      
+  16 | *                           * ....                          
+  13 |       *                   ....                      *       
+  11 |                       ....            *           *         
+   9 |     *            .....                        *             
+   7 |   *          ....                           *               
+   5 |          ....       *                   *                   
+   3 |      ...*             *                                     
+   1 | .....     *   *                 *                           
+      +------------------------------------------------------------
+       1                                                         30
+       Internal Rank -->
+```
+
 **Class Performance:**
 
 - **6 classes** in this course
@@ -1316,12 +1746,12 @@
 - Student 36254343: ATAR 99.9, Scaled 44.6, Rank 6
 - Student 37251305: ATAR 90.4, Scaled 33.4, Rank 6
 
-*Significant Rank Changes (Moderated → External):*
-- Student 37250295: dropped 16 positions (rank 13 → 29)
-- Student 36254343: improved 16 positions (rank 17 → 1)
-- Student 37250678: dropped 15 positions (rank 1 → 16)
-- Student 37250244: dropped 15 positions (rank 9 → 24)
-- Student 37250686: improved 15 positions (rank 21 → 6)
+*Significant Rank Changes (Internal → External):*
+- Student 37250295: dropped 16 positions (internal rank 13 → external rank 29)
+- Student 36254343: improved 16 positions (internal rank 17 → external rank 1)
+- Student 37250678: dropped 15 positions (internal rank 1 → external rank 16)
+- Student 37250244: dropped 15 positions (internal rank 9 → external rank 24)
+- Student 37250686: improved 15 positions (internal rank 21 → external rank 6)
 
 *Significantly Below Expectations (MXP):*
 - Student 37250643: Scored 30.9 vs expected 38.1 (gap: -7.2)
@@ -1338,9 +1768,9 @@
 - **Cohort Size:** 70 students
 - **Average Student ATAR:** 94.0
 
-- **Moderated vs External Exam:** State-moderated internal (avg 82.5) vs external exam (avg 82.3) - students were slightly over-moderated by 0.2 points
+- **Internal vs External Assessment:** School internal assessment (avg 77.1) vs external exam (avg 82.3) - internal marks were moderately lower by 5.2 points
 
-- **Rank Order Changes:** 50 students had significant rank changes (3+ positions) between moderated and external assessments
+- **Rank Order Changes:** 50 students had significant rank changes (3+ positions) between internal and external assessments (mean change: 9.5 positions)
 
 - **Band Distribution:** 2: 1, 3: 5, 4: 17, 5: 29, 6: 18
 
@@ -1380,6 +1810,31 @@
        Scaled Mark -->
 ```
 
+**Rank Order Changes (Internal vs External):**
+
+```
+  Rank Order: Internal vs External (n=70)
+  (* = student, . = no change diagonal)
+  70 |                                                          * .
+  65 |                                                       ***..*
+  60 |                                                  * .**.   * 
+  55 |                                            * * **..*        
+  50 |                       *            *   *  *....*            
+  45 |                                       ...*. * *   *         
+  40 |                     *     *  *    ....  *                   
+  36 |                         *  *  ....*  **                     
+  31 |               *      *    ....* *  *                        
+  26 |    *       *    *     ....     *    *                       
+  21 |        * *       .*...      *    *                          
+  16 |     *      ***...        *                                  
+  11 |       *  .*..    * *   *                                    
+   6 | *    ...*      * *     *                                    
+   1 | ***..*                                                      
+      +------------------------------------------------------------
+       1                                                         70
+       Internal Rank -->
+```
+
 **Class Performance:**
 
 - **4 classes** in this course
@@ -1401,12 +1856,12 @@
 - Student 37251127: ATAR 99.5, Scaled 41.1, Rank 7
 - Student 37251615: ATAR 98.0, Scaled 38.3, Rank 6
 
-*Significant Rank Changes (Moderated → External):*
-- Student 36254319: dropped 24 positions (rank 5 → 29)
-- Student 37250414: dropped 24 positions (rank 27 → 51)
-- Student 37250244: improved 22 positions (rank 28 → 6)
-- Student 36254211: dropped 19 positions (rank 25 → 44)
-- Student 37251542: improved 19 positions (rank 40 → 21)
+*Significant Rank Changes (Internal → External):*
+- Student 36254319: dropped 24 positions (internal rank 5 → external rank 29)
+- Student 37250414: dropped 24 positions (internal rank 27 → external rank 51)
+- Student 37250244: improved 22 positions (internal rank 28 → external rank 6)
+- Student 36254211: dropped 19 positions (internal rank 25 → external rank 44)
+- Student 37251542: improved 19 positions (internal rank 40 → external rank 21)
 
 *Significantly Below Expectations (MXP):*
 - Student 37251356: Scored 20.8 vs expected 36.7 (gap: -15.9)
@@ -1424,9 +1879,9 @@
 - **Cohort Size:** 19 students
 - **Average Student ATAR:** 87.3
 
-- **Moderated vs External Exam:** State-moderated internal (avg 90.2) vs external exam (avg 90.2) - students were slightly under-moderated by 0.1 points
+- **Internal vs External Assessment:** School internal assessment (avg 77.8) vs external exam (avg 90.2) - internal marks were significantly lower by 12.4 points
 
-- **Rank Order Changes:** 8 students had significant rank changes (3+ positions) between moderated and external assessments
+- **Rank Order Changes:** 8 students had significant rank changes (3+ positions) between internal and external assessments (mean change: 5.2 positions)
 
 - **Band Distribution:** 5: 6, 6: 13
 
@@ -1466,6 +1921,31 @@
        Scaled Mark -->
 ```
 
+**Rank Order Changes (Internal vs External):**
+
+```
+  Rank Order: Internal vs External (n=19)
+  (* = student, . = no change diagonal)
+  19 |                                                        *   .
+  18 |                                                        ....*
+  16 |                                        *           ....     
+  15 |                                           *    ....         
+  14 |                                            ....  *  *       
+  13 |                 *                     .....                 
+  11 |                       *           ....                      
+  10 |                           *   ..*.                          
+   9 |                           ...*                              
+   7 |          *            ....                                  
+   6 |                  .....              *                       
+   5 |       *      ....                            *              
+   4 |    *     ....                                               
+   2 | *    ....                                                   
+   1 | .....        *     *                                        
+      +------------------------------------------------------------
+       1                                                         19
+       Internal Rank -->
+```
+
 **Class Performance:**
 
 - **1 classes** in this course
@@ -1484,12 +1964,12 @@
 - Student 36539992: ATAR 95.8, Scaled 35.2, Rank 7
 - Student 37251313: ATAR 82.4, Scaled 28.9, Rank 6
 
-*Significant Rank Changes (Moderated → External):*
-- Student 36909129: improved 9 positions (rank 15 → 6)
-- Student 36539992: dropped 7 positions (rank 6 → 13)
-- Student 37251100: improved 5 positions (rank 7 → 2)
-- Student 37251194: improved 5 positions (rank 12 → 7)
-- Student 37250392: dropped 4 positions (rank 4 → 8)
+*Significant Rank Changes (Internal → External):*
+- Student 36909129: improved 9 positions (internal rank 15 → external rank 6)
+- Student 36539992: dropped 7 positions (internal rank 6 → external rank 13)
+- Student 37251100: improved 5 positions (internal rank 7 → external rank 2)
+- Student 37251194: improved 5 positions (internal rank 12 → external rank 7)
+- Student 37250392: dropped 4 positions (internal rank 4 → external rank 8)
 
 *Significantly Below Expectations (MXP):*
 - Student 37250171: Scored 22.1 vs expected 39.1 (gap: -17.0)
@@ -1507,9 +1987,9 @@
 - **Cohort Size:** 10 students
 - **Average Student ATAR:** 91.7
 
-- **Moderated vs External Exam:** State-moderated internal (avg 86.7) vs external exam (avg 86.8) - students were slightly under-moderated by 0.1 points
+- **Internal vs External Assessment:** School internal assessment (avg 80.7) vs external exam (avg 86.8) - internal marks were moderately lower by 6.1 points
 
-- **Rank Order Changes:** 4 students had significant rank changes (3+ positions) between moderated and external assessments
+- **Rank Order Changes:** 4 students had significant rank changes (3+ positions) between internal and external assessments (mean change: 5.2 positions)
 
 - **Band Distribution:** 4: 1, 5: 6, 6: 3
 
@@ -1549,6 +2029,31 @@
        Scaled Mark -->
 ```
 
+**Rank Order Changes (Internal vs External):**
+
+```
+  Rank Order: Internal vs External (n=10)
+  (* = student, . = no change diagonal)
+  10 |                                                            *
+   9 |                                                        .... 
+   9 |                                 *                  ....     
+   8 |                                                ....         
+   7 |       *                                    ....             
+   7 |                                       .*...                 
+   6 |                                   ....                      
+   6 |                    *          ....                          
+   5 |                           *...                              
+   4 |                       ....                                  
+   4 |              *   .....                                      
+   3 |              ....                                   *       
+   2 |          ....                                               
+   2 |      ....                                    *              
+   1 | *....                                                       
+      +------------------------------------------------------------
+       1                                                         10
+       Internal Rank -->
+```
+
 **Class Performance:**
 
 - **1 classes** in this course
@@ -1567,11 +2072,11 @@
 - Student 37251402: ATAR 89.5, Scaled 35.4, Rank 5
 - Student 37573531: ATAR 73.3, Scaled 20.3, Rank 5
 
-*Significant Rank Changes (Moderated → External):*
-- Student 37250554: dropped 6 positions (rank 2 → 8)
-- Student 37250465: improved 6 positions (rank 8 → 2)
-- Student 37251402: improved 6 positions (rank 9 → 3)
-- Student 37250376: dropped 3 positions (rank 6 → 9)
+*Significant Rank Changes (Internal → External):*
+- Student 37250554: dropped 6 positions (internal rank 2 → external rank 8)
+- Student 37250465: improved 6 positions (internal rank 8 → external rank 2)
+- Student 37251402: improved 6 positions (internal rank 9 → external rank 3)
+- Student 37250376: dropped 3 positions (internal rank 6 → external rank 9)
 
 *Significantly Below Expectations (MXP):*
 - Student 37573531: Scored 20.3 vs expected 33.7 (gap: -13.4)
@@ -1587,7 +2092,7 @@
 - **Cohort Size:** 2 students
 - **Average Student ATAR:** 96.9
 
-- **Moderated vs External Exam:** State-moderated internal (avg 93.8) vs external exam (avg 93.8) - students were slightly under-moderated by 0.0 points
+- **Internal vs External Assessment:** School internal assessment (avg 86.0) vs external exam (avg 93.8) - internal marks were moderately lower by 7.8 points
 
 - **Band Distribution:** 6: 2
 
@@ -1627,6 +2132,31 @@
        Scaled Mark -->
 ```
 
+**Rank Order Changes (Internal vs External):**
+
+```
+  Rank Order: Internal vs External (n=2)
+  (* = student, . = no change diagonal)
+   2 |                                                            *
+   2 |                                                        .... 
+   2 |                                                    ....     
+   2 |                                                ....         
+   2 |                                            ....             
+   2 |                                       .....                 
+   2 |                                   ....                      
+   2 |                               ....                          
+   1 |                           ....                              
+   1 |                       ....                                  
+   1 |                  .....                                      
+   1 |              ....                                           
+   1 |          ....                                               
+   1 |      ....                                                   
+   1 | *....                                                       
+      +------------------------------------------------------------
+       1                                                          2
+       Internal Rank -->
+```
+
 **Deeper Analysis:**
 
 *Top Performers:*
@@ -1646,9 +2176,9 @@
 - **Cohort Size:** 7 students
 - **Average Student ATAR:** 98.2
 
-- **Moderated vs External Exam:** State-moderated internal (avg 46.9) vs external exam (avg 46.9) - students were slightly over-moderated by 0.0 points
+- **Internal vs External Assessment:** School internal assessment (avg 44.6) vs external exam (avg 46.9) - internal marks were slightly lower by 2.4 points
 
-- **Rank Order Changes:** 2 students had significant rank changes (3+ positions) between moderated and external assessments
+- **Rank Order Changes:** 2 students had significant rank changes (3+ positions) between internal and external assessments (mean change: 3.5 positions)
 
 - **Band Distribution:** E4: 7
 
@@ -1688,6 +2218,31 @@
        Scaled Mark -->
 ```
 
+**Rank Order Changes (Internal vs External):**
+
+```
+  Rank Order: Internal vs External (n=7)
+  (* = student, . = no change diagonal)
+   7 |                                        *                   .
+   7 |                                                        .... 
+   6 |                                                    ....     
+   6 |          *                                     ....         
+   5 |                                            ....             
+   5 |                                       .....      *          
+   4 |                                   ....                      
+   4 |                               ....                         *
+   4 |                           ....                              
+   3 |                       ....                                  
+   3 |                  .....       *                              
+   2 |              ....                                           
+   2 |          ....      *                                        
+   1 |      ....                                                   
+   1 | *....                                                       
+      +------------------------------------------------------------
+       1                                                          7
+       Internal Rank -->
+```
+
 **Class Performance:**
 
 - **1 classes** in this course
@@ -1706,9 +2261,9 @@
 - Student 37251461: ATAR 98.7, Scaled 40.9, Rank 7
 - Student 37251127: ATAR 99.5, Scaled 42.4, Rank 6
 
-*Significant Rank Changes (Moderated → External):*
-- Student 37250481: dropped 4 positions (rank 2 → 6)
-- Student 37250600: improved 3 positions (rank 7 → 4)
+*Significant Rank Changes (Internal → External):*
+- Student 37250481: dropped 4 positions (internal rank 2 → external rank 6)
+- Student 37250600: improved 3 positions (internal rank 7 → external rank 4)
 
 *Significantly Below Expectations (MXP):*
 - Student 37251461: Scored 40.9 vs expected 43.0 (gap: -2.1)
@@ -1722,9 +2277,9 @@
 - **Cohort Size:** 55 students
 - **Average Student ATAR:** 91.3
 
-- **Moderated vs External Exam:** State-moderated internal (avg 87.5) vs external exam (avg 87.4) - students were slightly over-moderated by 0.1 points
+- **Internal vs External Assessment:** School internal assessment (avg 77.6) vs external exam (avg 87.4) - internal marks were significantly lower by 9.8 points
 
-- **Rank Order Changes:** 46 students had significant rank changes (3+ positions) between moderated and external assessments
+- **Rank Order Changes:** 46 students had significant rank changes (3+ positions) between internal and external assessments (mean change: 12.1 positions)
 
 - **Band Distribution:** 3: 1, 4: 2, 5: 27, 6: 25
 
@@ -1764,6 +2319,31 @@
        Scaled Mark -->
 ```
 
+**Rank Order Changes (Internal vs External):**
+
+```
+  Rank Order: Internal vs External (n=55)
+  (* = student, . = no change diagonal)
+  55 |                                                            *
+  51 |                                               *        .**. 
+  47 |                       *   *     *                  ..*.     
+  43 |                                   *  *     * * ....         
+  40 |                  *            *       *    .... *           
+  36 |                         *             .....      * *  *     
+  32 |              *             *      ....   *             *    
+  28 |                    * *      * ....     *                    
+  24 |                   *       .... *                  *         
+  20 |        *              ....              * *         *       
+  16 |    *           * .....   *   *                              
+  13 |       * **   .*..                                           
+   9 |   *      ...*   *                   *                       
+   5 |  *   *...           *                       *               
+   1 | *...*     *                      *                          
+      +------------------------------------------------------------
+       1                                                         55
+       Internal Rank -->
+```
+
 **Class Performance:**
 
 - **3 classes** in this course
@@ -1785,12 +2365,12 @@
 - Student 37251585: ATAR 94.8, Scaled 37.5, Rank 6
 - Student 37251380: ATAR 92.4, Scaled 35.2, Rank 6
 
-*Significant Rank Changes (Moderated → External):*
-- Student 37250120: improved 36 positions (rank 42 → 6)
-- Student 37251240: improved 30 positions (rank 32 → 2)
-- Student 37251623: dropped 26 positions (rank 22 → 48)
-- Student 37251097: improved 26 positions (rank 49 → 23)
-- Student 37250309: dropped 25 positions (rank 25 → 50)
+*Significant Rank Changes (Internal → External):*
+- Student 37250120: improved 36 positions (internal rank 42 → external rank 6)
+- Student 37251240: improved 30 positions (internal rank 32 → external rank 2)
+- Student 37251623: dropped 26 positions (internal rank 22 → external rank 48)
+- Student 37251097: improved 26 positions (internal rank 49 → external rank 23)
+- Student 37250309: dropped 25 positions (internal rank 25 → external rank 50)
 
 *Significantly Below Expectations (MXP):*
 - Student 37251569: Scored 14.2 vs expected 24.1 (gap: -9.9)
@@ -1808,7 +2388,7 @@
 - **Cohort Size:** 2 students
 - **Average Student ATAR:** 94.0
 
-- **Moderated vs External Exam:** State-moderated internal (avg 43.0) vs external exam (avg 43.0) - students were slightly under-moderated by 0.0 points
+- **Internal vs External Assessment:** School internal assessment (avg 41.0) vs external exam (avg 43.0) - internal marks were slightly lower by 2.0 points
 
 - **Band Distribution:** E3: 2
 
@@ -1848,6 +2428,31 @@
        Scaled Mark -->
 ```
 
+**Rank Order Changes (Internal vs External):**
+
+```
+  Rank Order: Internal vs External (n=2)
+  (* = student, . = no change diagonal)
+   2 |                                                            *
+   2 |                                                        .... 
+   2 |                                                    ....     
+   2 |                                                ....         
+   2 |                                            ....             
+   2 |                                       .....                 
+   2 |                                   ....                      
+   2 |                               ....                          
+   1 |                           ....                              
+   1 |                       ....                                  
+   1 |                  .....                                      
+   1 |              ....                                           
+   1 |          ....                                               
+   1 |      ....                                                   
+   1 | *....                                                       
+      +------------------------------------------------------------
+       1                                                          2
+       Internal Rank -->
+```
+
 **Deeper Analysis:**
 
 *Top Performers:*
@@ -1867,9 +2472,9 @@
 - **Cohort Size:** 125 students
 - **Average Student ATAR:** 94.0
 
-- **Moderated vs External Exam:** State-moderated internal (avg 90.4) vs external exam (avg 90.6) - students were slightly under-moderated by 0.1 points
+- **Internal vs External Assessment:** School internal assessment (avg 83.6) vs external exam (avg 90.6) - internal marks were moderately lower by 7.0 points
 
-- **Rank Order Changes:** 104 students had significant rank changes (3+ positions) between moderated and external assessments
+- **Rank Order Changes:** 106 students had significant rank changes (3+ positions) between internal and external assessments (mean change: 13.3 positions)
 
 - **Band Distribution:** 3: 2, 4: 8, 5: 33, 6: 82
 
@@ -1909,6 +2514,31 @@
        Scaled Mark -->
 ```
 
+**Rank Order Changes (Internal vs External):**
+
+```
+  Rank Order: Internal vs External (n=125)
+  (* = student, . = no change diagonal)
+ 125 |                                                       *    .
+ 116 |                                                      * *****
+ 107 |                                      *      *  * **.*..**   
+  98 |                                  * *   *   *  *.**.  **     
+  90 |                                  *  **    *....**  **       
+  81 |                           *        *  .*.*. **    *         
+  72 |                                 * *.*.**   *  *             
+  63 |                     * **  *  **...      * *                 
+  54 |          *  *     *      *..**        *                     
+  45 |              *   **  **... *** *                            
+  36 |       *   **   **..... **     **                            
+  28 |     * *     **.*.* *    *  *                                
+  19 |   ** *  **... *    *                                        
+  10 | **  **.**       *  **                                       
+   1 | ****.  *  **         *                                      
+      +------------------------------------------------------------
+       1                                                        125
+       Internal Rank -->
+```
+
 **Class Performance:**
 
 - **9 classes** in this course
@@ -1934,12 +2564,12 @@
 - Student 37250686: ATAR 96.1, Scaled 36.7, Rank 7
 - Student 37250481: ATAR 96.5, Scaled 27.9, Rank 7
 
-*Significant Rank Changes (Moderated → External):*
-- Student 36254270: improved 46 positions (rank 54 → 8)
-- Student 36254149: improved 35 positions (rank 45 → 10)
-- Student 38650580: dropped 34 positions (rank 72 → 106)
-- Student 37725455: dropped 33 positions (rank 22 → 55)
-- Student 36254289: dropped 30 positions (rank 3 → 33)
+*Significant Rank Changes (Internal → External):*
+- Student 36254270: improved 38 positions (internal rank 46 → external rank 8)
+- Student 37725455: dropped 35 positions (internal rank 20 → external rank 55)
+- Student 36254149: improved 34 positions (internal rank 44 → external rank 10)
+- Student 38650580: dropped 34 positions (internal rank 72 → external rank 106)
+- Student 37250732: dropped 30 positions (internal rank 80 → external rank 110)
 
 *Significantly Below Expectations (MXP):*
 - Student 37250481: Scored 27.9 vs expected 38.6 (gap: -10.7)
@@ -1957,7 +2587,7 @@
 - **Cohort Size:** 4 students
 - **Average Student ATAR:** 91.5
 
-- **Moderated vs External Exam:** State-moderated internal (avg 46.5) vs external exam (avg 46.5) - students were slightly under-moderated by 0.0 points
+- **Internal vs External Assessment:** School internal assessment (avg 41.8) vs external exam (avg 46.5) - internal marks were moderately lower by 4.8 points
 
 - **Band Distribution:** E4: 4
 
@@ -1997,6 +2627,31 @@
        Scaled Mark -->
 ```
 
+**Rank Order Changes (Internal vs External):**
+
+```
+  Rank Order: Internal vs External (n=4)
+  (* = student, . = no change diagonal)
+   4 |                                                            *
+   4 |                                                        .... 
+   4 |                                                    ....     
+   3 |                                                ....         
+   3 |                                            ....             
+   3 |                                       .*...                 
+   3 |                                   ....                      
+   2 |                               ....                          
+   2 |                           ....                              
+   2 |                       ....                                  
+   2 |                  ..*..                                      
+   2 |              ....                                           
+   1 |          ....                                               
+   1 |      ....                                                   
+   1 | *....                                                       
+      +------------------------------------------------------------
+       1                                                          4
+       Internal Rank -->
+```
+
 **Class Performance:**
 
 - **2 classes** in this course
@@ -2025,9 +2680,9 @@
 - **Cohort Size:** 39 students
 - **Average Student ATAR:** 94.4
 
-- **Moderated vs External Exam:** State-moderated internal (avg 88.4) vs external exam (avg 88.4) - students were slightly over-moderated by 0.0 points
+- **Internal vs External Assessment:** School internal assessment (avg 77.9) vs external exam (avg 88.4) - internal marks were significantly lower by 10.5 points
 
-- **Rank Order Changes:** 25 students had significant rank changes (3+ positions) between moderated and external assessments
+- **Rank Order Changes:** 25 students had significant rank changes (3+ positions) between internal and external assessments (mean change: 6.5 positions)
 
 - **Band Distribution:** 4: 4, 5: 12, 6: 23
 
@@ -2067,6 +2722,31 @@
        Scaled Mark -->
 ```
 
+**Rank Order Changes (Internal vs External):**
+
+```
+  Rank Order: Internal vs External (n=39)
+  (* = student, . = no change diagonal)
+  39 |                                                          * .
+  36 |                                              *         *... 
+  34 |                                               *    ...*    *
+  31 |                                                .**. *       
+  28 |                                       * *  ....             
+  25 |       *          *                    .....        *        
+  23 |                            *      ...*   *                  
+  20 |                        *      .... *       *                
+  17 |    *                      ....  *                           
+  15 |                       ....   * *  *                         
+  12 |          *     * ....*                                      
+   9 |             *....         *                                 
+   6 |          ....*      *   *                                   
+   4 |     *.... *       *                                         
+   1 | **...  *                                                    
+      +------------------------------------------------------------
+       1                                                         39
+       Internal Rank -->
+```
+
 **Class Performance:**
 
 - **3 classes** in this course
@@ -2088,12 +2768,12 @@
 - Student 37250791: ATAR 87.9, Scaled 34.0, Rank 6
 - Student 37251658: ATAR 98.4, Scaled 40.7, Rank 5
 
-*Significant Rank Changes (Moderated → External):*
-- Student 36254289: dropped 22 positions (rank 5 → 27)
-- Student 37250759: dropped 15 positions (rank 3 → 18)
-- Student 37250767: dropped 14 positions (rank 12 → 26)
-- Student 37250899: improved 10 positions (rank 17 → 7)
-- Student 37250597: improved 9 positions (rank 13 → 4)
+*Significant Rank Changes (Internal → External):*
+- Student 36254289: dropped 22 positions (internal rank 5 → external rank 27)
+- Student 37250759: dropped 15 positions (internal rank 3 → external rank 18)
+- Student 37250767: dropped 14 positions (internal rank 12 → external rank 26)
+- Student 37250899: improved 10 positions (internal rank 17 → external rank 7)
+- Student 37250597: improved 9 positions (internal rank 13 → external rank 4)
 
 *Significantly Below Expectations (MXP):*
 - Student 37250724: Scored 29.1 vs expected 40.4 (gap: -11.3)
@@ -2111,9 +2791,9 @@
 - **Cohort Size:** 43 students
 - **Average Student ATAR:** 86.4
 
-- **Moderated vs External Exam:** State-moderated internal (avg 91.2) vs external exam (avg 91.2) - students were slightly over-moderated by 0.0 points
+- **Internal vs External Assessment:** School internal assessment (avg 84.3) vs external exam (avg 91.2) - internal marks were moderately lower by 6.8 points
 
-- **Rank Order Changes:** 32 students had significant rank changes (3+ positions) between moderated and external assessments
+- **Rank Order Changes:** 32 students had significant rank changes (3+ positions) between internal and external assessments (mean change: 9.6 positions)
 
 - **Band Distribution:** 5: 15, 6: 28
 
@@ -2153,6 +2833,31 @@
        Scaled Mark -->
 ```
 
+**Rank Order Changes (Internal vs External):**
+
+```
+  Rank Order: Internal vs External (n=43)
+  (* = student, . = no change diagonal)
+  43 |                                                *           .
+  40 |                               *               *        ....*
+  37 |                                            **      ...*     
+  34 |               *          *              *      ....         
+  31 |                                        *   ....  * *        
+  28 |                    *  *               .....          *      
+  25 |         *                         ....            *      *  
+  22 |                             * ..**                          
+  19 |                        *  ...*            *                 
+  16 |                   *   ....         **                       
+  13 |                **.....                                  *   
+  10 |     *  *     ....    *                                      
+   7 |          ...*             *          *                      
+   4 |  *   *...*                                                  
+   1 | *.*..      *                                                
+      +------------------------------------------------------------
+       1                                                         43
+       Internal Rank -->
+```
+
 **Class Performance:**
 
 - **3 classes** in this course
@@ -2174,12 +2879,12 @@
 - Student 37250708: ATAR 88.6, Scaled 28.1, Rank 6
 - Student 37251518: ATAR 99.6, Scaled 45.0, Rank 5
 
-*Significant Rank Changes (Moderated → External):*
-- Student 37251089: improved 26 positions (rank 41 → 15)
-- Student 37251186: dropped 23 positions (rank 11 → 34)
-- Student 37250775: improved 20 positions (rank 28 → 8)
-- Student 37250325: dropped 18 positions (rank 7 → 25)
-- Student 38759353: dropped 17 positions (rank 23 → 40)
+*Significant Rank Changes (Internal → External):*
+- Student 37251089: improved 26 positions (internal rank 41 → external rank 15)
+- Student 37251186: dropped 23 positions (internal rank 11 → external rank 34)
+- Student 37250775: improved 20 positions (internal rank 28 → external rank 8)
+- Student 37250325: dropped 18 positions (internal rank 7 → external rank 25)
+- Student 38759353: dropped 17 positions (internal rank 23 → external rank 40)
 
 *Significantly Below Expectations (MXP):*
 - Student 37250252: Scored 23.8 vs expected 39.0 (gap: -15.2)
@@ -2197,9 +2902,9 @@
 - **Cohort Size:** 57 students
 - **Average Student ATAR:** 85.1
 
-- **Moderated vs External Exam:** State-moderated internal (avg 84.6) vs external exam (avg 84.4) - students were slightly over-moderated by 0.1 points
+- **Internal vs External Assessment:** School internal assessment (avg 78.4) vs external exam (avg 84.4) - internal marks were moderately lower by 6.0 points
 
-- **Rank Order Changes:** 35 students had significant rank changes (3+ positions) between moderated and external assessments
+- **Rank Order Changes:** 35 students had significant rank changes (3+ positions) between internal and external assessments (mean change: 8.0 positions)
 
 - **Band Distribution:** 2: 1, 3: 6, 4: 7, 5: 20, 6: 23
 
@@ -2239,6 +2944,31 @@
        Scaled Mark -->
 ```
 
+**Rank Order Changes (Internal vs External):**
+
+```
+  Rank Order: Internal vs External (n=57)
+  (* = student, . = no change diagonal)
+  57 |                                                            *
+  53 |                                                     ** .**. 
+  49 |                                              *    *...**    
+  45 |                                         *      ***.         
+  41 |                         * **          *    ....             
+  37 |                               *       ....**  *             
+  33 |                   *               ...*   *         *        
+  29 |                               .**. *        *               
+  25 |                     *  *  ...*    *                         
+  21 |          *       *    *..*                                  
+  17 |             *    ....*      *    *                          
+  13 |            * *..*                   *                       
+   9 |    *  * *.... *                                             
+   5 | * *  *.*.                                                   
+   1 | .*..*     *    *                                            
+      +------------------------------------------------------------
+       1                                                         57
+       Internal Rank -->
+```
+
 **Class Performance:**
 
 - **3 classes** in this course
@@ -2260,12 +2990,12 @@
 - Student 37251283: ATAR 98.8, Scaled 31.9, Rank 6
 - Student 37251186: ATAR 89.0, Scaled 24.2, Rank 6
 
-*Significant Rank Changes (Moderated → External):*
-- Student 37251119: improved 20 positions (rank 36 → 16)
-- Student 37250422: dropped 19 positions (rank 24 → 43)
-- Student 37250406: dropped 17 positions (rank 19 → 36)
-- Student 37250457: dropped 17 positions (rank 27 → 44)
-- Student 36254254: dropped 16 positions (rank 26 → 42)
+*Significant Rank Changes (Internal → External):*
+- Student 37251119: improved 20 positions (internal rank 36 → external rank 16)
+- Student 37250422: dropped 19 positions (internal rank 24 → external rank 43)
+- Student 37250406: dropped 17 positions (internal rank 19 → external rank 36)
+- Student 37250457: dropped 17 positions (internal rank 27 → external rank 44)
+- Student 36254254: dropped 16 positions (internal rank 26 → external rank 42)
 
 *Significantly Below Expectations (MXP):*
 - Student 37251607: Scored 11.6 vs expected 35.0 (gap: -23.4)
@@ -2283,7 +3013,7 @@
 - **Cohort Size:** 2 students
 - **Average Student ATAR:** 92.3
 
-- **Moderated vs External Exam:** State-moderated internal (avg 46.2) vs external exam (avg 46.2) - students were slightly under-moderated by 0.0 points
+- **Internal vs External Assessment:** School internal assessment (avg 39.5) vs external exam (avg 46.2) - internal marks were moderately lower by 6.8 points
 
 - **Band Distribution:** E4: 2
 
@@ -2323,6 +3053,31 @@
        Scaled Mark -->
 ```
 
+**Rank Order Changes (Internal vs External):**
+
+```
+  Rank Order: Internal vs External (n=2)
+  (* = student, . = no change diagonal)
+   2 |                                                            *
+   2 |                                                        .... 
+   2 |                                                    ....     
+   2 |                                                ....         
+   2 |                                            ....             
+   2 |                                       .....                 
+   2 |                                   ....                      
+   2 |                               ....                          
+   1 |                           ....                              
+   1 |                       ....                                  
+   1 |                  .....                                      
+   1 |              ....                                           
+   1 |          ....                                               
+   1 |      ....                                                   
+   1 | *....                                                       
+      +------------------------------------------------------------
+       1                                                          2
+       Internal Rank -->
+```
+
 **Deeper Analysis:**
 
 *Top Performers:*
@@ -2342,9 +3097,9 @@
 - **Cohort Size:** 74 students
 - **Average Student ATAR:** 95.9
 
-- **Moderated vs External Exam:** State-moderated internal (avg 64.4) vs external exam (avg 64.3) - students were slightly over-moderated by 0.2 points
+- **Internal vs External Assessment:** School internal assessment (avg 59.2) vs external exam (avg 64.3) - internal marks were moderately lower by 5.0 points
 
-- **Rank Order Changes:** 51 students had significant rank changes (3+ positions) between moderated and external assessments
+- **Rank Order Changes:** 51 students had significant rank changes (3+ positions) between internal and external assessments (mean change: 7.2 positions)
 
 - **Band Distribution:** E2: 1, E3: 28, E4: 45
 
@@ -2384,6 +3139,31 @@
        Scaled Mark -->
 ```
 
+**Rank Order Changes (Internal vs External):**
+
+```
+  Rank Order: Internal vs External (n=74)
+  (* = student, . = no change diagonal)
+  74 |                                             *              .
+  69 |                                            *        *  **.* 
+  64 |                                           *      * ...*    *
+  58 |                                      *        *...*      *  
+  53 |                                            ..*. *  * **     
+  48 |                              *    * * .....    *  *         
+  43 |                                  *....****                  
+  38 |                               **.* * *                      
+  32 |                          ****.  *                           
+  27 |          *       *    *.**                                  
+  22 |            *    *..*.* *                                    
+  17 |     *     * *.**.                                           
+  11 |       * *....   * * *                                       
+   6 |     *..**   **                                              
+   1 | ****.*                                                      
+      +------------------------------------------------------------
+       1                                                         74
+       Internal Rank -->
+```
+
 **Class Performance:**
 
 - **10 classes** in this course
@@ -2406,12 +3186,12 @@
 - Student 37251674: ATAR 90.5, Scaled 33.7, Rank 5
 - Student 37251542: ATAR 95.3, Scaled 39.6, Rank 5
 
-*Significant Rank Changes (Moderated → External):*
-- Student 37251631: dropped 18 positions (rank 56 → 74)
-- Student 37250619: dropped 17 positions (rank 13 → 30)
-- Student 37247529: dropped 15 positions (rank 55 → 70)
-- Student 37250678: dropped 13 positions (rank 38 → 51)
-- Student 36254289: dropped 12 positions (rank 7 → 19)
+*Significant Rank Changes (Internal → External):*
+- Student 37251631: dropped 18 positions (internal rank 56 → external rank 74)
+- Student 37250619: dropped 17 positions (internal rank 13 → external rank 30)
+- Student 37247529: dropped 15 positions (internal rank 55 → external rank 70)
+- Student 37250678: dropped 13 positions (internal rank 38 → external rank 51)
+- Student 36254289: dropped 12 positions (internal rank 7 → external rank 19)
 
 *Significantly Below Expectations (MXP):*
 - Student 37250961: Scored 36.3 vs expected 44.0 (gap: -7.7)
@@ -2429,9 +3209,9 @@
 - **Cohort Size:** 33 students
 - **Average Student ATAR:** 97.7
 
-- **Moderated vs External Exam:** State-moderated internal (avg 87.0) vs external exam (avg 86.8) - students were slightly over-moderated by 0.2 points
+- **Internal vs External Assessment:** School internal assessment (avg 81.6) vs external exam (avg 86.8) - internal marks were moderately lower by 5.2 points
 
-- **Rank Order Changes:** 24 students had significant rank changes (3+ positions) between moderated and external assessments
+- **Rank Order Changes:** 24 students had significant rank changes (3+ positions) between internal and external assessments (mean change: 6.9 positions)
 
 - **Band Distribution:** E2: 1, E3: 15, E4: 17
 
@@ -2471,6 +3251,31 @@
        Scaled Mark -->
 ```
 
+**Rank Order Changes (Internal vs External):**
+
+```
+  Rank Order: Internal vs External (n=33)
+  (* = student, . = no change diagonal)
+  33 |                                                          * .
+  31 |                                                        *...*
+  28 |                     *                         *    ....     
+  26 |               *                     *          ....         
+  24 |                                  *         ....  *   *      
+  22 |                                       ..... *      *        
+  19 |                       *           ....    *                 
+  17 |             *            *    ....             *            
+  15 |                   *       .*..                              
+  12 |                       ....   *        *                     
+  10 |                  ..... *       *                            
+   8 |      *       ....                  *    *                   
+   6 |        * *...                                               
+   3 |  *   ....       *                                           
+   1 | *..*.      *                                                
+      +------------------------------------------------------------
+       1                                                         33
+       Internal Rank -->
+```
+
 **Class Performance:**
 
 - **6 classes** in this course
@@ -2493,12 +3298,12 @@
 - Student 36586249: ATAR 97.4, Scaled 38.1, Rank 5
 - Student 37251623: ATAR 94.1, Scaled 38.7, Rank 4
 
-*Significant Rank Changes (Moderated → External):*
-- Student 36254106: dropped 19 positions (rank 9 → 28)
-- Student 36254327: dropped 18 positions (rank 12 → 30)
-- Student 37250619: improved 14 positions (rank 23 → 9)
-- Student 37250929: dropped 11 positions (rank 8 → 19)
-- Student 36254157: improved 10 positions (rank 20 → 10)
+*Significant Rank Changes (Internal → External):*
+- Student 36254106: dropped 19 positions (internal rank 9 → external rank 28)
+- Student 36254327: dropped 18 positions (internal rank 12 → external rank 30)
+- Student 37250619: improved 14 positions (internal rank 23 → external rank 9)
+- Student 37250929: dropped 11 positions (internal rank 8 → external rank 19)
+- Student 36254157: improved 10 positions (internal rank 20 → external rank 10)
 
 *Significantly Below Expectations (MXP):*
 - Student 36586249: Scored 38.1 vs expected 41.6 (gap: -3.4)
@@ -2513,7 +3318,7 @@
 - **Cohort Size:** 7 students
 - **Average Student ATAR:** 92.3
 
-- **Moderated vs External Exam:** State-moderated internal (avg 92.9) vs external exam (avg 92.9) - students were slightly over-moderated by 0.0 points
+- **Internal vs External Assessment:** School internal assessment (avg 89.1) vs external exam (avg 92.9) - internal marks were slightly lower by 3.8 points
 
 - **Band Distribution:** 5: 1, 6: 6
 
@@ -2553,6 +3358,31 @@
        Scaled Mark -->
 ```
 
+**Rank Order Changes (Internal vs External):**
+
+```
+  Rank Order: Internal vs External (n=7)
+  (* = student, . = no change diagonal)
+   7 |                                                  *         .
+   7 |                                                        .... 
+   6 |                                                    ....     
+   6 |                                                ....        *
+   5 |                                            ....             
+   5 |                    *                  .....                 
+   4 |                                   ....                      
+   4 |                              *....                          
+   4 |                           ....                              
+   3 |                       ....                                  
+   3 |                  .....                 *                    
+   2 |              ....                                           
+   2 |          *...                                               
+   1 |      ....                                                   
+   1 | *....                                                       
+      +------------------------------------------------------------
+       1                                                          7
+       Internal Rank -->
+```
+
 **Class Performance:**
 
 - **2 classes** in this course
@@ -2584,7 +3414,7 @@
 - **Cohort Size:** 3 students
 - **Average Student ATAR:** 95.2
 
-- **Moderated vs External Exam:** State-moderated internal (avg 89.8) vs external exam (avg 89.8) - students were slightly under-moderated by 0.0 points
+- **Internal vs External Assessment:** School internal assessment (avg 74.0) vs external exam (avg 89.8) - internal marks were significantly lower by 15.8 points
 
 - **Band Distribution:** 5: 1, 6: 2
 
@@ -2624,6 +3454,31 @@
        Scaled Mark -->
 ```
 
+**Rank Order Changes (Internal vs External):**
+
+```
+  Rank Order: Internal vs External (n=3)
+  (* = student, . = no change diagonal)
+   3 |                                                            *
+   3 |                                                        .... 
+   3 |                                                    ....     
+   3 |                                                ....         
+   2 |                                            ....             
+   2 |                                       .....                 
+   2 |                                   ....                      
+   2 | *                             ....                          
+   2 |                           ....                              
+   2 |                       ....                                  
+   2 |                  .....                                      
+   1 |              ....                                           
+   1 |          ....                                               
+   1 |      ....                                                   
+   1 | .....                        *                              
+      +------------------------------------------------------------
+       1                                                          3
+       Internal Rank -->
+```
+
 **Class Performance:**
 
 - **1 classes** in this course
@@ -2651,9 +3506,9 @@
 - **Cohort Size:** 44 students
 - **Average Student ATAR:** 91.9
 
-- **Moderated vs External Exam:** State-moderated internal (avg 89.1) vs external exam (avg 89.2) - students were slightly under-moderated by 0.1 points
+- **Internal vs External Assessment:** School internal assessment (avg 78.3) vs external exam (avg 89.2) - internal marks were significantly lower by 10.8 points
 
-- **Rank Order Changes:** 27 students had significant rank changes (3+ positions) between moderated and external assessments
+- **Rank Order Changes:** 27 students had significant rank changes (3+ positions) between internal and external assessments (mean change: 8.1 positions)
 
 - **Band Distribution:** 3: 1, 4: 2, 5: 15, 6: 26
 
@@ -2693,6 +3548,31 @@
        Scaled Mark -->
 ```
 
+**Rank Order Changes (Internal vs External):**
+
+```
+  Rank Order: Internal vs External (n=44)
+  (* = student, . = no change diagonal)
+  44 |                                                            *
+  41 |                                 *                      .**. 
+  38 |                                   *              **....     
+  35 |                                           *   *.... *       
+  32 |                                          * .... *    *      
+  29 |                                       .*...  *        *     
+  26 |                 *             *   ....*                     
+  22 |                     *      *  .... *                        
+  19 |             *  *          ....             *                
+  16 |                    *  ....  *  *                            
+  13 |       *          ....*               *                      
+  10 |      *   *   ....*                                          
+   7 |     *    .*..             *                                 
+   4 |   *  ....              **                                   
+   1 | **...   *    *                                              
+      +------------------------------------------------------------
+       1                                                         44
+       Internal Rank -->
+```
+
 **Class Performance:**
 
 - **3 classes** in this course
@@ -2713,12 +3593,12 @@
 - Student 37250848: ATAR 98.1, Scaled 42.1, Rank 6
 - Student 37250651: ATAR 92.2, Scaled 33.9, Rank 6
 
-*Significant Rank Changes (Moderated → External):*
-- Student 37251100: dropped 16 positions (rank 25 → 41)
-- Student 37250449: dropped 14 positions (rank 13 → 27)
-- Student 37250325: dropped 14 positions (rank 26 → 40)
-- Student 37250686: improved 13 positions (rank 18 → 5)
-- Student 37250546: improved 13 positions (rank 28 → 15)
+*Significant Rank Changes (Internal → External):*
+- Student 37251100: dropped 16 positions (internal rank 25 → external rank 41)
+- Student 37250449: dropped 14 positions (internal rank 13 → external rank 27)
+- Student 37250325: dropped 14 positions (internal rank 26 → external rank 40)
+- Student 37250686: improved 13 positions (internal rank 18 → external rank 5)
+- Student 37250546: improved 13 positions (internal rank 28 → external rank 15)
 
 *Significantly Below Expectations (MXP):*
 - Student 37251178: Scored 17.7 vs expected 27.3 (gap: -9.6)
@@ -2736,9 +3616,9 @@
 - **Cohort Size:** 42 students
 - **Average Student ATAR:** 89.4
 
-- **Moderated vs External Exam:** State-moderated internal (avg 89.2) vs external exam (avg 89.3) - students were slightly under-moderated by 0.1 points
+- **Internal vs External Assessment:** School internal assessment (avg 69.5) vs external exam (avg 89.3) - internal marks were significantly lower by 19.8 points
 
-- **Rank Order Changes:** 26 students had significant rank changes (3+ positions) between moderated and external assessments
+- **Rank Order Changes:** 26 students had significant rank changes (3+ positions) between internal and external assessments (mean change: 8.9 positions)
 
 - **Band Distribution:** 3: 3, 4: 1, 5: 9, 6: 29
 
@@ -2778,6 +3658,31 @@
        Scaled Mark -->
 ```
 
+**Rank Order Changes (Internal vs External):**
+
+```
+  Rank Order: Internal vs External (n=42)
+  (* = student, . = no change diagonal)
+  42 |                                                            *
+  39 |                                                        .**. 
+  36 |                                            *       ..**     
+  33 |                             *               *  ...*         
+  30 |        *                                   ...* *           
+  27 |                         *        *    .....        *        
+  24 |                     *             .*..         *            
+  22 |                               *...   *  *                   
+  19 |                   *    *  .*..                              
+  16 |             * *       ....            *                     
+  13 |           *      .....   *               *                  
+  10 |              ..*.              *  *                         
+   7 |  **      ....    *                                          
+   4 |     *...*            *                                      
+   1 | *....*     *                                                
+      +------------------------------------------------------------
+       1                                                         42
+       Internal Rank -->
+```
+
 **Class Performance:**
 
 - **3 classes** in this course
@@ -2798,12 +3703,12 @@
 - Student 37250554: ATAR 93.2, Scaled 36.1, Rank 5
 - Student 37251356: ATAR 78.9, Scaled 28.4, Rank 4
 
-*Significant Rank Changes (Moderated → External):*
-- Student 37250112: dropped 26 positions (rank 6 → 32)
-- Student 36828110: improved 16 positions (rank 30 → 14)
-- Student 37250309: dropped 15 positions (rank 21 → 36)
-- Student 37352926: improved 15 positions (rank 25 → 10)
-- Student 37251259: improved 12 positions (rank 16 → 4)
+*Significant Rank Changes (Internal → External):*
+- Student 37250112: dropped 26 positions (internal rank 6 → external rank 32)
+- Student 36828110: improved 16 positions (internal rank 30 → external rank 14)
+- Student 37250309: dropped 15 positions (internal rank 21 → external rank 36)
+- Student 37352926: improved 15 positions (internal rank 25 → external rank 10)
+- Student 37251259: improved 12 positions (internal rank 16 → external rank 4)
 
 *Significantly Below Expectations (MXP):*
 - Student 37251089: Scored 10.8 vs expected 30.3 (gap: -19.5)
@@ -2821,9 +3726,9 @@
 - **Cohort Size:** 161 students
 - **Average Student ATAR:** 92.9
 
-- **Moderated vs External Exam:** State-moderated internal (avg 87.9) vs external exam (avg 87.8) - students were slightly over-moderated by 0.1 points
+- **Internal vs External Assessment:** School internal assessment (avg 76.4) vs external exam (avg 87.8) - internal marks were significantly lower by 11.4 points
 
-- **Rank Order Changes:** 147 students had significant rank changes (3+ positions) between moderated and external assessments
+- **Rank Order Changes:** 147 students had significant rank changes (3+ positions) between internal and external assessments (mean change: 27.5 positions)
 
 - **Band Distribution:** 4: 3, 5: 97, 6: 61
 
@@ -2863,6 +3768,31 @@
        Scaled Mark -->
 ```
 
+**Rank Order Changes (Internal vs External):**
+
+```
+  Rank Order: Internal vs External (n=161)
+  (* = student, . = no change diagonal)
+ 161 |                                                         *  .
+ 150 |                                              *   *** **.**.*
+ 138 |                                  **    **   * **  *....* ** 
+ 127 |                     *      *         *   *     ***.     *** 
+ 115 |                *        *              *   ***.      ***    
+ 104 |            *  *       *      *****    .....   *  * *        
+  92 |             **       **  *    * * ..*.              *       
+  81 |     *   *         *   **    * .*..**          *     * *     
+  70 |         *          *   * *.**.        * * **    *           
+  58 |        *   *        **...** *       *     **                
+  47 |    *     *  *  **.....  *    *   * * **        *            
+  35 |   **    *  **....* * *        *         *                   
+  24 |   * ***  .*..   * *    *  *  *     *                        
+  12 |     **.*.**   *   **                                        
+   1 | ***..**      * **                                           
+      +------------------------------------------------------------
+       1                                                        161
+       Internal Rank -->
+```
+
 **Class Performance:**
 
 - **10 classes** in this course
@@ -2890,12 +3820,12 @@
 - Student 36753390: ATAR 93.0, Scaled 31.1, Rank 6
 - Student 37251550: ATAR 99.0, Scaled 40.8, Rank 6
 
-*Significant Rank Changes (Moderated → External):*
-- Student 37250929: dropped 81 positions (rank 32 → 113)
-- Student 37250570: dropped 75 positions (rank 39 → 114)
-- Student 37250759: dropped 74 positions (rank 13 → 87)
-- Student 37352993: dropped 74 positions (rank 57 → 131)
-- Student 37251232: improved 74 positions (rank 98 → 24)
+*Significant Rank Changes (Internal → External):*
+- Student 37250929: dropped 81 positions (internal rank 32 → external rank 113)
+- Student 37250570: dropped 75 positions (internal rank 39 → external rank 114)
+- Student 37250759: dropped 74 positions (internal rank 13 → external rank 87)
+- Student 37352993: dropped 74 positions (internal rank 57 → external rank 131)
+- Student 37251232: improved 74 positions (internal rank 98 → external rank 24)
 
 *Significantly Below Expectations (MXP):*
 - Student 37250961: Scored 18.7 vs expected 44.0 (gap: -25.3)
@@ -2913,7 +3843,7 @@
 - **Cohort Size:** 2 students
 - **Average Student ATAR:** 91.1
 
-- **Moderated vs External Exam:** State-moderated internal (avg 92.0) vs external exam (avg 87.4) - students were moderately over-moderated by 4.6 points
+- **Internal vs External Assessment:** School internal assessment (avg 92.5) vs external exam (avg 87.4) - internal marks were moderately higher by 5.1 points
 
 - **Band Distribution:** 5: 1, 6: 1
 
@@ -2953,6 +3883,31 @@
        Scaled Mark -->
 ```
 
+**Rank Order Changes (Internal vs External):**
+
+```
+  Rank Order: Internal vs External (n=2)
+  (* = student, . = no change diagonal)
+   2 |                                                            *
+   2 |                                                        .... 
+   2 |                                                    ....     
+   2 |                                                ....         
+   2 |                                            ....             
+   2 |                                       .....                 
+   2 |                                   ....                      
+   2 |                               ....                          
+   1 |                           ....                              
+   1 |                       ....                                  
+   1 |                  .....                                      
+   1 |              ....                                           
+   1 |          ....                                               
+   1 |      ....                                                   
+   1 | *....                                                       
+      +------------------------------------------------------------
+       1                                                          2
+       Internal Rank -->
+```
+
 **Deeper Analysis:**
 
 *Top Performers:*
@@ -2972,9 +3927,9 @@
 - **Cohort Size:** 21 students
 - **Average Student ATAR:** 88.4
 
-- **Moderated vs External Exam:** State-moderated internal (avg 90.9) vs external exam (avg 90.9) - students were slightly over-moderated by 0.0 points
+- **Internal vs External Assessment:** School internal assessment (avg 79.9) vs external exam (avg 90.9) - internal marks were significantly lower by 11.0 points
 
-- **Rank Order Changes:** 9 students had significant rank changes (3+ positions) between moderated and external assessments
+- **Rank Order Changes:** 9 students had significant rank changes (3+ positions) between internal and external assessments (mean change: 5.2 positions)
 
 - **Band Distribution:** 5: 4, 6: 17
 
@@ -3014,6 +3969,31 @@
        Scaled Mark -->
 ```
 
+**Rank Order Changes (Internal vs External):**
+
+```
+  Rank Order: Internal vs External (n=21)
+  (* = student, . = no change diagonal)
+  21 |                                                            *
+  20 |                                                      * .... 
+  18 |                                                   *....     
+  17 |                              *                 ....     *   
+  15 |            *                               ....             
+  14 |                                    *  .....    *            
+  12 |                                   ....      *               
+  11 |                  *            ....       *                  
+  10 |                           ....        *                     
+   8 |                       ....*                                 
+   7 |      *           ..... *                                    
+   5 |              ....               *                           
+   4 |         *.... *                                             
+   2 |      ....           *                                       
+   1 | *.*..                                                       
+      +------------------------------------------------------------
+       1                                                         21
+       Internal Rank -->
+```
+
 **Class Performance:**
 
 - **2 classes** in this course
@@ -3033,12 +4013,12 @@
 - Student 37251429: ATAR 94.6, Scaled 37.3, Rank 5
 - Student 37251291: ATAR 97.8, Scaled 39.9, Rank 5
 
-*Significant Rank Changes (Moderated → External):*
-- Student 37251291: dropped 11 positions (rank 5 → 16)
-- Student 37251429: dropped 6 positions (rank 11 → 17)
-- Student 37250295: improved 6 positions (rank 12 → 6)
-- Student 37250457: dropped 5 positions (rank 3 → 8)
-- Student 37250406: improved 5 positions (rank 8 → 3)
+*Significant Rank Changes (Internal → External):*
+- Student 37251291: dropped 11 positions (internal rank 5 → external rank 16)
+- Student 37251429: dropped 6 positions (internal rank 11 → external rank 17)
+- Student 37250295: improved 6 positions (internal rank 12 → external rank 6)
+- Student 37250457: dropped 5 positions (internal rank 3 → external rank 8)
+- Student 37250406: improved 5 positions (internal rank 8 → external rank 3)
 
 *Significantly Below Expectations (MXP):*
 - Student 37251410: Scored 36.4 vs expected 43.9 (gap: -7.4)
@@ -3054,9 +4034,9 @@
 - **Cohort Size:** 7 students
 - **Average Student ATAR:** 91.4
 
-- **Moderated vs External Exam:** State-moderated internal (avg 95.7) vs external exam (avg 95.1) - students were slightly over-moderated by 0.6 points
+- **Internal vs External Assessment:** School internal assessment (avg 87.9) vs external exam (avg 95.1) - internal marks were moderately lower by 7.3 points
 
-- **Rank Order Changes:** 1 students had significant rank changes (3+ positions) between moderated and external assessments
+- **Rank Order Changes:** 1 students had significant rank changes (3+ positions) between internal and external assessments (mean change: 3.0 positions)
 
 - **Band Distribution:** 6: 7
 
@@ -3096,6 +4076,31 @@
        Scaled Mark -->
 ```
 
+**Rank Order Changes (Internal vs External):**
+
+```
+  Rank Order: Internal vs External (n=7)
+  (* = student, . = no change diagonal)
+   7 |                              *                             .
+   7 |                                                        .... 
+   6 |                                                    ....     
+   6 |                                                ..*.         
+   5 |                                            ....             
+   5 |                                       .....                *
+   4 |                                   ....                      
+   4 |                               ....     *                    
+   4 |                           ....                              
+   3 |                       ....                                  
+   3 | *                .....                                      
+   2 |              ....                                           
+   2 |          *...                                               
+   1 |      ....                                                   
+   1 | .....              *                                        
+      +------------------------------------------------------------
+       1                                                          7
+       Internal Rank -->
+```
+
 **Class Performance:**
 
 - **1 classes** in this course
@@ -3114,8 +4119,8 @@
 - Student 36753358: ATAR 96.8, Scaled 38.3, Rank 5
 - Student 37250759: ATAR 99.6, Scaled 46.8, Rank 3
 
-*Significant Rank Changes (Moderated → External):*
-- Student 37250961: dropped 3 positions (rank 4 → 7)
+*Significant Rank Changes (Internal → External):*
+- Student 37250961: dropped 3 positions (internal rank 4 → external rank 7)
 
 *Significantly Below Expectations (MXP):*
 - Student 37250961: Scored 37.4 vs expected 44.0 (gap: -6.6)
@@ -3130,9 +4135,9 @@
 - **Cohort Size:** 8 students
 - **Average Student ATAR:** 95.7
 
-- **Moderated vs External Exam:** State-moderated internal (avg 93.5) vs external exam (avg 93.5) - students were slightly under-moderated by 0.0 points
+- **Internal vs External Assessment:** School internal assessment (avg 81.0) vs external exam (avg 93.5) - internal marks were significantly lower by 12.5 points
 
-- **Rank Order Changes:** 1 students had significant rank changes (3+ positions) between moderated and external assessments
+- **Rank Order Changes:** 1 students had significant rank changes (3+ positions) between internal and external assessments (mean change: 3.0 positions)
 
 - **Band Distribution:** 5: 1, 6: 7
 
@@ -3172,6 +4177,31 @@
        Scaled Mark -->
 ```
 
+**Rank Order Changes (Internal vs External):**
+
+```
+  Rank Order: Internal vs External (n=8)
+  (* = student, . = no change diagonal)
+   8 |                                                   *        .
+   8 |                                                        .... 
+   7 |                                                    ....    *
+   6 |                                                ....         
+   6 |                                           *....             
+   6 |                                       .....                 
+   5 |                          *        ....                      
+   4 |                               ....                          
+   4 |         *                 ....                              
+   4 |                       ....                                  
+   3 |                 *.....                                      
+   2 |              ....                                           
+   2 |          ....                    *                          
+   2 |      ....                                                   
+   1 | *....                                                       
+      +------------------------------------------------------------
+       1                                                          8
+       Internal Rank -->
+```
+
 **Class Performance:**
 
 - **1 classes** in this course
@@ -3190,8 +4220,8 @@
 - Student 37251577: ATAR 92.3, Scaled 40.7, Rank 2
 - Student 37251283: ATAR 98.8, Scaled 44.5, Rank 2
 
-*Significant Rank Changes (Moderated → External):*
-- Student 37250848: improved 3 positions (rank 5 → 2)
+*Significant Rank Changes (Internal → External):*
+- Student 37250848: improved 3 positions (internal rank 5 → external rank 2)
 
 ---
 
@@ -3202,7 +4232,7 @@
 - **Cohort Size:** 3 students
 - **Average Student ATAR:** 90.9
 
-- **Moderated vs External Exam:** State-moderated internal (avg 95.8) vs external exam (avg 95.3) - students were slightly over-moderated by 0.5 points
+- **Internal vs External Assessment:** School internal assessment (avg 84.0) vs external exam (avg 95.3) - internal marks were significantly lower by 11.3 points
 
 - **Band Distribution:** 6: 3
 
@@ -3242,6 +4272,31 @@
        Scaled Mark -->
 ```
 
+**Rank Order Changes (Internal vs External):**
+
+```
+  Rank Order: Internal vs External (n=3)
+  (* = student, . = no change diagonal)
+   3 |                                                            *
+   3 |                                                        .... 
+   3 |                                                    ....     
+   3 |                                                ....         
+   2 |                                            ....             
+   2 |                                       .....                 
+   2 |                                   ....                      
+   2 |                              *....                          
+   2 |                           ....                              
+   2 |                       ....                                  
+   2 |                  .....                                      
+   1 |              ....                                           
+   1 |          ....                                               
+   1 |      ....                                                   
+   1 | *....                                                       
+      +------------------------------------------------------------
+       1                                                          3
+       Internal Rank -->
+```
+
 **Class Performance:**
 
 - **1 classes** in this course
@@ -3269,7 +4324,7 @@
 - **Cohort Size:** 1 students
 - **Average Student ATAR:** 96.8
 
-- **Moderated vs External Exam:** State-moderated internal (avg 87.6) vs external exam (avg 89.4) - students were slightly under-moderated by 1.8 points
+- **Internal vs External Assessment:** School internal assessment (avg 94.0) vs external exam (avg 89.4) - internal marks were moderately higher by 4.6 points
 
 - **Band Distribution:** 5: 1
 
@@ -3307,6 +4362,31 @@
       +------------------------------------------------------------
        33                                                  33
        Scaled Mark -->
+```
+
+**Rank Order Changes (Internal vs External):**
+
+```
+  Rank Order: Internal vs External (n=1)
+  (* = student, . = no change diagonal)
+   1 |                                                            .
+   1 |                                                        .... 
+   1 |                                                    ....     
+   1 |                                                ....         
+   1 |                                            ....             
+   1 |                                       .....                 
+   1 |                                   ....                      
+   0 |                               ....                          
+   0 |                           ....                              
+   0 |                       ....                                  
+   0 |                  .....                                      
+   0 |              ....                                           
+   0 |          ....                                               
+   0 |      ....                                                   
+   0 | *....                                                       
+      +------------------------------------------------------------
+       1                                                          1
+       Internal Rank -->
 ```
 
 **Deeper Analysis:**
