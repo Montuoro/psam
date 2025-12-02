@@ -391,27 +391,24 @@ def analyze_course(conn, course_name, year, school_avg_scaled=None):
     for hist in historical_scaled:
         # Get school-wide course averages for this year
         cursor.execute("""
-            SELECT AVG(course_avg) as school_mean,
-                   STDEV(course_avg) as school_std
-            FROM (
-                SELECT AVG(cr.scaled_score) as course_avg
-                FROM course_result cr
-                JOIN course c ON cr.course_id = c.course_id
-                WHERE cr.year = ?
-                GROUP BY c.course_id
-            )
+            SELECT AVG(cr.scaled_score) as course_avg
+            FROM course_result cr
+            JOIN course c ON cr.course_id = c.course_id
+            WHERE cr.year = ?
+            GROUP BY c.course_id
         """, (hist['year'],))
 
-        result = cursor.fetchone()
-        if result and result[0] and result[1] and result[1] > 0:
-            school_mean = result[0]
-            school_std = result[1]
-            z_score = (hist['avg_scaled'] - school_mean) / school_std
-            z_scores.append({
-                'year': hist['year'],
-                'z_score': z_score,
-                'avg_scaled': hist['avg_scaled']
-            })
+        course_avgs = [row[0] for row in cursor.fetchall() if row[0] is not None]
+        if len(course_avgs) > 1:
+            school_mean = np.mean(course_avgs)
+            school_std = np.std(course_avgs, ddof=1)  # Sample standard deviation
+            if school_std > 0:
+                z_score = (hist['avg_scaled'] - school_mean) / school_std
+                z_scores.append({
+                    'year': hist['year'],
+                    'z_score': z_score,
+                    'avg_scaled': hist['avg_scaled']
+                })
 
     # Statistical testing: Rank to AAS scaled mark correlation across years
     # Test if the relationship between internal rank and final scaled mark
