@@ -6,12 +6,31 @@ New features:
 3. ASCII scatter plot (scaled mark vs ATAR)
 4. Class-level analysis
 5. Exploratory insights (cohort-level deep analysis)
+6. Custom course ordering (most to least concerning)
 """
 import sqlite3
+import json
 from pathlib import Path
 from datetime import datetime
 from analyze_accurate_v3 import analyze_school
 from analyze_exploratory import generate_exploratory_insights
+
+def load_course_order(school_name, year):
+    """
+    Load custom course order from JSON file if it exists
+    """
+    BASE_DIR = Path(__file__).parent
+    order_file = BASE_DIR / f"course_order_{school_name.lower()}_{year}.json"
+
+    if order_file.exists():
+        try:
+            with open(order_file, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+                return data.get('course_order', [])
+        except Exception as e:
+            print(f"Warning: Could not load course order file: {e}")
+            return []
+    return []
 
 def generate_markdown_report(school_analysis, school_name, output_path, conn=None, year=None):
     """
@@ -66,35 +85,44 @@ def generate_markdown_report(school_analysis, school_name, output_path, conn=Non
         md.append("---")
         md.append("")
 
-    # === SEPARATE COURSES INTO CONCERNS AND SUCCESSES ===
-    courses_of_concern = []
-    successful_courses = []
+    # === ORDER COURSES (CUSTOM ORDER OR DEFAULT) ===
+    # Load custom course order if available
+    custom_order = load_course_order(school_name, school_analysis['year'])
 
-    for course_analysis in school_analysis['course_analyses']:
-        gen = course_analysis['generalized']
-        is_concern = False
+    if custom_order:
+        # Order courses according to custom order
+        course_order_map = {name: idx for idx, name in enumerate(custom_order)}
+        ordered_courses = sorted(
+            school_analysis['course_analyses'],
+            key=lambda x: course_order_map.get(x['course_name'], 999)
+        )
+    else:
+        # Default: order by concern level (most concerning first)
+        def concern_score(course_analysis):
+            gen = course_analysis['generalized']
+            score = 0
+            if gen['mxp_below_pct'] > 50:
+                score += gen['mxp_below_pct']
+            if abs(gen['moderated_exam_gap']) > 8:
+                score += abs(gen['moderated_exam_gap']) * 5
+            if gen['significant_rank_changes_count'] > gen['cohort_size'] * 0.3:
+                score += 20
+            return -score  # Negative for descending order
 
-        if gen['mxp_below_pct'] > 50:
-            is_concern = True
-        if abs(gen['moderated_exam_gap']) > 8:
-            is_concern = True
-        if gen['significant_rank_changes_count'] > gen['cohort_size'] * 0.3:
-            is_concern = True
+        ordered_courses = sorted(school_analysis['course_analyses'], key=concern_score)
 
-        if is_concern:
-            courses_of_concern.append(course_analysis)
-        else:
-            successful_courses.append(course_analysis)
-
-    # === PART 1: COURSES OF CONCERN ===
-    md.append("## Courses Requiring Attention")
+    # === ALL COURSES (ORDERED FROM MOST TO LEAST CONCERNING) ===
+    md.append("## Course Analysis (Ordered by Priority)")
     md.append("")
-    md.append(f"**{len(courses_of_concern)} courses** show concerning patterns and require intervention.")
+    if custom_order:
+        md.append("*Courses ordered from most to least concerning based on provided priority list.*")
+    else:
+        md.append("*Courses automatically ordered from most to least concerning.*")
     md.append("")
     md.append("---")
     md.append("")
 
-    for course_analysis in courses_of_concern:
+    for course_analysis in ordered_courses:
         course_name = course_analysis['course_name']
         gen = course_analysis['generalized']
         deep = course_analysis['deeper']
@@ -224,113 +252,6 @@ def generate_markdown_report(school_analysis, school_name, output_path, conn=Non
             md.append("*Significantly Below Expectations (MXP):*")
             for underperf in deep['mxp_underperformers'][:5]:
                 md.append(f"- Student {underperf['student_id']}: Scored {underperf['actual']:.1f} vs expected {underperf['expected']:.1f} (gap: {underperf['gap']:.1f})")
-            md.append("")
-
-        md.append("---")
-        md.append("")
-
-    # === PART 2: SUCCESSFUL COURSES ===
-    md.append("## Successful Courses")
-    md.append("")
-    md.append(f"**{len(successful_courses)} courses** are performing well with positive results.")
-    md.append("")
-    md.append("---")
-    md.append("")
-
-    for course_analysis in successful_courses:
-        course_name = course_analysis['course_name']
-        gen = course_analysis['generalized']
-        deep = course_analysis['deeper']
-        multi = course_analysis['multiyear']
-
-        md.append(f"### {course_name}")
-        md.append("")
-
-        # GENERALIZED INSIGHTS
-        md.append("**Generalized Insights:**")
-        md.append("")
-        md.append(f"- **Cohort Size:** {gen['cohort_size']} students")
-        md.append(f"- **Average Student ATAR:** {gen['avg_atar']:.1f}")
-        md.append("")
-
-        # Moderated vs External
-        gap_direction = "over-moderated" if gen['moderated_exam_gap'] > 0 else "under-moderated"
-        gap_severity = "significantly" if abs(gen['moderated_exam_gap']) > 8 else "moderately" if abs(gen['moderated_exam_gap']) > 4 else "slightly"
-        md.append(f"- **Moderated vs External Exam:** State-moderated internal (avg {gen['avg_moderated']:.1f}) vs external exam (avg {gen['avg_exam']:.1f}) - students were {gap_severity} {gap_direction} by {abs(gen['moderated_exam_gap']):.1f} points")
-        md.append("")
-
-        # Bands
-        if gen['band_counts']:
-            band_str = ", ".join([f"{band}: {count}" for band, count in sorted(gen['band_counts'].items())])
-            md.append(f"- **Band Distribution:** {band_str}")
-            md.append("")
-
-        # MXP Performance
-        md.append(f"- **Performance vs Expectations (MXP):**")
-        md.append(f"  - Average gap: {gen['mxp_avg_gap']:+.2f} (median: {gen['mxp_median_gap']:+.2f})")
-        md.append(f"  - Exceeded: {gen['mxp_exceeded_pct']:.0f}%, Met: {gen['mxp_on_target_pct']:.0f}%, Below: {gen['mxp_below_pct']:.0f}%")
-        md.append("")
-
-        # MULTI-YEAR TRENDS
-        if multi['yoy_change']:
-            yoy = multi['yoy_change']
-            direction = "improved" if yoy['scaled_change'] > 0 else "declined"
-            md.append(f"- **Year-over-Year:** Scaled mark {direction} by {abs(yoy['scaled_change']):.2f} points ({yoy['from_year']} → {yoy['to_year']})")
-            md.append("")
-
-        if len(multi['historical_scaled']) > 1:
-            trend_str = " → ".join([f"{h['year']}:{h['avg_scaled']:.1f}" for h in multi['historical_scaled']])
-            md.append(f"- **5-Year Trend:** {trend_str}")
-            md.append("")
-
-        # ASCII SCATTER PLOT
-        if course_analysis.get('visualization') and course_analysis['visualization'].get('ascii_scatter'):
-            md.append("**Visual Analysis:**")
-            md.append("")
-            md.append("```")
-            md.append(course_analysis['visualization']['ascii_scatter'])
-            md.append("```")
-            md.append("")
-
-        # CLASS-LEVEL ANALYSIS (same categorization for successful courses)
-        if course_analysis.get('class_analysis') and len(course_analysis['class_analysis']) > 0:
-            classes = course_analysis['class_analysis']
-            md.append("**Class Performance:**")
-            md.append("")
-            md.append(f"- **{len(classes)} classes** in this course")
-
-            # Categorize by MXP gap
-            high_performing = [cls for cls in classes if cls['avg_mxp_gap'] > 0]
-            low_performing = [cls for cls in classes if cls['avg_mxp_gap'] < 0]
-
-            # High-performing classes (above expected mean)
-            if high_performing:
-                md.append(f"- *High-performing classes (above expected mean):*")
-                # Sort by gap descending, show top 5
-                for cls in sorted(high_performing, key=lambda x: x['avg_mxp_gap'], reverse=True)[:5]:
-                    teacher = cls['teacher_name'] if cls['teacher_name'] != 'Unknown' else 'Teacher unknown'
-                    md.append(f"  - {cls['class_name']} ({teacher}): Avg scaled {cls['avg_scaled']:.1f}, MXP gap {cls['avg_mxp_gap']:+.1f}")
-
-            # Low-performing classes (below expected mean)
-            if low_performing:
-                md.append(f"- *Low-performing classes (below expected mean):*")
-                # Sort by gap ascending (most negative first), show worst 5
-                for cls in sorted(low_performing, key=lambda x: x['avg_mxp_gap'])[:5]:
-                    teacher = cls['teacher_name'] if cls['teacher_name'] != 'Unknown' else 'Teacher unknown'
-                    md.append(f"  - {cls['class_name']} ({teacher}): Avg scaled {cls['avg_scaled']:.1f}, MXP gap {cls['avg_mxp_gap']:+.1f}")
-
-            md.append("")
-
-        # HIGHLIGHTS
-        md.append("**Highlights:**")
-        md.append("")
-
-        # Top performers
-        if deep['top_3']:
-            md.append("*Top Performers:*")
-            for i, student in enumerate(deep['top_3'], 1):
-                scaled = student['actual_scaled'] if student['actual_scaled'] else 0
-                md.append(f"{i}. Student {student['student_id']}: ATAR {student['atar']:.1f}, Scaled {scaled:.1f}, Rank {student['rank']}")
             md.append("")
 
         md.append("---")
