@@ -798,9 +798,10 @@ def create_combination_trend_ascii(combinations_data, width=60, height=15):
 
     return '\n'.join(lines)
 
-def analyze_poor_course_combinations(conn, year):
+def analyze_poor_course_combinations(conn, year, years=[2022, 2023, 2024]):
     """
-    Find course combinations that produce lower ATARs
+    Find 2-course pairs that produce lower ATARs
+    Includes multi-year trend data for bottom 10 combinations
     """
     cursor = conn.cursor()
 
@@ -831,19 +832,247 @@ def analyze_poor_course_combinations(conn, year):
                 pair = f"{courses[i]} + {courses[j]}"
                 course_pair_atars[pair].append(atar)
 
-    # Find low-performing pairs
-    low_performing_pairs = []
+    # Find all pairs with sufficient data
+    all_pairs = []
     for pair, atars in course_pair_atars.items():
         if len(atars) >= 3:  # At least 3 students
             avg_atar = np.mean(atars)
-            if avg_atar < 75:
-                low_performing_pairs.append({
-                    'courses': pair,
-                    'avg_atar': avg_atar,
-                    'num_students': len(atars)
-                })
+            all_pairs.append({
+                'courses': pair,
+                'avg_atar': avg_atar,
+                'num_students': len(atars)
+            })
 
-    return sorted(low_performing_pairs, key=lambda x: x['avg_atar'])  # ALL low-performing pairs
+    # Get bottom 10 by enrollment (most popular low-performing pairs)
+    # Sort by enrollment descending, then take pairs with lowest ATAR
+    sorted_by_atar = sorted(all_pairs, key=lambda x: x['avg_atar'])
+    bottom_pairs = sorted_by_atar[:30]  # Get bottom 30 by ATAR
+    bottom_10_pairs = sorted(bottom_pairs, key=lambda x: x['num_students'], reverse=True)[:10]
+
+    # Get multi-year data for bottom 10 pairs
+    for pair_info in bottom_10_pairs:
+        pair_name = pair_info['courses']
+        course1, course2 = pair_name.split(' + ')
+
+        year_data = []
+        for hist_year in years:
+            cursor.execute("""
+                SELECT AVG(sym.psam_score) as avg_atar, COUNT(*) as count
+                FROM student_year_metric sym
+                WHERE sym.year = ?
+                AND sym.psam_score > 0
+                AND sym.student_id IN (
+                    SELECT cr1.student_id
+                    FROM course_result cr1
+                    JOIN course c1 ON cr1.course_id = c1.course_id
+                    WHERE c1.name = ? AND cr1.year = ?
+                    INTERSECT
+                    SELECT cr2.student_id
+                    FROM course_result cr2
+                    JOIN course c2 ON cr2.course_id = c2.course_id
+                    WHERE c2.name = ? AND cr2.year = ?
+                )
+            """, (hist_year, course1, hist_year, course2, hist_year))
+
+            result = cursor.fetchone()
+            if result and result[0]:
+                year_data.append({'year': hist_year, 'avg_atar': result[0], 'count': result[1]})
+            else:
+                year_data.append({'year': hist_year, 'avg_atar': None, 'count': 0})
+
+        pair_info['year_trend'] = year_data
+
+    return bottom_10_pairs
+
+
+def analyze_poor_triple_course_combinations(conn, year, years=[2022, 2023, 2024]):
+    """
+    Find 3-course combinations that produce lower ATARs
+    Includes multi-year trend data for bottom 10 combinations
+    """
+    cursor = conn.cursor()
+
+    # Get course combinations and ATARs (exclude NG students)
+    cursor.execute("""
+        SELECT
+            sym.student_id,
+            sym.psam_score as atar,
+            GROUP_CONCAT(c.name) as courses
+        FROM student_year_metric sym
+        JOIN course_result cr ON sym.student_id = cr.student_id AND sym.year = cr.year
+        JOIN course c ON cr.course_id = c.course_id
+        WHERE sym.year = ?
+        AND sym.psam_score > 0
+        GROUP BY sym.student_id
+        HAVING COUNT(DISTINCT c.course_id) >= 5
+    """, (year,))
+
+    # Find common 3-course combinations and their average ATAR
+    triple_atars = defaultdict(list)
+    for row in cursor.fetchall():
+        student_id, atar, courses_str = row
+        courses = sorted(courses_str.split(','))
+
+        # Look at triples of courses
+        for i in range(len(courses)):
+            for j in range(i+1, len(courses)):
+                for k in range(j+1, len(courses)):
+                    triple = f"{courses[i]} + {courses[j]} + {courses[k]}"
+                    triple_atars[triple].append(atar)
+
+    # Find all triples with sufficient data
+    all_triples = []
+    for triple, atars in triple_atars.items():
+        if len(atars) >= 3:
+            avg_atar = np.mean(atars)
+            all_triples.append({
+                'courses': triple,
+                'avg_atar': avg_atar,
+                'num_students': len(atars)
+            })
+
+    # Get bottom 10 by enrollment (most popular low-performing triples)
+    sorted_by_atar = sorted(all_triples, key=lambda x: x['avg_atar'])
+    bottom_triples = sorted_by_atar[:30]  # Get bottom 30 by ATAR
+    bottom_10_triples = sorted(bottom_triples, key=lambda x: x['num_students'], reverse=True)[:10]
+
+    # Get multi-year data for bottom 10 triples
+    for triple_info in bottom_10_triples:
+        triple_name = triple_info['courses']
+        course1, course2, course3 = triple_name.split(' + ')
+
+        year_data = []
+        for hist_year in years:
+            cursor.execute("""
+                SELECT AVG(sym.psam_score) as avg_atar, COUNT(*) as count
+                FROM student_year_metric sym
+                WHERE sym.year = ?
+                AND sym.psam_score > 0
+                AND sym.student_id IN (
+                    SELECT cr1.student_id
+                    FROM course_result cr1
+                    JOIN course c1 ON cr1.course_id = c1.course_id
+                    WHERE c1.name = ? AND cr1.year = ?
+                    INTERSECT
+                    SELECT cr2.student_id
+                    FROM course_result cr2
+                    JOIN course c2 ON cr2.course_id = c2.course_id
+                    WHERE c2.name = ? AND cr2.year = ?
+                    INTERSECT
+                    SELECT cr3.student_id
+                    FROM course_result cr3
+                    JOIN course c3 ON cr3.course_id = c3.course_id
+                    WHERE c3.name = ? AND cr3.year = ?
+                )
+            """, (hist_year, course1, hist_year, course2, hist_year, course3, hist_year))
+
+            result = cursor.fetchone()
+            if result and result[0]:
+                year_data.append({'year': hist_year, 'avg_atar': result[0], 'count': result[1]})
+            else:
+                year_data.append({'year': hist_year, 'avg_atar': None, 'count': 0})
+
+        triple_info['year_trend'] = year_data
+
+    return bottom_10_triples
+
+
+def analyze_poor_quad_course_combinations(conn, year, years=[2022, 2023, 2024]):
+    """
+    Find 4-course combinations that produce lower ATARs
+    Includes multi-year trend data for bottom 10 combinations
+    """
+    cursor = conn.cursor()
+
+    # Get course combinations and ATARs (exclude NG students)
+    cursor.execute("""
+        SELECT
+            sym.student_id,
+            sym.psam_score as atar,
+            GROUP_CONCAT(c.name) as courses
+        FROM student_year_metric sym
+        JOIN course_result cr ON sym.student_id = cr.student_id AND sym.year = cr.year
+        JOIN course c ON cr.course_id = c.course_id
+        WHERE sym.year = ?
+        AND sym.psam_score > 0
+        GROUP BY sym.student_id
+        HAVING COUNT(DISTINCT c.course_id) >= 5
+    """, (year,))
+
+    # Find common 4-course combinations and their average ATAR
+    quad_atars = defaultdict(list)
+    for row in cursor.fetchall():
+        student_id, atar, courses_str = row
+        courses = sorted(courses_str.split(','))
+
+        # Look at quads of courses
+        for i in range(len(courses)):
+            for j in range(i+1, len(courses)):
+                for k in range(j+1, len(courses)):
+                    for l in range(k+1, len(courses)):
+                        quad = f"{courses[i]} + {courses[j]} + {courses[k]} + {courses[l]}"
+                        quad_atars[quad].append(atar)
+
+    # Find all quads with sufficient data
+    all_quads = []
+    for quad, atars in quad_atars.items():
+        if len(atars) >= 3:
+            avg_atar = np.mean(atars)
+            all_quads.append({
+                'courses': quad,
+                'avg_atar': avg_atar,
+                'num_students': len(atars)
+            })
+
+    # Get bottom 10 by enrollment (most popular low-performing quads)
+    sorted_by_atar = sorted(all_quads, key=lambda x: x['avg_atar'])
+    bottom_quads = sorted_by_atar[:30]  # Get bottom 30 by ATAR
+    bottom_10_quads = sorted(bottom_quads, key=lambda x: x['num_students'], reverse=True)[:10]
+
+    # Get multi-year data for bottom 10 quads
+    for quad_info in bottom_10_quads:
+        quad_name = quad_info['courses']
+        course1, course2, course3, course4 = quad_name.split(' + ')
+
+        year_data = []
+        for hist_year in years:
+            cursor.execute("""
+                SELECT AVG(sym.psam_score) as avg_atar, COUNT(*) as count
+                FROM student_year_metric sym
+                WHERE sym.year = ?
+                AND sym.psam_score > 0
+                AND sym.student_id IN (
+                    SELECT cr1.student_id
+                    FROM course_result cr1
+                    JOIN course c1 ON cr1.course_id = c1.course_id
+                    WHERE c1.name = ? AND cr1.year = ?
+                    INTERSECT
+                    SELECT cr2.student_id
+                    FROM course_result cr2
+                    JOIN course c2 ON cr2.course_id = c2.course_id
+                    WHERE c2.name = ? AND cr2.year = ?
+                    INTERSECT
+                    SELECT cr3.student_id
+                    FROM course_result cr3
+                    JOIN course c3 ON cr3.course_id = c3.course_id
+                    WHERE c3.name = ? AND cr3.year = ?
+                    INTERSECT
+                    SELECT cr4.student_id
+                    FROM course_result cr4
+                    JOIN course c4 ON cr4.course_id = c4.course_id
+                    WHERE c4.name = ? AND cr4.year = ?
+                )
+            """, (hist_year, course1, hist_year, course2, hist_year, course3, hist_year, course4, hist_year))
+
+            result = cursor.fetchone()
+            if result and result[0]:
+                year_data.append({'year': hist_year, 'avg_atar': result[0], 'count': result[1]})
+            else:
+                year_data.append({'year': hist_year, 'avg_atar': None, 'count': 0})
+
+        quad_info['year_trend'] = year_data
+
+    return bottom_10_quads
 
 def analyze_hidden_cohorts(conn, years=[2022, 2023, 2024]):
     """
@@ -1017,6 +1246,8 @@ def generate_exploratory_insights(conn, year):
         'triple_combinations': analyze_triple_course_combinations(conn, year),
         'quad_combinations': analyze_quad_course_combinations(conn, year),
         'poor_combinations': analyze_poor_course_combinations(conn, year),
+        'poor_triple_combinations': analyze_poor_triple_course_combinations(conn, year),
+        'poor_quad_combinations': analyze_poor_quad_course_combinations(conn, year),
         'hidden_cohorts': analyze_hidden_cohorts(conn)
     }
 

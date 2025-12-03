@@ -6140,18 +6140,135 @@
 
 ---
 
-### Course Combinations Associated with Lower ATARs
+### Low-Performing Course Combinations (2-Course Pairs)
 
-**Course pairs with average ATAR below 75:**
-
-- **Business Studies + English Standard**: Avg ATAR 58.5 (3 students)
-- **Biology + English Standard**: Avg ATAR 58.6 (5 students)
-- **English Standard + PDHPE**: Avg ATAR 60.6 (7 students)
-- **English Standard + Mathematics Standard 2**: Avg ATAR 62.6 (8 students)
-- **English Standard + Geography**: Avg ATAR 65.2 (3 students)
-- **Design and Technology + English Standard**: Avg ATAR 65.3 (3 students)
+**Bottom 10 course pairs** ordered by enrollment (most common first):
 
 *Note: These combinations may indicate students facing challenges or require additional support.*
+
+1. **Business Studies + Mathematics Standard 2**: 26 students (Avg ATAR 87.1)
+2. **Geography + Mathematics Standard 2**: 25 students (Avg ATAR 86.3)
+3. **Mathematics Standard 2 + PDHPE**: 24 students (Avg ATAR 79.8)
+4. **Biology + Mathematics Standard 2**: 23 students (Avg ATAR 81.5)
+5. **Mathematics Standard 2 + Visual Arts**: 20 students (Avg ATAR 84.3)
+6. **Mathematics Standard 2 + Modern History**: 18 students (Avg ATAR 86.9)
+7. **Biology + PDHPE**: 15 students (Avg ATAR 80.4)
+8. **Drama + Mathematics Standard 2**: 15 students (Avg ATAR 86.7)
+9. **Biology + Business Studies**: 14 students (Avg ATAR 83.8)
+10. **Biology + Visual Arts**: 13 students (Avg ATAR 86.0)
+
+**3-Year ATAR Trend:**
+
+```
+  3-Year ATAR Trend (bars: 2022='2', 2023='3', 2024='4')
+
+  95 |                                                            
+  93 |                                                            
+  92 |                                                            
+  90 |                                                       2    
+  88 |       2                             23          2     2    
+  87 |   4   2                         4   23      4   2     23   
+  85 |   4   2 4         2             4   23      4   2     234  
+  83 |   4   2 4    3    2       4     4   23    234   234   234  
+  81 |  34   234    3    2 4     4    34   23    234   234   234  
+  80 | 234   234    34   234   2 4   234   234   234   234   234  
+  78 | 234   234    34   234   2 4   234   234   234   234   234  
+  76 | 234   234    34   234   234   234   234   234   234   234  
+  75 | 234   234   234   234   234   234   234   234   234   234  
+  73 | 234   234   234   234   234   234   234   234   234   234  
+  71 | 234   234   234   234   234   234   234   234   234   234  
+      +------------------------------------------------------------
+       1     2     3     4     5     6     7     8     9     10    
+       Combination # -->
+```
+
+---
+
+### Low-Performing Course Combinations (3-Course Triples)
+
+**Bottom 10 3-course combinations** ordered by enrollment (most common first):
+
+*Note: These combinations may indicate students facing challenges or require additional support.*
+
+1. **Biology + Mathematics Standard 2 + PDHPE**: 11 students (Avg ATAR 75.1)
+2. **Biology + Business Studies + Mathematics Standard 2**: 11 students (Avg ATAR 81.5)
+3. **Mathematics Standard 2 + PDHPE + Visual Arts**: 9 students (Avg ATAR 80.0)
+4. **Biology + Geography + Mathematics Standard 2**: 8 students (Avg ATAR 82.5)
+5. **Business Studies + Mathematics Standard 2 + PDHPE**: 8 students (Avg ATAR 83.6)
+6. **Biology + Mathematics Standard 2 + Modern History**: 7 students (Avg ATAR 85.1)
+7. **English Standard + Mathematics Standard 2 + PDHPE**: 6 students (Avg ATAR 60.8)
+8. **Biology + Geography + PDHPE**: 6 students (Avg ATAR 82.4)
+9. **Drama + English Advanced + PDHPE**: 6 students (Avg ATAR 82.5)
+10. **Drama + Mathematics Standard 2 + PDHPE**: 6 students (Avg ATAR 82.5)
+
+**3-Year ATAR Trend:**
+
+```
+  3-Year ATAR Trend (bars: 2022='2', 2023='3', 2024='4')
+
+ 100 |                                                            
+  96 |                                                            
+  92 |                   2                       23               
+  88 |                   2                       23               
+  84 | 23    2           2           2 4         23     3     3   
+  80 | 23    234     4   2 4    34   234         234    34    34  
+  76 | 23    234     4   2 4   234   234         234   234   234  
+  72 | 234   234    34   2 4   234   234         234   234   234  
+  68 | 234   234   234   2 4   234   234         234   234   234  
+  64 | 234   234   234   2 4   234   234         234   234   234  
+  60 | 234   234   234   2 4   234   234     4   234   234   234  
+  56 | 234   234   234   2 4   234   234     4   234   234   234  
+  52 | 234   234   234   2 4   234   234     4   234   234   234  
+  48 | 234   234   234   2 4   234   234   2 4   234   234   234  
+  44 | 234   234   234   2 4   234   234   2 4   234   234   234  
+      +------------------------------------------------------------
+       1     2     3     4     5     6     7     8     9     10    
+       Combination # -->
+```
+
+---
+
+### Low-Performing Course Combinations (4-Course Quads)
+
+**Bottom 10 4-course combinations** ordered by enrollment (most common first):
+
+*Note: These combinations may indicate students facing challenges or require additional support.*
+
+1. **Biology + Business Studies + English Advanced + Mathematics Standard 2**: 10 students (Avg ATAR 85.0)
+2. **Biology + English Advanced + Mathematics Standard 2 + Modern History**: 7 students (Avg ATAR 85.1)
+3. **Biology + English Advanced + Mathematics Standard 2 + PDHPE**: 7 students (Avg ATAR 86.6)
+4. **Biology + English Advanced + Geography + Mathematics Standard 2**: 7 students (Avg ATAR 88.2)
+5. **Business Studies + English Advanced + Mathematics Standard 2 + PDHPE**: 7 students (Avg ATAR 89.0)
+6. **Drama + English Advanced + Mathematics Standard 2 + PDHPE**: 6 students (Avg ATAR 82.5)
+7. **English Advanced + Mathematics Standard 2 + PDHPE + Visual Arts**: 6 students (Avg ATAR 84.3)
+8. **English Advanced + Geography + Mathematics Standard 2 + Visual Arts**: 6 students (Avg ATAR 86.8)
+9. **Biology + Business Studies + English Advanced + Geography**: 6 students (Avg ATAR 87.3)
+10. **Biology + English Advanced + Mathematics Standard 2 + Visual Arts**: 6 students (Avg ATAR 88.1)
+
+**3-Year ATAR Trend:**
+
+```
+  3-Year ATAR Trend (bars: 2022='2', 2023='3', 2024='4')
+
+  98 |                                                            
+  96 |                                                            
+  94 |                                                            
+  92 |                   2                        3               
+  90 |                   2                        3    2          
+  88 |                   2       4                3    23         
+  86 | 2             4   2 4     4               234   234     4  
+  84 | 2 4   2 4   234   2 4     4               234   234     4  
+  82 | 2 4   234   234   2 4   234    34     4   234   234     4  
+  80 | 234   234   234   2 4   234    34     4   234   234   2 4  
+  79 | 234   234   234   2 4   234    34   2 4   234   234   2 4  
+  77 | 234   234   234   2 4   234   234   2 4   234   234   234  
+  75 | 234   234   234   2 4   234   234   234   234   234   234  
+  73 | 234   234   234   2 4   234   234   234   234   234   234  
+  71 | 234   234   234   2 4   234   234   234   234   234   234  
+      +------------------------------------------------------------
+       1     2     3     4     5     6     7     8     9     10    
+       Combination # -->
+```
 
 ---
 

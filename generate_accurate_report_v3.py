@@ -549,22 +549,79 @@ def generate_markdown_report(school_analysis, school_name, output_path, conn=Non
                 md.append("---")
                 md.append("")
 
-            # 7. Poor Course Combinations
+            # 7. Low-Performing Course Combinations (2-Course Pairs)
             if 'poor_combinations' in insights and insights['poor_combinations']:
-                md.append("### Course Combinations Associated with Lower ATARs")
+                md.append("### Low-Performing Course Combinations (2-Course Pairs)")
                 md.append("")
                 pc = insights['poor_combinations']
-                md.append(f"**Course pairs with average ATAR below 75:**")
-                md.append("")
-                for pair in pc:
-                    md.append(f"- **{pair['courses']}**: Avg ATAR {pair['avg_atar']:.1f} ({pair['num_students']} students)")
+                md.append(f"**Bottom {len(pc)} course pairs** ordered by enrollment (most common first):")
                 md.append("")
                 md.append("*Note: These combinations may indicate students facing challenges or require additional support.*")
                 md.append("")
+                for idx, pair in enumerate(pc, 1):
+                    md.append(f"{idx}. **{pair['courses']}**: {pair['num_students']} students (Avg ATAR {pair['avg_atar']:.1f})")
+                md.append("")
+
+                # Add 3-year ATAR trend visualization
+                md.append("**3-Year ATAR Trend:**")
+                md.append("")
+                md.append("```")
+                md.append(create_combination_trend_ascii(pc))
+                md.append("```")
+                md.append("")
+
                 md.append("---")
                 md.append("")
 
-            # 8. Hidden Cohorts (Multiple Types)
+            # 8. Low-Performing Course Combinations (3-Course Triples)
+            if 'poor_triple_combinations' in insights and insights['poor_triple_combinations']:
+                md.append("### Low-Performing Course Combinations (3-Course Triples)")
+                md.append("")
+                ptc = insights['poor_triple_combinations']
+                md.append(f"**Bottom {len(ptc)} 3-course combinations** ordered by enrollment (most common first):")
+                md.append("")
+                md.append("*Note: These combinations may indicate students facing challenges or require additional support.*")
+                md.append("")
+                for idx, triple in enumerate(ptc, 1):
+                    md.append(f"{idx}. **{triple['courses']}**: {triple['num_students']} students (Avg ATAR {triple['avg_atar']:.1f})")
+                md.append("")
+
+                # Add 3-year ATAR trend visualization
+                md.append("**3-Year ATAR Trend:**")
+                md.append("")
+                md.append("```")
+                md.append(create_combination_trend_ascii(ptc))
+                md.append("```")
+                md.append("")
+
+                md.append("---")
+                md.append("")
+
+            # 9. Low-Performing Course Combinations (4-Course Quads)
+            if 'poor_quad_combinations' in insights and insights['poor_quad_combinations']:
+                md.append("### Low-Performing Course Combinations (4-Course Quads)")
+                md.append("")
+                pqc = insights['poor_quad_combinations']
+                md.append(f"**Bottom {len(pqc)} 4-course combinations** ordered by enrollment (most common first):")
+                md.append("")
+                md.append("*Note: These combinations may indicate students facing challenges or require additional support.*")
+                md.append("")
+                for idx, quad in enumerate(pqc, 1):
+                    md.append(f"{idx}. **{quad['courses']}**: {quad['num_students']} students (Avg ATAR {quad['avg_atar']:.1f})")
+                md.append("")
+
+                # Add 3-year ATAR trend visualization
+                md.append("**3-Year ATAR Trend:**")
+                md.append("")
+                md.append("```")
+                md.append(create_combination_trend_ascii(pqc))
+                md.append("```")
+                md.append("")
+
+                md.append("---")
+                md.append("")
+
+            # 10. Hidden Cohorts (Multiple Types)
             if 'hidden_cohorts' in insights:
                 md.append("### Hidden Cohorts - Students Who May Benefit from Different Strategies")
                 md.append("")
