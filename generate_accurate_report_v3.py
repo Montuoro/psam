@@ -13,7 +13,7 @@ import json
 from pathlib import Path
 from datetime import datetime
 from analyze_accurate_v3 import analyze_school
-from analyze_exploratory import generate_exploratory_insights
+from analyze_exploratory import generate_exploratory_insights, create_combination_trend_ascii
 
 def load_course_order(school_name, year):
     """
@@ -487,8 +487,16 @@ def generate_markdown_report(school_analysis, school_name, output_path, conn=Non
             if oc['high_performing_pairs']:
                 md.append(f"**Top {len(oc['high_performing_pairs'])} course pairs** ordered by enrollment (most popular first):")
                 md.append("")
-                for pair in oc['high_performing_pairs']:
-                    md.append(f"- **{pair['courses']}**: {pair['num_students']} students (Avg ATAR {pair['avg_atar']:.1f})")
+                for idx, pair in enumerate(oc['high_performing_pairs'], 1):
+                    md.append(f"{idx}. **{pair['courses']}**: {pair['num_students']} students (Avg ATAR {pair['avg_atar']:.1f})")
+                md.append("")
+
+                # Add 3-year ATAR trend visualization
+                md.append("**3-Year ATAR Trend:**")
+                md.append("")
+                md.append("```")
+                md.append(create_combination_trend_ascii(oc['high_performing_pairs']))
+                md.append("```")
                 md.append("")
             else:
                 md.append("Insufficient data to identify course combination patterns.")
@@ -504,8 +512,16 @@ def generate_markdown_report(school_analysis, school_name, output_path, conn=Non
                 tc = insights['triple_combinations']
                 md.append(f"**Top {len(tc)} 3-course combinations** ordered by enrollment (most popular first):")
                 md.append("")
-                for triple in tc:
-                    md.append(f"- **{triple['courses']}**: {triple['num_students']} students (Avg ATAR {triple['avg_atar']:.1f})")
+                for idx, triple in enumerate(tc, 1):
+                    md.append(f"{idx}. **{triple['courses']}**: {triple['num_students']} students (Avg ATAR {triple['avg_atar']:.1f})")
+                md.append("")
+
+                # Add 3-year ATAR trend visualization
+                md.append("**3-Year ATAR Trend:**")
+                md.append("")
+                md.append("```")
+                md.append(create_combination_trend_ascii(tc))
+                md.append("```")
                 md.append("")
 
                 md.append("---")
@@ -518,9 +534,18 @@ def generate_markdown_report(school_analysis, school_name, output_path, conn=Non
                 qc = insights['quad_combinations']
                 md.append(f"**Top {len(qc)} 4-course combinations** ordered by enrollment (most popular first):")
                 md.append("")
-                for quad in qc:
-                    md.append(f"- **{quad['courses']}**: {quad['num_students']} students (Avg ATAR {quad['avg_atar']:.1f})")
+                for idx, quad in enumerate(qc, 1):
+                    md.append(f"{idx}. **{quad['courses']}**: {quad['num_students']} students (Avg ATAR {quad['avg_atar']:.1f})")
                 md.append("")
+
+                # Add 3-year ATAR trend visualization
+                md.append("**3-Year ATAR Trend:**")
+                md.append("")
+                md.append("```")
+                md.append(create_combination_trend_ascii(qc))
+                md.append("```")
+                md.append("")
+
                 md.append("---")
                 md.append("")
 

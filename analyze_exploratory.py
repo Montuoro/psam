@@ -280,13 +280,14 @@ def analyze_cohort_trends_multiyear(conn, years=[2022, 2023, 2024]):
         'trends': trends
     }
 
-def analyze_optimal_course_combinations(conn, year):
+def analyze_optimal_course_combinations(conn, year, years=[2022, 2023, 2024]):
     """
     Which course combinations produce the best ATARs?
+    Includes multi-year trend data for top 10 combinations
     """
     cursor = conn.cursor()
 
-    # Get course combinations and ATARs (exclude NG students)
+    # Get course combinations and ATARs for current year (exclude NG students)
     cursor.execute("""
         SELECT
             sym.student_id,
@@ -325,8 +326,44 @@ def analyze_optimal_course_combinations(conn, year):
                     'num_students': len(atars)
                 })
 
+    # Get top 10 by enrollment
+    top_10_pairs = sorted(high_performing_pairs, key=lambda x: x['num_students'], reverse=True)[:10]
+
+    # Get multi-year data for top 10 pairs
+    for pair_info in top_10_pairs:
+        pair_name = pair_info['courses']
+        course1, course2 = pair_name.split(' + ')
+
+        year_data = []
+        for hist_year in years:
+            cursor.execute("""
+                SELECT AVG(sym.psam_score) as avg_atar, COUNT(*) as count
+                FROM student_year_metric sym
+                WHERE sym.year = ?
+                AND sym.psam_score > 0
+                AND sym.student_id IN (
+                    SELECT cr1.student_id
+                    FROM course_result cr1
+                    JOIN course c1 ON cr1.course_id = c1.course_id
+                    WHERE c1.name = ? AND cr1.year = ?
+                    INTERSECT
+                    SELECT cr2.student_id
+                    FROM course_result cr2
+                    JOIN course c2 ON cr2.course_id = c2.course_id
+                    WHERE c2.name = ? AND cr2.year = ?
+                )
+            """, (hist_year, course1, hist_year, course2, hist_year))
+
+            result = cursor.fetchone()
+            if result and result[0]:
+                year_data.append({'year': hist_year, 'avg_atar': result[0], 'count': result[1]})
+            else:
+                year_data.append({'year': hist_year, 'avg_atar': None, 'count': 0})
+
+        pair_info['year_trend'] = year_data
+
     return {
-        'high_performing_pairs': sorted(high_performing_pairs, key=lambda x: x['num_students'], reverse=True)[:10]  # Top 10 by enrollment
+        'high_performing_pairs': top_10_pairs
     }
 
 def analyze_extension_trends_multiyear(conn, years=[2022, 2023, 2024]):
@@ -508,9 +545,10 @@ def create_unit_atar_ascii_graph(unit_data, width=60, height=15):
 
     return '\n'.join(lines)
 
-def analyze_triple_course_combinations(conn, year):
+def analyze_triple_course_combinations(conn, year, years=[2022, 2023, 2024]):
     """
     Find 3-course combinations that produce high ATARs
+    Includes multi-year trend data for top 10 combinations
     """
     cursor = conn.cursor()
 
@@ -554,11 +592,53 @@ def analyze_triple_course_combinations(conn, year):
                     'num_students': len(atars)
                 })
 
-    return sorted(high_performing_triples, key=lambda x: x['num_students'], reverse=True)[:10]  # Top 10 by enrollment
+    # Get top 10 by enrollment
+    top_10_triples = sorted(high_performing_triples, key=lambda x: x['num_students'], reverse=True)[:10]
 
-def analyze_quad_course_combinations(conn, year):
+    # Get multi-year data for top 10 triples
+    for triple_info in top_10_triples:
+        triple_name = triple_info['courses']
+        courses = triple_name.split(' + ')
+
+        year_data = []
+        for hist_year in years:
+            cursor.execute("""
+                SELECT AVG(sym.psam_score) as avg_atar, COUNT(*) as count
+                FROM student_year_metric sym
+                WHERE sym.year = ?
+                AND sym.psam_score > 0
+                AND sym.student_id IN (
+                    SELECT cr1.student_id
+                    FROM course_result cr1
+                    JOIN course c1 ON cr1.course_id = c1.course_id
+                    WHERE c1.name = ? AND cr1.year = ?
+                    INTERSECT
+                    SELECT cr2.student_id
+                    FROM course_result cr2
+                    JOIN course c2 ON cr2.course_id = c2.course_id
+                    WHERE c2.name = ? AND cr2.year = ?
+                    INTERSECT
+                    SELECT cr3.student_id
+                    FROM course_result cr3
+                    JOIN course c3 ON cr3.course_id = c3.course_id
+                    WHERE c3.name = ? AND cr3.year = ?
+                )
+            """, (hist_year, courses[0], hist_year, courses[1], hist_year, courses[2], hist_year))
+
+            result = cursor.fetchone()
+            if result and result[0]:
+                year_data.append({'year': hist_year, 'avg_atar': result[0], 'count': result[1]})
+            else:
+                year_data.append({'year': hist_year, 'avg_atar': None, 'count': 0})
+
+        triple_info['year_trend'] = year_data
+
+    return top_10_triples
+
+def analyze_quad_course_combinations(conn, year, years=[2022, 2023, 2024]):
     """
     Find 4-course combinations that produce high ATARs
+    Includes multi-year trend data for top 10 combinations
     """
     cursor = conn.cursor()
 
@@ -603,7 +683,120 @@ def analyze_quad_course_combinations(conn, year):
                     'num_students': len(atars)
                 })
 
-    return sorted(high_performing_quads, key=lambda x: x['num_students'], reverse=True)[:10]  # Top 10 by enrollment
+    # Get top 10 by enrollment
+    top_10_quads = sorted(high_performing_quads, key=lambda x: x['num_students'], reverse=True)[:10]
+
+    # Get multi-year data for top 10 quads
+    for quad_info in top_10_quads:
+        quad_name = quad_info['courses']
+        courses = quad_name.split(' + ')
+
+        year_data = []
+        for hist_year in years:
+            cursor.execute("""
+                SELECT AVG(sym.psam_score) as avg_atar, COUNT(*) as count
+                FROM student_year_metric sym
+                WHERE sym.year = ?
+                AND sym.psam_score > 0
+                AND sym.student_id IN (
+                    SELECT cr1.student_id
+                    FROM course_result cr1
+                    JOIN course c1 ON cr1.course_id = c1.course_id
+                    WHERE c1.name = ? AND cr1.year = ?
+                    INTERSECT
+                    SELECT cr2.student_id
+                    FROM course_result cr2
+                    JOIN course c2 ON cr2.course_id = c2.course_id
+                    WHERE c2.name = ? AND cr2.year = ?
+                    INTERSECT
+                    SELECT cr3.student_id
+                    FROM course_result cr3
+                    JOIN course c3 ON cr3.course_id = c3.course_id
+                    WHERE c3.name = ? AND cr3.year = ?
+                    INTERSECT
+                    SELECT cr4.student_id
+                    FROM course_result cr4
+                    JOIN course c4 ON cr4.course_id = c4.course_id
+                    WHERE c4.name = ? AND cr4.year = ?
+                )
+            """, (hist_year, courses[0], hist_year, courses[1], hist_year, courses[2], hist_year, courses[3], hist_year))
+
+            result = cursor.fetchone()
+            if result and result[0]:
+                year_data.append({'year': hist_year, 'avg_atar': result[0], 'count': result[1]})
+            else:
+                year_data.append({'year': hist_year, 'avg_atar': None, 'count': 0})
+
+        quad_info['year_trend'] = year_data
+
+    return top_10_quads
+
+def create_combination_trend_ascii(combinations_data, width=60, height=15):
+    """
+    Create ASCII column graph showing 3-year ATAR trends for top 10 combinations
+    X-axis: Combination number (1-10)
+    Y-axis: ATAR (0-100)
+    Each combination shows 3 bars for 2022, 2023, 2024
+    """
+    lines = []
+    lines.append(f"  3-Year ATAR Trend (bars: 2022='2', 2023='3', 2024='4')")
+    lines.append("")
+
+    # Find min/max ATAR for scaling
+    all_atars = []
+    for combo in combinations_data:
+        for year_data in combo.get('year_trend', []):
+            if year_data['avg_atar'] is not None:
+                all_atars.append(year_data['avg_atar'])
+
+    if not all_atars:
+        return "  No multi-year data available"
+
+    min_atar = max(0, min(all_atars) - 5)
+    max_atar = min(100, max(all_atars) + 5)
+    atar_range = max_atar - min_atar
+
+    # Create grid
+    grid = [[' ' for _ in range(width)] for _ in range(height)]
+
+    # Plot each combination's 3-year trend
+    combo_width = width // 10  # Divide space among 10 combinations
+    for combo_idx, combo in enumerate(combinations_data[:10]):
+        base_x = combo_idx * combo_width
+
+        year_symbols = {'2022': '2', '2023': '3', '2024': '4'}
+        for year_idx, year_data in enumerate(combo.get('year_trend', [])):
+            if year_data['avg_atar'] is not None:
+                atar = year_data['avg_atar']
+                year = year_data['year']
+                symbol = year_symbols.get(str(year), '*')
+
+                # Calculate bar height
+                bar_height = int(((atar - min_atar) / atar_range) * (height - 1))
+                x = base_x + year_idx + 1
+
+                # Draw vertical bar
+                if 0 <= x < width:
+                    for y in range(height - bar_height - 1, height):
+                        if 0 <= y < height:
+                            grid[y][x] = symbol
+
+    # Build output with Y-axis labels
+    for i in range(height):
+        atar_val = max_atar - (i * atar_range / (height - 1))
+        row = ''.join(grid[i])
+        lines.append(f" {atar_val:3.0f} |{row}")
+
+    lines.append("      +" + "-" * width)
+
+    # X-axis labels (combination numbers)
+    x_labels = "       "
+    for i in range(1, 11):
+        x_labels += f"{i:<{combo_width}}"
+    lines.append(x_labels[:width+7])
+    lines.append("       Combination # -->")
+
+    return '\n'.join(lines)
 
 def analyze_poor_course_combinations(conn, year):
     """
