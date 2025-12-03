@@ -6283,16 +6283,66 @@
 - Student 35344969 (ATAR 84.9): Taking English Advanced
 - Student 35345086 (ATAR 88.1): Taking Mathematics Advanced, English Advanced
 - Student 35345108 (ATAR 88.6): Taking Mathematics Advanced, English Advanced
+- Student 35345116 (ATAR 86.5): Taking English Advanced
+- Student 35345280 (ATAR 84.9): Taking English Advanced
+- Student 35345310 (ATAR 83.4): Taking English Advanced, Mathematics Advanced
+- Student 35345396 (ATAR 80.9): Taking English Advanced, Mathematics Advanced
+- Student 35345418 (ATAR 89.6): Taking English Advanced
+- Student 35345450 (ATAR 86.1): Taking English Advanced, Mathematics Advanced
+- Student 35345655 (ATAR 85.1): Taking English Advanced, Mathematics Advanced
+- Student 35345760 (ATAR 86.4): Taking English Advanced
+- Student 35345841 (ATAR 89.2): Taking English Advanced, Mathematics Advanced
+- Student 35345876 (ATAR 89.6): Taking English Advanced
+- Student 35345914 (ATAR 88.3): Taking English Advanced, Mathematics Advanced
+- Student 35346031 (ATAR 85.9): Taking Mathematics Advanced, English Advanced
+- Student 35346090 (ATAR 89.8): Taking English Advanced
+- Student 35346171 (ATAR 87.0): Taking English Advanced, Mathematics Advanced
+- Student 35346201 (ATAR 82.4): Taking English Advanced
+- Student 35346309 (ATAR 85.2): Taking English Advanced
+- Student 35346511 (ATAR 86.9): Taking English Advanced
+- Student 35346570 (ATAR 87.2): Taking English Advanced
+- Student 35346694 (ATAR 81.5): Taking English Advanced
 
 **2023:** 17 students identified
 - Student 35820515 (ATAR 83.8): Taking English Advanced, Mathematics Advanced
 - Student 36260033 (ATAR 86.3): Taking English Advanced
 - Student 36260122 (ATAR 83.2): Taking English Advanced
+- Student 36260130 (ATAR 89.0): Taking English Advanced, Mathematics Advanced
+- Student 36260149 (ATAR 88.2): Taking English Advanced
+- Student 36260289 (ATAR 83.8): Taking Mathematics Advanced, English Advanced
+- Student 36260416 (ATAR 83.8): Taking English Advanced
+- Student 36260475 (ATAR 84.5): Taking English Advanced
+- Student 36260483 (ATAR 82.1): Taking English Advanced
+- Student 36260491 (ATAR 84.2): Taking English Advanced
+- Student 36260785 (ATAR 86.8): Taking English Advanced, Mathematics Advanced
+- Student 36260939 (ATAR 82.3): Taking Mathematics Advanced, English Advanced
+- Student 36261048 (ATAR 84.5): Taking English Advanced, Mathematics Advanced
+- Student 36261234 (ATAR 89.1): Taking English Advanced, Mathematics Advanced
+- Student 36261331 (ATAR 86.8): Taking English Advanced
+- Student 36261412 (ATAR 89.7): Taking English Advanced
+- Student 36261714 (ATAR 88.3): Taking English Advanced
 
 **2024:** 20 students identified
 - Student 36828110 (ATAR 88.9): Taking English Advanced
 - Student 36909129 (ATAR 87.5): Taking English Advanced
 - Student 37250112 (ATAR 89.6): Taking English Advanced, Mathematics Advanced
+- Student 37250155 (ATAR 87.1): Taking English Advanced, Mathematics Advanced
+- Student 37250236 (ATAR 83.9): Taking English Advanced
+- Student 37250260 (ATAR 90.0): Taking English Advanced
+- Student 37250392 (ATAR 89.9): Taking English Advanced
+- Student 37250430 (ATAR 83.3): Taking English Advanced, Mathematics Advanced
+- Student 37250457 (ATAR 87.2): Taking English Advanced
+- Student 37250708 (ATAR 88.6): Taking English Advanced
+- Student 37250740 (ATAR 85.0): Taking English Advanced, Mathematics Advanced
+- Student 37250775 (ATAR 84.4): Taking Mathematics Advanced, English Advanced
+- Student 37250813 (ATAR 84.8): Taking English Advanced, Mathematics Advanced
+- Student 37250872 (ATAR 82.4): Taking English Advanced
+- Student 37251186 (ATAR 89.0): Taking English Advanced
+- Student 37251313 (ATAR 82.4): Taking English Advanced
+- Student 37251402 (ATAR 89.5): Taking English Advanced
+- Student 37251526 (ATAR 84.4): Taking English Advanced
+- Student 37251593 (ATAR 80.9): Taking English Advanced
+- Student 37352993 (ATAR 89.0): Taking English Advanced
 
 #### Cohort 2: Advanced Course Candidates
 *Students in ATAR range 70-80 NOT taking any Advanced courses:*
@@ -6312,16 +6362,34 @@
 - Student 34716374 (ATAR 93.3): Taking History Extension
 - Student 35345779 (ATAR 93.2): Taking English Extension 1
 - Student 35345817 (ATAR 91.5): Taking Chinese Extension
+- Student 35346198 (ATAR 91.3): Taking History Extension
 
 **2023:** 10 students identified
 - Student 35344977 (ATAR 94.6): Taking English Extension 1
 - Student 35572449 (ATAR 91.2): Taking Mathematics Ext 1
 - Student 36260106 (ATAR 91.2): Taking Mathematics Ext 1
+- Student 36260319 (ATAR 93.9): Taking English Extension 1
+- Student 36260564 (ATAR 90.4): Taking Science Extension
+- Student 36260580 (ATAR 93.9): Taking Mathematics Ext 1
+- Student 36260653 (ATAR 95.0): Taking Science Extension
+- Student 36260823 (ATAR 90.7): Taking Mathematics Ext 1
+- Student 36260904 (ATAR 93.5): Taking English Extension 1
+- Student 36261374 (ATAR 92.7): Taking Chinese Extension
 
 **2024:** 13 students identified
 - Student 37247529 (ATAR 92.9): Taking Mathematics Ext 1
 - Student 37250295 (ATAR 91.2): Taking English Extension 1
 - Student 37250414 (ATAR 92.2): Taking Mathematics Ext 1
+- Student 37250945 (ATAR 91.5): Taking Mathematics Ext 1
+- Student 37251003 (ATAR 95.0): Taking English Extension 1
+- Student 37251011 (ATAR 94.9): Taking Mathematics Ext 1
+- Student 37251038 (ATAR 93.7): Taking English Extension 1
+- Student 37251054 (ATAR 94.4): Taking English Extension 1
+- Student 37251208 (ATAR 94.5): Taking Mathematics Ext 1
+- Student 37251305 (ATAR 90.4): Taking English Extension 1
+- Student 37251380 (ATAR 92.4): Taking Chinese Extension
+- Student 37251410 (ATAR 94.5): Taking Mathematics Ext 1
+- Student 37251585 (ATAR 94.8): Taking Mathematics Ext 1
 
 #### Cohort 4: Additional Units Candidates
 *Top students (>95 ATAR) taking fewer than 12 units:*
@@ -6338,5 +6406,10 @@
 - Student 36254114 (ATAR 95.0): Taking only 10 units
 - Student 37250376 (ATAR 95.8): Taking only 10 units
 - Student 37250546 (ATAR 96.8): Taking only 10 units
+- Student 37250589 (ATAR 99.5): Taking only 10 units
+- Student 37250732 (ATAR 97.8): Taking only 10 units
+- Student 37250929 (ATAR 99.2): Taking only 10 units
+- Student 37251259 (ATAR 95.8): Taking only 10 units
+- Student 37251658 (ATAR 98.4): Taking only 10 units
 
 ---

@@ -638,7 +638,7 @@ def generate_markdown_report(school_analysis, school_name, output_path, conn=Non
                     for year_data in hc['cohort_1']:
                         md.append(f"**{year_data['year']}:** {year_data['count']} students identified")
                         if year_data['examples']:
-                            for student in year_data['examples'][:3]:
+                            for student in year_data['examples']:
                                 md.append(f"- Student {student['student_id']} (ATAR {student['atar']:.1f}): Taking {', '.join(student['courses'])}")
                         md.append("")
 
@@ -650,7 +650,7 @@ def generate_markdown_report(school_analysis, school_name, output_path, conn=Non
                     for year_data in hc['cohort_2']:
                         md.append(f"**{year_data['year']}:** {year_data['count']} students identified")
                         if year_data['examples']:
-                            for student in year_data['examples'][:3]:
+                            for student in year_data['examples']:
                                 courses_str = ', '.join(student['courses']) if student['courses'] else 'Standard courses'
                                 md.append(f"- Student {student['student_id']} (ATAR {student['atar']:.1f}): Taking {courses_str}")
                         md.append("")
@@ -663,7 +663,7 @@ def generate_markdown_report(school_analysis, school_name, output_path, conn=Non
                     for year_data in hc['cohort_3']:
                         md.append(f"**{year_data['year']}:** {year_data['count']} students identified")
                         if year_data['examples']:
-                            for student in year_data['examples'][:3]:
+                            for student in year_data['examples']:
                                 md.append(f"- Student {student['student_id']} (ATAR {student['atar']:.1f}): Taking {student['courses'][0]}")
                         md.append("")
 
@@ -675,7 +675,7 @@ def generate_markdown_report(school_analysis, school_name, output_path, conn=Non
                     for year_data in hc['cohort_4']:
                         md.append(f"**{year_data['year']}:** {year_data['count']} students identified")
                         if year_data['examples']:
-                            for student in year_data['examples'][:3]:
+                            for student in year_data['examples']:
                                 md.append(f"- Student {student['student_id']} (ATAR {student['atar']:.1f}): Taking only {student['units']} units")
                         md.append("")
 
