@@ -131,8 +131,10 @@ def generate_markdown_report(school_analysis, school_name, output_path, conn=Non
             score = 0
             if gen['mxp_below_pct'] > 50:
                 score += gen['mxp_below_pct']
-            if abs(gen['moderated_exam_gap']) > 8:
-                score += abs(gen['moderated_exam_gap']) * 5
+            # Handle both moderated_exam_gap and internal_exam_gap
+            exam_gap = gen.get('moderated_exam_gap', gen.get('internal_exam_gap', 0))
+            if abs(exam_gap) > 8:
+                score += abs(exam_gap) * 5
             if gen['significant_rank_changes_count'] > gen['cohort_size'] * 0.3:
                 score += 20
             return -score  # Negative for descending order
@@ -693,6 +695,11 @@ def generate_markdown_report(school_analysis, school_name, output_path, conn=Non
 if __name__ == "__main__":
     print("Generating accurate report V3 with exploratory insights...")
     BASE_DIR = Path(__file__).parent
+
+    # Output directory - default to jai-psam output files directory
+    OUTPUT_DIR = Path(r"C:\Data Projects\python\jai-psam\output files")
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+
     conn = sqlite3.connect(BASE_DIR / "capsules/output/abbotsleigh.db")
 
     year = 2024
@@ -700,8 +707,8 @@ if __name__ == "__main__":
     # Analyze school
     school_analysis = analyze_school(conn, year)
 
-    # Generate report (now with exploratory insights)
-    output_path = BASE_DIR / "abbotsleigh_2024_accurate_v3.md"
+    # Generate report to output directory
+    output_path = OUTPUT_DIR / "abbotsleigh_2024_accurate_v3.md"
     report_path = generate_markdown_report(school_analysis, "Abbotsleigh", output_path, conn=conn, year=year)
 
     print(f"Report generated: {report_path}")
