@@ -485,10 +485,10 @@ def generate_markdown_report(school_analysis, school_name, output_path, conn=Non
             oc = insights['optimal_combinations']
 
             if oc['high_performing_pairs']:
-                md.append(f"**Top {len(oc['high_performing_pairs'])} course pairs** with highest average ATARs:")
+                md.append(f"**Top {len(oc['high_performing_pairs'])} course pairs** ordered by enrollment (most popular first):")
                 md.append("")
                 for pair in oc['high_performing_pairs']:
-                    md.append(f"- **{pair['courses']}**: Avg ATAR {pair['avg_atar']:.1f} ({pair['num_students']} students)")
+                    md.append(f"- **{pair['courses']}**: {pair['num_students']} students (Avg ATAR {pair['avg_atar']:.1f})")
                 md.append("")
             else:
                 md.append("Insufficient data to identify course combination patterns.")
@@ -502,10 +502,24 @@ def generate_markdown_report(school_analysis, school_name, output_path, conn=Non
                 md.append("### High-Performing Course Combinations (3-Course Triples)")
                 md.append("")
                 tc = insights['triple_combinations']
-                md.append(f"**Top {len(tc)} 3-course combinations** with highest average ATARs:")
+                md.append(f"**Top {len(tc)} 3-course combinations** ordered by enrollment (most popular first):")
                 md.append("")
                 for triple in tc:
-                    md.append(f"- **{triple['courses']}**: Avg ATAR {triple['avg_atar']:.1f} ({triple['num_students']} students)")
+                    md.append(f"- **{triple['courses']}**: {triple['num_students']} students (Avg ATAR {triple['avg_atar']:.1f})")
+                md.append("")
+
+                md.append("---")
+                md.append("")
+
+            # 7. Quad Course Combinations
+            if 'quad_combinations' in insights and insights['quad_combinations']:
+                md.append("### High-Performing Course Combinations (4-Course Quads)")
+                md.append("")
+                qc = insights['quad_combinations']
+                md.append(f"**Top {len(qc)} 4-course combinations** ordered by enrollment (most popular first):")
+                md.append("")
+                for quad in qc:
+                    md.append(f"- **{quad['courses']}**: {quad['num_students']} students (Avg ATAR {quad['avg_atar']:.1f})")
                 md.append("")
                 md.append("---")
                 md.append("")
