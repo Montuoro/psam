@@ -326,7 +326,7 @@ def analyze_optimal_course_combinations(conn, year):
                 })
 
     return {
-        'high_performing_pairs': sorted(high_performing_pairs, key=lambda x: x['avg_atar'], reverse=True)  # ALL high-performing pairs
+        'high_performing_pairs': sorted(high_performing_pairs, key=lambda x: x['num_students'], reverse=True)[:10]  # Top 10 by enrollment
     }
 
 def analyze_extension_trends_multiyear(conn, years=[2022, 2023, 2024]):
@@ -554,7 +554,56 @@ def analyze_triple_course_combinations(conn, year):
                     'num_students': len(atars)
                 })
 
-    return sorted(high_performing_triples, key=lambda x: x['avg_atar'], reverse=True)  # ALL high-performing triples
+    return sorted(high_performing_triples, key=lambda x: x['num_students'], reverse=True)[:10]  # Top 10 by enrollment
+
+def analyze_quad_course_combinations(conn, year):
+    """
+    Find 4-course combinations that produce high ATARs
+    """
+    cursor = conn.cursor()
+
+    # Get course combinations and ATARs (exclude NG students)
+    cursor.execute("""
+        SELECT
+            sym.student_id,
+            sym.psam_score as atar,
+            GROUP_CONCAT(c.name) as courses
+        FROM student_year_metric sym
+        JOIN course_result cr ON sym.student_id = cr.student_id AND sym.year = cr.year
+        JOIN course c ON cr.course_id = c.course_id
+        WHERE sym.year = ?
+        AND sym.psam_score > 0
+        GROUP BY sym.student_id
+        HAVING COUNT(DISTINCT c.course_id) >= 5
+    """, (year,))
+
+    # Find common course quads and their average ATAR
+    course_quad_atars = defaultdict(list)
+    for row in cursor.fetchall():
+        student_id, atar, courses_str = row
+        courses = sorted(courses_str.split(','))
+
+        # Look at quads of courses (4-course combinations)
+        for i in range(len(courses)):
+            for j in range(i+1, len(courses)):
+                for k in range(j+1, len(courses)):
+                    for l in range(k+1, len(courses)):
+                        quad = f"{courses[i]} + {courses[j]} + {courses[k]} + {courses[l]}"
+                        course_quad_atars[quad].append(atar)
+
+    # Find high-performing quads
+    high_performing_quads = []
+    for quad, atars in course_quad_atars.items():
+        if len(atars) >= 3:  # At least 3 students
+            avg_atar = np.mean(atars)
+            if avg_atar > 90:
+                high_performing_quads.append({
+                    'courses': quad,
+                    'avg_atar': avg_atar,
+                    'num_students': len(atars)
+                })
+
+    return sorted(high_performing_quads, key=lambda x: x['num_students'], reverse=True)[:10]  # Top 10 by enrollment
 
 def analyze_poor_course_combinations(conn, year):
     """
@@ -773,6 +822,7 @@ def generate_exploratory_insights(conn, year):
         'cohort_trends': analyze_cohort_trends_multiyear(conn),
         'optimal_combinations': analyze_optimal_course_combinations(conn, year),
         'triple_combinations': analyze_triple_course_combinations(conn, year),
+        'quad_combinations': analyze_quad_course_combinations(conn, year),
         'poor_combinations': analyze_poor_course_combinations(conn, year),
         'hidden_cohorts': analyze_hidden_cohorts(conn)
     }
